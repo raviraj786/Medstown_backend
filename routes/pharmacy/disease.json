@@ -1,0 +1,650 @@
+[
+    {
+     "disease": "ADHD",
+     "id": "d00001"
+    },
+    {
+     "disease": "Acne",
+     "id": "d00002"
+    },
+    {
+     "disease": "Alcohol Addiction",
+     "id": "d00003"
+    },
+    {
+     "disease": "Allergies",
+     "id": "d00004"
+    },
+    {
+     "disease": "Alzheimer",
+     "id": "d00005"
+    },
+    {
+     "disease": "Amoebiasis",
+     "id": "d00006"
+    },
+    {
+     "disease": "Anaemia",
+     "id": "d00007"
+    },
+    {
+     "disease": "Anaesthesia - Local",
+     "id": "d00008"
+    },
+    {
+     "disease": "Anaesthesia General",
+     "id": "d00009"
+    },
+    {
+     "disease": "Anal Fissure",
+     "id": "d00010"
+    },
+    {
+     "disease": "Angina",
+     "id": "d00011"
+    },
+    {
+     "disease": "Anti-Scar",
+     "id": "d00012"
+    },
+    {
+     "disease": "Anxiety",
+     "id": "d00013"
+    },
+    {
+     "disease": "Apnea",
+     "id": "d00014"
+    },
+    {
+     "disease": "Appetite",
+     "id": "d00015"
+    },
+    {
+     "disease": "Arrhythmiasis",
+     "id": "d00016"
+    },
+    {
+     "disease": "Arthritis",
+     "id": "d00017"
+    },
+    {
+     "disease": "Asthma COPD",
+     "id": "d00018"
+    },
+    {
+     "disease": "Auto Immune Disease",
+     "id": "d00019"
+    },
+    {
+     "disease": "Ayurvedic Medicine",
+     "id": "d00020"
+    },
+    {
+     "disease": "Bacterial Infections",
+     "id": "d00021"
+    },
+    {
+     "disease": "Bladder And Prostate Disorders",
+     "id": "d00022"
+    },
+    {
+     "disease": "Bleeding Disorders",
+     "id": "d00023"
+    },
+    {
+     "disease": "Blood Clot",
+     "id": "d00024"
+    },
+    {
+     "disease": "Bone Metabolism",
+     "id": "d00025"
+    },
+    {
+     "disease": "Burns",
+     "id": "d00026"
+    },
+    {
+     "disease": "CNS stimulants",
+     "id": "d00027"
+    },
+    {
+     "disease": "Cancer Oncology",
+     "id": "d00028"
+    },
+    {
+     "disease": "Cardiac Arrest",
+     "id": "d00029"
+    },
+    {
+     "disease": "Cholelithiasis Gall Stones",
+     "id": "d00030"
+    },
+    {
+     "disease": "Cleanser",
+     "id": "d00031"
+    },
+    {
+     "disease": "Colon Cleanser",
+     "id": "d00032"
+    },
+    {
+     "disease": "Constipation",
+     "id": "d00033"
+    },
+    {
+     "disease": "Contraception",
+     "id": "d00034"
+    },
+    {
+     "disease": "Cough And Cold",
+     "id": "d00035"
+    },
+    {
+     "disease": "Crack",
+     "id": "d00036"
+    },
+    {
+     "disease": "Dandruff",
+     "id": "d00037"
+    },
+    {
+     "disease": "Denture Adhesive",
+     "id": "d00038"
+    },
+    {
+     "disease": "Depression",
+     "id": "d00039"
+    },
+    {
+     "disease": "Diabetes",
+     "id": "d00040"
+    },
+    {
+     "disease": "Diagnostic",
+     "id": "d00041"
+    },
+    {
+     "disease": "Diarrhoea",
+     "id": "d00042"
+    },
+    {
+     "disease": "Dietary Management",
+     "id": "d00043"
+    },
+    {
+     "disease": "Digestion",
+     "id": "d00044"
+    },
+    {
+     "disease": "Dry Eye",
+     "id": "d00045"
+    },
+    {
+     "disease": "Dry Skin",
+     "id": "d00046"
+    },
+    {
+     "disease": "Ear Conditions",
+     "id": "d00047"
+    },
+    {
+     "disease": "Electrolytes",
+     "id": "d00048"
+    },
+    {
+     "disease": "Epilepsy Convulsion",
+     "id": "d00049"
+    },
+    {
+     "disease": "Eye Infections",
+     "id": "d00050"
+    },
+    {
+     "disease": "Eye conditions",
+     "id": "d00051"
+    },
+    {
+     "disease": "Fever",
+     "id": "d00052"
+    },
+    {
+     "disease": "Fungal",
+     "id": "d00053"
+    },
+    {
+     "disease": "Fungal Infections",
+     "id": "d00054"
+    },
+    {
+     "disease": "Gastro Intestinal Motility Disorders",
+     "id": "d00055"
+    },
+    {
+     "disease": "General-P",
+     "id": "d00056"
+    },
+    {
+     "disease": "Glaucoma",
+     "id": "d00057"
+    },
+    {
+     "disease": "Gout",
+     "id": "d00058"
+    },
+    {
+     "disease": "Haematopoiesis",
+     "id": "d00059"
+    },
+    {
+     "disease": "Haemorrhoid",
+     "id": "d00060"
+    },
+    {
+     "disease": "Hair Color",
+     "id": "d00061"
+    },
+    {
+     "disease": "Hair Loss",
+     "id": "d00062"
+    },
+    {
+     "disease": "Head Lice",
+     "id": "d00063"
+    },
+    {
+     "disease": "Heart Failure",
+     "id": "d00064"
+    },
+    {
+     "disease": "Hepatitis B Infection",
+     "id": "d00065"
+    },
+    {
+     "disease": "High Cholesterol",
+     "id": "d00066"
+    },
+    {
+     "disease": "Hirsutism",
+     "id": "d00067"
+    },
+    {
+     "disease": "Hormonal Therapy",
+     "id": "d00068"
+    },
+    {
+     "disease": "Hyperpigmentation",
+     "id": "d00069"
+    },
+    {
+     "disease": "Hypertension",
+     "id": "d00070"
+    },
+    {
+     "disease": "Hyperthyroidism",
+     "id": "d00071"
+    },
+    {
+     "disease": "Hypnosis",
+     "id": "d00072"
+    },
+    {
+     "disease": "Hyponatremia",
+     "id": "d00073"
+    },
+    {
+     "disease": "Hypotension",
+     "id": "d00074"
+    },
+    {
+     "disease": "Hypothyroidism",
+     "id": "d00075"
+    },
+    {
+     "disease": "Idiopathic Pulmonary Fibrosis",
+     "id": "d00076"
+    },
+    {
+     "disease": "Immune Sera",
+     "id": "d00077"
+    },
+    {
+     "disease": "Immune Suppression",
+     "id": "d00078"
+    },
+    {
+     "disease": "Immunoglobulins",
+     "id": "d00079"
+    },
+    {
+     "disease": "Impotence Erectile Dysfunction (Ed)",
+     "id": "d00080"
+    },
+    {
+     "disease": "Infection",
+     "id": "d00081"
+    },
+    {
+     "disease": "Inhaler Nebulizer",
+     "id": "d00082"
+    },
+    {
+     "disease": "Insulin Pen (Device)",
+     "id": "d00083"
+    },
+    {
+     "disease": "Intermittent Claudication",
+     "id": "d00084"
+    },
+    {
+     "disease": "Iron Supplement Anaemia",
+     "id": "d00085"
+    },
+    {
+     "disease": "Itching Dry Skin",
+     "id": "d00086"
+    },
+    {
+     "disease": "Kidney Disease Stones",
+     "id": "d00087"
+    },
+    {
+     "disease": "LYMPHOEDEMA",
+     "id": "d00088"
+    },
+    {
+     "disease": "Leprosy",
+     "id": "d00089"
+    },
+    {
+     "disease": "Liver Diseases",
+     "id": "d00090"
+    },
+    {
+     "disease": "Liver Supplement",
+     "id": "d00091"
+    },
+    {
+     "disease": "Lubrication",
+     "id": "d00092"
+    },
+    {
+     "disease": "Malarial",
+     "id": "d00093"
+    },
+    {
+     "disease": "Melasma",
+     "id": "d00094"
+    },
+    {
+     "disease": "Migraine",
+     "id": "d00095"
+    },
+    {
+     "disease": "Multiple Sclerosis",
+     "id": "d00096"
+    },
+    {
+     "disease": "Muscle Cramps Spasticity",
+     "id": "d00097"
+    },
+    {
+     "disease": "Muscle Spasm",
+     "id": "d00098"
+    },
+    {
+     "disease": "Myasthenia Gravis",
+     "id": "d00099"
+    },
+    {
+     "disease": "Mydriasis",
+     "id": "d00100"
+    },
+    {
+     "disease": "Nappy Rash",
+     "id": "d00101"
+    },
+    {
+     "disease": "Nasal Congestion",
+     "id": "d00102"
+    },
+    {
+     "disease": "Neuropathic Pain",
+     "id": "d00103"
+    },
+    {
+     "disease": "Nootropics And Neurotrophics",
+     "id": "d00104"
+    },
+    {
+     "disease": "Obese",
+     "id": "d00105"
+    },
+    {
+     "disease": "Obesity",
+     "id": "d00106"
+    },
+    {
+     "disease": "Oral Care",
+     "id": "d00107"
+    },
+    {
+     "disease": "Osteoporosis",
+     "id": "d00108"
+    },
+    {
+     "disease": "Pain relief",
+     "id": "d00109"
+    },
+    {
+     "disease": "Parasitic Worms",
+     "id": "d00110"
+    },
+    {
+     "disease": "Parkinsonism",
+     "id": "d00111"
+    },
+    {
+     "disease": "Patanjali Ayurvedic",
+     "id": "d00112"
+    },
+    {
+     "disease": "Pen (Device)",
+     "id": "d00113"
+    },
+    {
+     "disease": "Peripheral Hypertension",
+     "id": "d00114"
+    },
+    {
+     "disease": "Peripheral Vascular Disease",
+     "id": "d00115"
+    },
+    {
+     "disease": "Poisoning Overdose",
+     "id": "d00116"
+    },
+    {
+     "disease": "Polycystic ovary syndrome (PCOS)",
+     "id": "d00117"
+    },
+    {
+     "disease": "Pregnancy Testing Kit",
+     "id": "d00118"
+    },
+    {
+     "disease": "Premature Ejaculation",
+     "id": "d00119"
+    },
+    {
+     "disease": "Psoriasis",
+     "id": "d00120"
+    },
+    {
+     "disease": "Psoriasis Seborrhea Ichthyosis",
+     "id": "d00121"
+    },
+    {
+     "disease": "Psychosis",
+     "id": "d00122"
+    },
+    {
+     "disease": "Pulmonary Arterial Hypertension",
+     "id": "d00123"
+    },
+    {
+     "disease": "Rabies",
+     "id": "d00124"
+    },
+    {
+     "disease": "Rheumatoid Arthritis",
+     "id": "d00125"
+    },
+    {
+     "disease": "Sanitizer",
+     "id": "d00126"
+    },
+    {
+     "disease": "Scabies",
+     "id": "d00127"
+    },
+    {
+     "disease": "Scar",
+     "id": "d00128"
+    },
+    {
+     "disease": "Schizophrenia",
+     "id": "d00129"
+    },
+    {
+     "disease": "Skin Infections",
+     "id": "d00130"
+    },
+    {
+     "disease": "Smoking cessation",
+     "id": "d00131"
+    },
+    {
+     "disease": "Stretch Marks",
+     "id": "d00132"
+    },
+    {
+     "disease": "Sun Protectors",
+     "id": "d00133"
+    },
+    {
+     "disease": "Sunscreen Preparations",
+     "id": "d00134"
+    },
+    {
+     "disease": "Supplements",
+     "id": "d00135"
+    },
+    {
+     "disease": "Surgicals",
+     "id": "d00136"
+    },
+    {
+     "disease": "Syringe",
+     "id": "d00137"
+    },
+    {
+     "disease": "Targeted Cancer Therapy",
+     "id": "d00138"
+    },
+    {
+     "disease": "Tetanus",
+     "id": "d00139"
+    },
+    {
+     "disease": "Thrombotic Disorder",
+     "id": "d00140"
+    },
+    {
+     "disease": "Tuberculosis",
+     "id": "d00141"
+    },
+    {
+     "disease": "Ulcer Reflux Flatulence",
+     "id": "d00142"
+    },
+    {
+     "disease": "Ulcerative Colitis Bowel Inflammatory Disease",
+     "id": "d00143"
+    },
+    {
+     "disease": "Urinary Retention",
+     "id": "d00144"
+    },
+    {
+     "disease": "Uterus Conditions",
+     "id": "d00145"
+    },
+    {
+     "disease": "Uti Infections",
+     "id": "d00146"
+    },
+    {
+     "disease": "Vaccines",
+     "id": "d00147"
+    },
+    {
+     "disease": "Vaginal Capsules",
+     "id": "d00148"
+    },
+    {
+     "disease": "Vaginal Conditions",
+     "id": "d00149"
+    },
+    {
+     "disease": "Varicose Veins",
+     "id": "d00150"
+    },
+    {
+     "disease": "Vertigo",
+     "id": "d00151"
+    },
+    {
+     "disease": "Viral infections",
+     "id": "d00152"
+    },
+    {
+     "disease": "Vitamin B12",
+     "id": "d00153"
+    },
+    {
+     "disease": "Vitamin C Supplements",
+     "id": "d00154"
+    },
+    {
+     "disease": "Vitamin D3",
+     "id": "d00155"
+    },
+    {
+     "disease": "Vitamin E",
+     "id": "d00156"
+    },
+    {
+     "disease": "Vitiligo",
+     "id": "d00157"
+    },
+    {
+     "disease": "Vomitting Emesis",
+     "id": "d00158"
+    },
+    {
+     "disease": "Warts Calluses Other Skin Lesion",
+     "id": "d00159"
+    },
+    {
+     "disease": "Weight Loss (Pharma)",
+     "id": "d00160"
+    },
+    {
+     "disease": "Wound Care",
+     "id": "d00161"
+    },
+    {
+     "disease": "Wrinkle Anti Ageing",
+     "id": "d00162"
+    }
+]

@@ -1,0 +1,3 @@
+# hide node modules from the root directory
+node_modules
+DS_Store
