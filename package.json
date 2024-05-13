@@ -36,6 +36,7 @@
     "otp-generator": "^4.0.0",
     "passport": "^0.6.0",
     "puppeteer": "^19.4.1",
+    "razorpay": "^2.9.3",
     "uuid": "^8.3.2",
     "yup": "^0.32.11"
   }

@@ -17,6 +17,7 @@ let qaMedicine = require("./routes/pharmacy/qamedicine");
 let category = require("./routes/pharmacy/category");
 let datascarp = require("./routes/scrapping/nprec.js");
 let payment = require("./routes/payment/payment.js");
+let razorpay = require("./routes/payment/razorpay.js")
 let sendOrder = require("./routes/customer/sendOrder");
   
 // ******************************* customer api ************************************************
@@ -61,6 +62,8 @@ app.use("/delivery", fetchpharmacy);
 
 // **********************************payment**************************************************
 app.use("/pay", payment);
+app.use("/pay/p1" , razorpay);
+
 // **********************************srapping**************************************************
 app.use("/rbt", datascarp);
 

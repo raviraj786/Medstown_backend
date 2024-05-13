@@ -9,6 +9,8 @@ const userSchema = new mongoose.Schema({
     paymentId : {type: String, required: false },
     paymentStatus : {type: String, required: false },
     mobileNumber : {type: String, required: false },
+    createdAt: { type: Date, default: Date.now },
+   
 });
 
 module.exports = mongoose.model("payment", userSchema);
