@@ -348,16 +348,7 @@ router.post("/orderMedicines", async (req, res) => {
       totalPrice,
     } = req.body;
     // Input Validation
-    if (
-      !customerId ||
-      !orderDetails ||
-      !lat ||
-      !lng ||
-      !orderId ||
-      !totalPrice
-    ) {
-      return res.status(400).json({ message: "Missing required fields" });
-    }
+    
     const options = {
       location: {
         $geoWithin: {
@@ -391,7 +382,6 @@ router.post("/orderMedicines", async (req, res) => {
             distance,
             expoToken: pharmacies[i].expoToken,
             orderDetails,
-            price,
             quantity,
             customerId,
             orderStatus: "pending",
@@ -778,6 +768,11 @@ router.post("/verifyotpOrder", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
+
+
+
+
 
 
 module.exports = router;
