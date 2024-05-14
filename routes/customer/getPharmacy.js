@@ -694,14 +694,31 @@ router.get("/getOrders", async (req, res) => {
 
 router.get("/findorder/:pharmacyId", async (req, res) => {
   const { pharmacyId } = req.params;
+  console.log("Ssjskks" , req.params)
   try {
     const orders = await airorder.find({ pharmacyId: pharmacyId });
+    console.log(orders)
     res.status(200).json(orders);
   } catch (error) {
     console.log(error.message, "server is not working");
     res.status(500).json("server is not working");
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // order otp api confim apis
 
