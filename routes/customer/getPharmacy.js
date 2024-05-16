@@ -348,7 +348,7 @@ router.post("/orderMedicines", async (req, res) => {
       totalPrice,
     } = req.body;
     // Input Validation
-    
+
     const options = {
       location: {
         $geoWithin: {
@@ -650,12 +650,10 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      res
-        .status(500)
-        .json({
-          message:
-            "An error occurred while processing the orders internet is not working ",
-        });
+      res.status(500).json({
+        message:
+          "An error occurred while processing the orders internet is not working ",
+      });
     });
 });
 
@@ -694,31 +692,16 @@ router.get("/getOrders", async (req, res) => {
 
 router.get("/findorder/:pharmacyId", async (req, res) => {
   const { pharmacyId } = req.params;
-  console.log("Ssjskks" , req.params)
+  console.log("Ssjskks", req.params);
   try {
     const orders = await airorder.find({ pharmacyId: pharmacyId });
-    console.log(orders)
+    console.log(orders);
     res.status(200).json(orders);
   } catch (error) {
     console.log(error.message, "server is not working");
     res.status(500).json("server is not working");
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // order otp api confim apis
 
@@ -744,15 +727,29 @@ router.post("/createotp", async (req, res) => {
   }
 });
 
+router.post("/finalorder", async (req, res) => {
+  const { orderId, pharmacyId, totalPrice, deliveryBoyId, deliveryPrice } =
+    req.body;
+  const result = await finalorder.findOne({ orderId });
+  try {
+    if (result) {
+      // Update properties only if they are provided in the request body
+      if (pharmacyId !== undefined) result.pharmacyId = pharmacyId;
+      if (totalPrice !== undefined) result.totalPrice = totalPrice;
+      if (deliveryBoyId !== undefined) result.deliveryBoyId = deliveryBoyId;
+      if (deliveryPrice !== undefined) result.deliveryPrice = deliveryPrice;
+      await result.save();
+      res.status(200).json( {finalorder : result});
+    } else {
+      res.status(404).json({ message: "No matching order found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error", error, });
+  }
+});
+
 router.post("/verifyotpOrder", async (req, res) => {
-  const {
-    otpValue,
-    customerId,
-    orderId,
-    deliveryBoyId,
-    totalPrice,
-    pharmacyId,
-  } = req.body;
+  const { otpValue, customerId, orderId } = req.body;
   try {
     const completedOrder = await finalorder.findOne({
       customerId,
@@ -763,33 +760,21 @@ router.post("/verifyotpOrder", async (req, res) => {
       return res.status(400).json({ message: "OTP not found" });
     }
     if (otpValue === completedOrder.otpValue) {
-      // OTP is verified successfully
-      completedOrder.deliveryBoyId = deliveryBoyId;
-      completedOrder.totalPrice = totalPrice;
-      completedOrder.pharmacyId = pharmacyId;
       completedOrder.status = "completed";
-
       await completedOrder.save();
-
-      res.status(200).json({
-        completedOrder,
-        message: "OTP verification successful",
-        status: "completed",
-      });
+      res.status(200).json({finalorder :  completedOrder , message : "otp verify successfully" });
     } else {
-      // OTP verification failed
       res.status(400).json({ message: "Invalid OTP" });
     }
   } catch (error) {
-    console.error("Error verifying OTP:", error);
-    res.status(500).json({ message: "Internal server error" });
+    // console.error("Error verifying OTP:", error);
+    res.status(500).json({ message: "Internal server error" , error});
   }
 });
 
-
-
-
-
-
-
+router.get("/finalorder/:deliveryBoyId", async (req, res) => {
+  const {deliveryBoyId} = req.params;
+  const delivaryorder =  await  finalorder.find({deliveryBoyId : deliveryBoyId})
+  res.status(200).json(delivaryorder);
+});
 module.exports = router;

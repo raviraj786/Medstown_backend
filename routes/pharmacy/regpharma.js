@@ -530,6 +530,9 @@ router.post("/editbussinessname/:pharmacyId", async (req, res) => {
   }
 });
 
+
+
+
 router.post("/addbankdetails/:pharmacyId", async (req, res) => {
   const {bankName, accountNumber, ifscCode, branchName, accountHolderName} = req.body;
   const pharmacyId = req.params.pharmacyId;
@@ -562,6 +565,10 @@ router.post("/addbankdetails/:pharmacyId", async (req, res) => {
     });
   }
 });
+
+
+
+
 
 router.post("/editbankdetails/:pharmacyId", async (req, res) => {
   const {bankName, accountNumber, ifscCode, branchName, accountHolderName} = req.body;
@@ -624,7 +631,7 @@ router.post("/addwalletbalance/:pharmacyId", async (req, res) => {
       message: "Wallet balance added successfully",
     });
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).send({
       status: "error",
       message: "Server error",
@@ -643,6 +650,7 @@ router.get("/getwalletbalance/:pharmacyId", async (req, res) => {
       }
     );
     res.send({
+     
       status: "success",
       message: "Wallet balance fetched successfully",
       walletBalance: walletBalance.wallet.walletBalance,
