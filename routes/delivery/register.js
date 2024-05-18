@@ -24,7 +24,7 @@ router.post("/register", async (req, res) => {
       newUser
         .save()
         .then((user) => {
-          res.json({user : user  , messsage :"User registered successfully"});
+          res.json({ user: user, messsage: "User registered successfully" });
         })
         .catch((err) => {
           console.log(err);
@@ -182,6 +182,7 @@ router.post("/wallet/credit", async (req, res) => {
       status: "success",
       totalBalance: deliveryBoy.totalBalance,
       transcationId: obj.transactionId,
+      date : new Date()
     });
   } catch (error) {
     console.log("Error - " + error);
@@ -189,44 +190,57 @@ router.post("/wallet/credit", async (req, res) => {
   }
 });
 
-
 // debit apis
-
 router.post("/wallet/debit", async (req, res) => {
   const { amount, partnerId, status } = req.body;
 
   try {
     const deliveryBoy = await deliverydb.findOne({ partnerId: partnerId });
-
     if (!deliveryBoy) {
       return res.status(404).json({ message: "No user found" });
     }
     //debit money
     //remove balance from wallet
     //now type is debit so update the walletHistory arr
-
-    let obj = { transactionId: "", amount: 0, status: "" };
-    obj.transactionId = uuid.v4(); //unique transcationId
-    obj.amount = amount;
-    obj.status = status; //debit
-    let totalBalance = deliveryBoy.wallet.reduce((pre, curr) => {
-      return pre + parseInt(curr.walletBalance);
-    }, 0);
-    //1000 - 200 = 800
-    console.log("Total Balance - ", totalBalance - amount);
-
-    deliveryBoy.walletHistory.push(obj);
-
-    //update totalBalance
-    deliveryBoy.totalBalance -= amount;
-    await deliveryBoy.save();
-    return res.send({
-      message: `${amount} debited Successfully`,
-      status: "success",
-      totalBalance: deliveryBoy.totalBalance,
-      transcationId: obj.transactionId,
-    });
+    if (deliveryBoy.totalBalance >= amount) {
+      let obj = { transactionId: "", amount: 0, status: "" };
+      obj.transactionId = uuid.v4(); //unique transcationId
+      obj.amount = amount;
+      obj.status = status; //debit
+      let totalBalance = deliveryBoy.wallet.reduce((pre, curr) => {
+        return pre + parseInt(curr.walletBalance);
+      }, 0);
+      //1000 - 200 = 800
+      console.log("Total Balance - ", totalBalance - amount);
+      deliveryBoy.walletHistory.push(obj);
+      //update totalBalance
+      deliveryBoy.totalBalance -= amount;
+      await deliveryBoy.save();
+      return res.send({
+        message: `${amount} debited Successfully`,
+        status: "success",
+        totalBalance: deliveryBoy.totalBalance,
+        transcationId: obj.transactionId,
+      });
+    } else {
+      return res.send({
+        message: `you have not sufficient balance`,
+        status: "success",
+        totalBalance: deliveryBoy.totalBalance,
+        date : new Date()
+      });
+    }
   } catch (error) {}
+});
+
+router.get("/balance/:partnerId", async (req, res) => {
+  const { partnerId } = req.params;
+  try {
+    const balance = await deliverydb.findOne({ partnerId });
+    res.status(200).json({ totalBalance: balance.totalBalance });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

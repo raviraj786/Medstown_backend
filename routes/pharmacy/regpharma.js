@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const pharmacydb = require("../../models/pharmacydb/registerpharmacydb.js");
+const PharmacyOrders = require("../../models/pharmacydb/parmacyorderdb.js");
 const uuid = require("uuid");
 const multer = require("multer");
 const S3 = require("aws-sdk/clients/s3");
@@ -110,7 +111,6 @@ router.post("/register", async (req, res) => {
 
 // ragister pharmacy 2
 
-
 router.post("/registerPharmacy", async (req, res) => {
   const {
     fullName,
@@ -169,11 +169,6 @@ router.post("/registerPharmacy", async (req, res) => {
   }
 });
 
-
-
-
-
-
 router.post(
   "/regimageupload/:pharmacyId",
   upload.fields([
@@ -190,7 +185,7 @@ router.post(
       await uploadToS3(req.files.businessDocumets[i]).then((data) => {
         imageurl.push(
           "https://usc1.contabostorage.com/f49065475849480fbcd19fb8279b2f98:medstown/" +
-          data.Key
+            data.Key
         );
       });
     }
@@ -198,7 +193,7 @@ router.post(
       await uploadToS3(req.files.pharmacyImage[i]).then((data) => {
         imageurl1.push(
           "https://usc1.contabostorage.com/f49065475849480fbcd19fb8279b2f98:medstown/" +
-          data.Key
+            data.Key
         );
       });
     }
@@ -206,7 +201,7 @@ router.post(
       await uploadToS3(req.files.userDocumets[i]).then((data) => {
         imageurl2.push(
           "https://usc1.contabostorage.com/f49065475849480fbcd19fb8279b2f98:medstown/" +
-          data.Key
+            data.Key
         );
       });
     }
@@ -269,8 +264,7 @@ router.post("/generatemobileotp", async (req, res) => {
     res.send({
       msg: "user not found please register",
     });
-  }
-  else {
+  } else {
     let url = `http://37.59.76.46/api/mt/SendSMS?user=Wowerr-Technologies&password=q12345&senderid=MEDSTN&channel=Trans&DCS=0&flashsms=0&number=${businessPhone}&text=Your%20login%20OTP%20for%20Medstown%20account%20is%20${otp}.%20OTP%20is%20valid%20for%2010mins.%20Do%20not%20share%20with%20anyone.%20If%20not%20requested%20by%20you,%20reach%20support@medstown.com%20-MEDSTOWN`;
     axios
       .get(url)
@@ -416,7 +410,7 @@ router.get(
         status: "success",
         message: "Duplicate medicine removed successfully",
       });
-    } catch (err) { }
+    } catch (err) {}
   }
 );
 
@@ -530,11 +524,9 @@ router.post("/editbussinessname/:pharmacyId", async (req, res) => {
   }
 });
 
-
-
-
 router.post("/addbankdetails/:pharmacyId", async (req, res) => {
-  const {bankName, accountNumber, ifscCode, branchName, accountHolderName} = req.body;
+  const { bankName, accountNumber, ifscCode, branchName, accountHolderName } =
+    req.body;
   const pharmacyId = req.params.pharmacyId;
   try {
     await pharmacydb.updateOne(
@@ -566,12 +558,9 @@ router.post("/addbankdetails/:pharmacyId", async (req, res) => {
   }
 });
 
-
-
-
-
 router.post("/editbankdetails/:pharmacyId", async (req, res) => {
-  const {bankName, accountNumber, ifscCode, branchName, accountHolderName} = req.body;
+  const { bankName, accountNumber, ifscCode, branchName, accountHolderName } =
+    req.body;
   const pharmacyId = req.params.pharmacyId;
   try {
     await pharmacydb.updateOne(
@@ -604,7 +593,7 @@ router.post("/editbankdetails/:pharmacyId", async (req, res) => {
 });
 
 router.post("/addwalletbalance/:pharmacyId", async (req, res) => {
-  const {walletBalance} = req.body;
+  const { walletBalance } = req.body;
   const pharmacyId = req.params.pharmacyId;
   try {
     await pharmacydb.updateOne(
@@ -618,7 +607,7 @@ router.post("/addwalletbalance/:pharmacyId", async (req, res) => {
             amount: walletBalance,
             status: "success",
             type: "credit",
-            date : new Date().toLocaleDateString(),
+            date: new Date().toLocaleDateString(),
           },
         },
         $inc: {
@@ -639,112 +628,380 @@ router.post("/addwalletbalance/:pharmacyId", async (req, res) => {
   }
 });
 
-router.get("/getwalletbalance/:pharmacyId", async (req, res) => {
-  const pharmacyId = req.params.pharmacyId;
-  try {
-    const walletBalance = await pharmacydb.findOne(
-      { pharmacyId },
-      {
-        "wallet.walletBalance": 1,
-        _id: 0,
-      }
-    );
-    res.send({
-     
-      status: "success",
-      message: "Wallet balance fetched successfully",
-      walletBalance: walletBalance.wallet.walletBalance,
-    });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send({
-      status: "error",
-      message: "Server error",
-    });
-  }
-});
+// router.get("/getwalletbalance/:pharmacyId", async (req, res) => {
+//   const pharmacyId = req.params.pharmacyId;
+//   try {
+//     const walletBalance = await pharmacydb.findOne(
+//       { pharmacyId },
+//       {
+//         "wallet.walletBalance": 1,
+//         _id: 0,
+//       }
+//     );
+//     res.send({
+//       status: "success",
+//       message: "Wallet balance fetched successfully",
+//       walletBalance: walletBalance.wallet.walletBalance,
+//     });
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send({
+//       status: "error",
+//       message: "Server error",
+//     });
+//   }
+// });
 
-router.get("/getwallethistory/:pharmacyId", async (req, res) => {
-  const pharmacyId = req.params.pharmacyId;
-  try {
-    const walletHistory = await pharmacydb.findOne(
-      { pharmacyId },
-      {
-        "wallet.walletHistory": 1,
-        _id: 0,
-      }
-    );
-    res.send({
-      status: "success",
-      message: "Wallet history fetched successfully",
-      walletHistory: walletHistory.wallet.walletHistory,
-    });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send({
-      status: "error",
-      message: "Server error",
-    });
-  }
-});
+// router.get("/getwallethistory/:pharmacyId", async (req, res) => {
+//   const pharmacyId = req.params.pharmacyId;
+//   try {
+//     const walletHistory = await pharmacydb.findOne(
+//       { pharmacyId },
+//       {
+//         "wallet.walletHistory": 1,
+//         _id: 0,
+//       }
+//     );
+//     res.send({
+//       status: "success",
+//       message: "Wallet history fetched successfully",
+//       walletHistory: walletHistory.wallet.walletHistory,
+//     });
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send({
+//       status: "error",
+//       message: "Server error",
+//     });
+//   }
+// });
 
-router.post("/withdrawbalance/:pharmacyId", async (req, res) => {
-  const pharmacyId = req.params.pharmacyId;
-  const {walletBalance} = req.body;
-  try {
-    await pharmacydb.updateOne(
-      {
-        pharmacyId: pharmacyId,
-      },
-      {
-        $push: {
-          "wallet.walletHistory": {
-            transactionId: uuid.v4(),
-            amount: walletBalance,
-            status: "pending",
-            type: "debit",
-            date : new Date().toLocaleDateString(),
-          },
-        },
-        $inc: {
-          "wallet.walletBalance": -walletBalance,
-        },
-      }
-    );
-    res.send({
-      status: "success",
-      message: "Wallet balance withdrawn successfully",
-    });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send({
-      status: "error",
-      message: err.message,
-    });
-  }
-});
+// router.post("/withdrawbalance/:pharmacyId", async (req, res) => {
+//   const pharmacyId = req.params.pharmacyId;
+//   const { walletBalance } = req.body;
+//   try {
+//     await pharmacydb.updateOne(
+//       {
+//         pharmacyId: pharmacyId,
+//       },
+//       {
+//         $push: {
+//           "wallet.walletHistory": {
+//             transactionId: uuid.v4(),
+//             amount: walletBalance,
+//             status: "pending",
+//             type: "debit",
+//             date: new Date().toLocaleDateString(),
+//           },
+//         },
+//         $inc: {
+//           "wallet.walletBalance": -walletBalance,
+//         },
+//       }
+//     );
+//     res.send({
+//       status: "success",
+//       message: "Wallet balance withdrawn successfully",
+//     });
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send({
+//       status: "error",
+//       message: err.message,
+//     });
+//   }
+// });
 // fetch balance and history
-router.get("/getbalanceandhistory/:pharmacyId", async (req, res) => {
-  const pharmacyId = req.params.pharmacyId;
+// router.get("/getbalanceandhistory/:pharmacyId", async (req, res) => {
+//   const pharmacyId = req.params.pharmacyId;
+//   try {
+//     const wallet = await pharmacydb.findOne(
+//       { pharmacyId },
+//       {
+//         wallet: 1,
+//         _id: 0,
+//       }
+//     );
+//     res.send({
+//       status: "success",
+//       message: "Wallet fetched successfully",
+//       wallet: wallet.wallet,
+//     });
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send({
+//       status: "error",
+//       message: err.message,
+//     });
+//   }
+// });
+
+router.post("/withDraw/:pharmacyId", async (req, res) => {
+  const { amount } = req.body;
   try {
-    const wallet = await pharmacydb.findOne(
-      { pharmacyId },
-      {
-        wallet: 1,
-        _id: 0,
+    const pharmacy = await PharmacyOrders.findOne({
+      pharmacyId: req.params.pharmacyId,
+    });
+    if (pharmacy) {
+      let transactionDetails = {
+        transactionId: uuid.v4(),
+        amount: parseInt(amount),
+        status: "With Draw Request",
+        type: "debit",
+        date: Date.now(),
+      };
+      pharmacy.walletHistory.push(transactionDetails);
+      //update the balance
+      if (amount > 0) {
+        if (
+          amount > 0 &&
+          pharmacy.totalBalance > 0 &&
+          pharmacy.totalBalance >= amount
+        ) {
+          //reduce money
+
+          pharmacy.totalBalance -= amount;
+          await pharmacy.save();
+          return res.status(200).send({
+            message:
+              "Thank you for requesting, your request is under process. you request id - ",
+            remainingBalance: pharmacy.totalBalance,
+          });
+        } else {
+          return res.send({
+            message: "You Don't have enough balance to withdraw!",
+            totalBalance: pharmacy.totalBalance,
+          });
+        }
+      } else {
+        return res.send({
+          message: "Please Enter Amount Greater than 0",
+          totalBalance: pharmacy.totalBalance,
+        });
       }
-    );
-    res.send({
-      status: "success",
-      message: "Wallet fetched successfully",
-      wallet: wallet.wallet,
+    } else {
+      return res.send("No Pharmacy Found ");
+    }
+  } catch (error) {
+    return res.send("Error Occurred" + error);
+  }
+});
+
+//get totalBalance
+router.get("/getBalance/:pharmacyId", async (req, res) => {
+  try {
+    const pharmacy = await PharmacyOrders.findOne({
+      pharmacyId: req.params.pharmacyId,
     });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send({
-      status: "error",
-      message: err.message,
+    if (!pharmacy) {
+      return res.send("No Pharmacy Found");
+    } else {
+      return res.status(200).send({ totalBalance: pharmacy.totalBalance });
+    }
+  } catch (error) {
+    return res.send("Error Occurred");
+  }
+});
+
+///accept orders
+
+router.post("/acceptOrder/:pharmacyId", async (req, res) => {
+  const { orderDetails, orderId } = req.body;
+
+  //first find the id in the pharmacy db
+  try {
+    const isPharmacy = await pharmacydb.findOne({
+      pharmacyId: req.params.pharmacyId,
     });
+    if (isPharmacy) {
+      //update the pharmacy orders db
+      const isExisted = await PharmacyOrders.findOne({
+        pharmacyId: req.params.pharmacyId,
+      });
+      if (isExisted) {
+        //push into the acceptedorder details
+        isExisted.acceptedOrders.push({
+          orderDetails: orderDetails,
+          orderId: orderId,
+        });
+        //push the orders
+        isExisted.orders.push({ orderDetails: orderDetails, orderId: orderId });
+
+        //update the walletDetails
+        let totalOrderPrice = orderDetails.reduce((prev, curr) => {
+          return prev + parseInt(curr.medicinePrice);
+        }, 0);
+        isExisted.totalBalance += totalOrderPrice;
+
+        let transactionDetails = {
+          transactionId: uuid.v4(),
+          amount: totalOrderPrice,
+          status: "Order Accepted",
+          type: "credit",
+          date: Date.now(),
+        };
+        console.log("Transaction Details - ", transactionDetails);
+        isExisted.walletHistory.push(transactionDetails);
+        await isExisted.save();
+        return res.status(200).json({
+          message: "Order accepted Successfully",
+          pharmacyDetails: isExisted,
+        });
+      } else {
+        let totalOrderPrice = orderDetails.reduce((prev, curr) => {
+          return prev + parseInt(curr.medicinePrice);
+        }, 0);
+
+        //create a pharmacyId
+        const newPharmacy = new PharmacyOrders({
+          pharmacyId: req.params.pharmacyId,
+        });
+
+        newPharmacy.totalBalance = totalOrderPrice;
+        newPharmacy.acceptedOrders.push({
+          orderDetails: orderDetails,
+          orderId: orderId,
+        });
+        newPharmacy.orders.push({
+          orderDetails: orderDetails,
+          orderId: orderId,
+        });
+        let transactionDetails = {
+          transactionId: uuid.v4(),
+          amount: totalOrderPrice,
+          status: "Order Accepted",
+          type: "credit",
+          date: Date.now(),
+        };
+        console.log("Transaction Details - ", transactionDetails);
+        newPharmacy.walletHistory.push(transactionDetails);
+        await newPharmacy.save();
+        return res.status(200).json({
+          message: "New Pharmacy Orders Db Created and updated orders",
+          pharmacyDetails: newPharmacy,
+        });
+      }
+    }
+  } catch (error) {
+    return res.status(500).send("Error Occurred - " + error);
+  }
+});
+
+router.post("/rejectOrder/:pharmacyId", async (req, res) => {
+  const { orderDetails, orderId } = req.body;
+  try {
+    const isPharmacy = await pharmacydb.findOne({
+      pharmacyId: req.params.pharmacyId,
+    });
+    if (isPharmacy) {
+      //update the pharmacy orders db
+      const isExisted = await PharmacyOrders.findOne({
+        pharmacyId: req.params.pharmacyId,
+      });
+      if (isExisted) {
+        //push into the rejected details
+        isExisted.rejectedOrders.push({
+          orderDetails: orderDetails,
+          orderId: orderId,
+        });
+        //push the orders
+        isExisted.orders.push({ orderDetails: orderDetails, orderId: orderId });
+
+        //update the walletDetails
+
+        await isExisted.save();
+        return res.status(200).json({
+          message: "Order rejected Successfully",
+          pharmacyDetails: isExisted,
+        });
+      } else {
+        //create a pharmacyId
+        const newPharmacy = new PharmacyOrders({
+          pharmacyId: req.params.pharmacyId,
+        });
+
+        newPharmacy.totalBalance = totalOrderPrice;
+        newPharmacy.rejectedOrders.push({
+          orderDetails: orderDetails,
+          orderId: orderId,
+        });
+        newPharmacy.orders.push({
+          orderDetails: orderDetails,
+          orderId: orderId,
+        });
+
+        await newPharmacy.save();
+        return res.status(200).json({
+          message: "New Pharmacy Orders Db Created and updated orders",
+          pharmacyDetails: newPharmacy,
+        });
+      }
+    }
+  } catch (error) {
+    return res.status(500).send("Error Occurred - " + error);
+  }
+});
+
+//get walletHistory
+router.get("/getPharmacyWalletHistory/:pharmacyId", async (req, res) => {
+  try {
+    const pharmacy = await PharmacyOrders.findOne({
+      pharmacyId: req.params.pharmacyId,
+    });
+    if (!pharmacy) {
+      return res.send("No Pharmacy Found!");
+    } else {
+      return res.send(pharmacy.walletHistory);
+    }
+  } catch (error) {
+    return res.send("Error Occurred !");
+  }
+});
+
+//get pharmacy details
+router.get("/getPharmacy/:pharmacyId", async (req, res) => {
+  try {
+    const pharmacy = await pharmacydb.findOne({
+      pharmacyId: req.params.pharmacyId,
+    });
+    if (!pharmacy) {
+      return res.send("No Pharmacies Found");
+    } else {
+      return res.send(pharmacy);
+    }
+  } catch (error) {
+    return res.send("Error Occurred" + error.message);
+  }
+});
+
+//getPharmacyAcceptedDetails
+router.get("/getOrders/:pharmacyId", async (req, res) => {
+  const { type } = req.body;
+  try {
+    const pharmacy = await PharmacyOrders.findOne({
+      pharmacyId: req.params.pharmacyId,
+    });
+    if (pharmacy) {
+      if (type === "accepted") {
+        return res.status(200).json({ accpted: pharmacy.acceptedOrders });
+      } else if (type === "rejected") {
+        return res.status(200).json({ rejected: pharmacy.rejectedOrders });
+      } else if (type === "orders") {
+        return res.status(200).json({ orders: pharmacy.orders });
+      } else {
+        return res
+          .status(200)
+          .json({
+            accpted: pharmacy.acceptedOrders,
+            rejected: pharmacy.rejectedOrders,
+            orders: pharmacy.orders,
+          });
+      }
+    } else {
+      return res.send("No Pharmacy Found ");
+    }
+  } catch (error) {
+    return res.send("Error Occurred" + error);
   }
 });
 
