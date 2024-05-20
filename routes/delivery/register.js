@@ -183,6 +183,7 @@ router.post("/wallet/credit", async (req, res) => {
       totalBalance: deliveryBoy.totalBalance,
       transcationId: obj.transactionId,
       date : new Date()
+    
     });
   } catch (error) {
     console.log("Error - " + error);
@@ -221,6 +222,7 @@ router.post("/wallet/debit", async (req, res) => {
         status: "success",
         totalBalance: deliveryBoy.totalBalance,
         transcationId: obj.transactionId,
+        date : new Date()
       });
     } else {
       return res.send({
@@ -238,6 +240,15 @@ router.get("/balance/:partnerId", async (req, res) => {
   try {
     const balance = await deliverydb.findOne({ partnerId });
     res.status(200).json({ totalBalance: balance.totalBalance });
+  } catch (error) {
+    console.log(error);
+  }
+});
+router.get("/delivaryBoy/:partnerId", async (req, res) => {
+  const { partnerId } = req.params;
+  try {
+    const delivaryBoy = await deliverydb.findOne({ partnerId });
+    res.status(200).json({delivaryBoy});
   } catch (error) {
     console.log(error);
   }
