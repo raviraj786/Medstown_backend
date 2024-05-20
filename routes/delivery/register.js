@@ -244,7 +244,7 @@ router.get("/balance/:partnerId", async (req, res) => {
     console.log(error);
   }
 });
-router.get("/delivaryBoy/:partnerId", async (req, res) => {
+router.get("/getalldeliveryboy/:partnerId", async (req, res) => {
   const { partnerId } = req.params;
   try {
     const delivaryBoy = await deliverydb.findOne({ partnerId });
@@ -253,5 +253,7 @@ router.get("/delivaryBoy/:partnerId", async (req, res) => {
     console.log(error);
   }
 });
+
+
 
 module.exports = router;
