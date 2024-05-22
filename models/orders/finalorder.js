@@ -7,6 +7,7 @@ const orderSchema = new mongoose.Schema({
   orderId: { type: String, default: null, unique: true },
   status: { type: String, default: "pending" },
   deliveryBoyId: { type: String, default: null },
+  deliveryBoyName: { type: String, default: null },
   otpValue: { type: String, default: null },
   paymentType: { type: String, default: null },
   deliveryPrice: { type: String, default: null },
