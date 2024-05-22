@@ -741,6 +741,7 @@ router.post("/finalorder", async (req, res) => {
     pharmacyLng,
     deliveryBoyLat,
     deliveryBoyLng,
+    deliveryBoyName,
   } = req.body;
   const result = await finalorder.findOne({ orderId });
   try {
@@ -757,6 +758,7 @@ router.post("/finalorder", async (req, res) => {
       if (pharmacyLng !== undefined) result.pharmacyLng = pharmacyLng;
       if (deliveryBoyLat !== undefined) result.deliveryBoyLat = deliveryBoyLat;
       if (deliveryBoyLng !== undefined) result.deliveryBoyLng = deliveryBoyLng;
+      if (deliveryBoyName !== undefined) result.deliveryBoyName = deliveryBoyName;
 
       await result.save();
       res.status(200).json({ finalorder: result });
