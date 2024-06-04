@@ -8,6 +8,7 @@ const orderSchema = new mongoose.Schema({
   status: { type: String, default: "pending" },
   deliveryBoyId: { type: String, default: null },
   deliveryBoyName: { type: String, default: null },
+  deliveryBoyPhone: { type: String, default: null },
   otpValue: { type: String, default: null },
   paymentType: { type: String, default: null },
   deliveryPrice: { type: String, default: null },
