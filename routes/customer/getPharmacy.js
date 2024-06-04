@@ -810,11 +810,17 @@ router.get("/finalorder/:deliveryBoyId", async (req, res) => {
   res.status(200).json(delivaryorder);
 });
 
-router.get("/finalorder/:customerId", async (req, res) => {
+
+
+// get all orders by customerId
+router.get("/getfinalorder/:customerId", async (req, res) => {
   const { customerId } = req.params;
-  const delivarorder = await finalorder.find({ customerId: customerId });
-  res.status(200).json(delivarorder);
+  const orders = await  finalorder.find({ customerId: customerId });
+  res.json(orders);
 });
+
+
+
 
 router.get("/finalorder/:pharmacyId", async (req, res) => {
   const { pharmacyId } = req.params;
@@ -825,6 +831,6 @@ router.get("/finalorder/:pharmacyId", async (req, res) => {
 
 
 
-router.get("/final/:")
+
 
 module.exports = router;
