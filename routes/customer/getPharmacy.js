@@ -742,6 +742,7 @@ router.post("/finalorder", async (req, res) => {
     deliveryBoyLat,
     deliveryBoyLng,
     deliveryBoyName,
+    deliveryBoyPhone
   } = req.body;
   const result = await finalorder.findOne({ orderId });
   try {
@@ -759,6 +760,7 @@ router.post("/finalorder", async (req, res) => {
       if (deliveryBoyLat !== undefined) result.deliveryBoyLat = deliveryBoyLat;
       if (deliveryBoyLng !== undefined) result.deliveryBoyLng = deliveryBoyLng;
       if (deliveryBoyName !== undefined) result.deliveryBoyName = deliveryBoyName;
+      if (deliveryBoyPhone !== undefined) result.deliveryBoyPhone = deliveryBoyPhone;
 
       await result.save();
       res.status(200).json({ finalorder: result });
@@ -783,7 +785,6 @@ router.post("/verifyotpOrder", async (req, res) => {
     }
     if (otpValue === completedOrder.otpValue) {
       completedOrder.status = "order is completed";
-
       await completedOrder.save();
       res.status(200).json({
         finalorder: completedOrder,
@@ -799,8 +800,8 @@ router.post("/verifyotpOrder", async (req, res) => {
 });
 
 router.get("/finalorder", async (req, res) => {
-  const delivaryorder = await finalorder.find();
-  res.status(200).json(delivaryorder);
+  const forder = await finalorder.find();
+  res.status(200).json(forder);
 });
 
 router.get("/finalorder/:deliveryBoyId", async (req, res) => {
@@ -820,5 +821,10 @@ router.get("/finalorder/:pharmacyId", async (req, res) => {
   const delivarorder = await finalorder.find({ pharmacyId: pharmacyId });
   res.status(200).json(delivarorder);
 });
+
+
+
+
+router.get("/final/:")
 
 module.exports = router;
