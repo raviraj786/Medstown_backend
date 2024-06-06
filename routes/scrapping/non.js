@@ -136,3 +136,5 @@ const medicineSchema = new mongoose.Schema({
     await page.close();
     await browser.close();
 })();
+
+
