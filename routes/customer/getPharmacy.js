@@ -831,6 +831,21 @@ router.get("/finalorder/:pharmacyId", async (req, res) => {
 
 
 
+router.get("/findorderid/:orderId", async (req, res) => {
+  const { orderId } = req.params;
+  try {
+    const forder = await finalorder.findOne({ orderId });
+    if (!forder) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+    res.status(200).json(forder);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Network error' });
+  }
+});
+
+
 
 
 module.exports = router;
