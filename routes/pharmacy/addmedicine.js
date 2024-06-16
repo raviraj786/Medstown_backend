@@ -88,8 +88,15 @@ router.get("/getmedicinebydisease/:disease", async (req, res) => {
 });
 router.get("/getmedicinebydiseasepage/:disease/:page", async (req, res) => {
     try {
-        const medicine = await nonprescriptiondb.find({ disease: req.params.disease }).skip((req.params.page - 1) * 20).limit(20);
-        res.send(medicine);
+        const [nonPrescriptionMeds, prescriptionMeds] = await  Promise.all([
+            nonprescriptiondb.find({ disease: req.params.disease }).skip((req.params.page - 1) * 20).limit(20),
+            Prescriptiondb.find({disease : req.params.disease}).skip((req.params.page - 1) * 20).limit(20)
+        ])  
+        res.send(
+            {
+                nonPrescriptionMeds, prescriptionMeds
+            }
+        );
     }
     catch (err) {
         res.status(400).send({ msg: "Something went wrong while fetching medicine" });
@@ -100,7 +107,12 @@ router.get("/getmedicinebydiseasepage/:disease/:page", async (req, res) => {
 
 
 
+
+
+
+
 router.get("/getmedicinebydisease/:disease/:page", async (req, res) => {});
+
 router.get("/getmedicinebysearch/:search", async (req, res) => {
     try {
         const medicine = await Medicinedb.find({ medicineName: { $regex: req.params.search, $options: "i" } });
