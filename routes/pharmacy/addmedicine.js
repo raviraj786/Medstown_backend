@@ -113,6 +113,11 @@ router.get("/getmedicinebydiseasepage/:disease/:page", async (req, res) => {
 
 router.get("/getmedicinebydisease/:disease/:page", async (req, res) => {});
 
+
+
+
+
+
 router.get("/getmedicinebysearch/:search", async (req, res) => {
     try {
         const medicine = await Medicinedb.find({ medicineName: { $regex: req.params.search, $options: "i" } });
