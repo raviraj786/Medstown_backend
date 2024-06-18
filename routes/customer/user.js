@@ -290,4 +290,13 @@ router.get("/getallusers", async (req, res) => {
 
 
 
+router.get("/getuser/:id" , async(req,res) => {
+  const {id} = req.params;
+  const user = await userdb.findOne({userId : id})
+  res.json(user)
+
+})
+
+
+
 module.exports = router;

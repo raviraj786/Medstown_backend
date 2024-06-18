@@ -534,7 +534,6 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
     return res.json({ message: "NO delivery boy FOUND" });
   }
   console.log(deliveryBoy);
-
   for (let i = 0; i < deliveryBoy.length; i++) {
     const url =
       "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=" +
