@@ -7,10 +7,10 @@ const router = express.Router();
 const uuid = require("uuid");
 const Nonprescriptiondb = require("../../models/pharmacydb/nonprescriptiondb.js");
 
-// write a api to scrap the data from the website 
+// write a api to scrap the data from the website
 router.post("/scrapdata", async (req, res) => {
     const { url,type } = req.body;
-    const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions'],args: ['--no-sandbox']});
+    const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions'],args: ['--no-sandbox'],  headless: 'new'});
     const page = await browser.newPage();
     await page.setDefaultNavigationTimeout(0);
     await page.goto(`${url}/page/1`);
@@ -41,7 +41,8 @@ router.post("/scrapdata", async (req, res) => {
         console.log("Current Page: ", i);
     }
     let name = [];
-    for(let i = 0; i < data.anchors.length ; i++) {
+    //previously stopped at 731 so starts from 25686
+    for(let i = 7100; i < data.anchors.length ; i++) {
         await page.goto(data.anchors[i]);
         const data3 = await page.evaluate(() => {
             let anchors = Array.from(document.querySelectorAll('.ga-vertical-gallery .slider-main div img')) === (undefined || null) ? '' : Array.from(document.querySelectorAll('.ga-vertical-gallery .slider-main div img'));
@@ -50,7 +51,12 @@ router.post("/scrapdata", async (req, res) => {
                 disease: document.querySelector("#maincontent > div.content-section > div.product-top > div.product-right-block > div.product-detail > a:nth-child(3) > span")?.innerText,
                 rxRequired: document.querySelector('.req_Rx')?.innerText === "Rx required" ? true : false,
                 medicineType: document.querySelector('.product-top .product-detail .drug-manu')?.innerText,
-                medicinePrice: parseInt(document.querySelector('.product-top .essentials .price-box .final-price')?.innerText.replace('Best Price* ₹ ', '')),
+               
+               
+                // medicinePrice: parseInt(document.querySelector('.product-top .essentials .price-box .final-price')?.innerText.replace('Best Price* ₹ ', '')),
+                medicinePrice: document.querySelector('.product-top .essentials .price-box .final-price')?.innerText.replace('₹', ''),                
+               
+               
                 medicineCompany: document.querySelector('.product-top .essentials .drug-con .drug-manu')?.innerText.replace('* Mkt: ', ''),
                 medicineDescription: document.querySelector('.drug-content .product_desc_info')?.innerText,
                 medicineImage:  [...new Set(anchors.map(anchor => anchor.src))],
@@ -58,9 +64,20 @@ router.post("/scrapdata", async (req, res) => {
                 dateOfRegistration: new Date().toISOString(),
             })
         });
+        const supportedFormats = ['.jpeg', '.jpg', '.png'];
+
+        function isSupportedFormat(url) {
+            const ext = path.extname(url).toLowerCase();
+            return supportedFormats.includes(ext);
+        }
+
         for(let j = 0; j < data3.medicineImage.length; j++) {
             var imgurl = data3.medicineImage[j];
             var filename = path.basename(imgurl);
+            if (!isSupportedFormat(filename)) {
+                console.log(`Unsupported format for image: ${filename}`);
+                continue;
+            }
             await page.goto(imgurl);
             await page.screenshot({path: filename});
             let s3 = new S3({
@@ -77,7 +94,7 @@ router.post("/scrapdata", async (req, res) => {
                 Body: fileContent,
                 ACL: "public-read",
                 ContentDisposition: "inline",
-                ContentType: "image/jpeg, image/png, image/jpg , image/gif , image/svg+xml , image/webp , image/avif",
+                ContentType: "image/jpeg, image/png, image/jpg , image/gif , image/svg+xml , image/webp , image/avif, image/svg",
             };
             s3.upload(params, function (err, data) {
                 if (err) {
@@ -91,6 +108,7 @@ router.post("/scrapdata", async (req, res) => {
             data3.medicineImage[l] = "https://usc1.contabostorage.com/f49065475849480fbcd19fb8279b2f98:medstown/"+image;
         }
         name.push(data3);
+       if(data3.disease){
         const medicine = new Nonprescriptiondb({
             medicineName: data3.medicineName,
             medicineType: data3.medicineType,
@@ -108,6 +126,9 @@ router.post("/scrapdata", async (req, res) => {
         });
         await medicine.save();
         console.log("count: ", i , "/" , data.anchors.length);
+       }else{
+        console.log("Encountered medicine with disease : null")
+       }
     }
     await browser.close();
     console.log("done");
@@ -129,7 +150,3 @@ router.get('/deleteimg', async (req, res) => {
 });
 
 module.exports = router;
-
-
-
-

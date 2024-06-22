@@ -37,6 +37,9 @@ router.post("/getPharmacy", async (req, res) => {
   }
 });
 
+
+
+
 // SHOW Delivery
 
 router.post("/getDelivary", async (req, res) => {
