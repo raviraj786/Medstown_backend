@@ -360,7 +360,6 @@ router.post("/orderMedicines", async (req, res) => {
       },
     };
     const pharmacies = await pharmacydb.find(options);
-    console.log("Pharmacies", pharmacies);
     if (pharmacies.length === 0) {
       return res.json({ message: "NO PHARMACIES FOUND" });
     }
@@ -437,7 +436,7 @@ router.post("/orderMedicines", async (req, res) => {
             tickets.push(...ticketChunk);
           }
           await airorder.create(data);
-          console.log(data, "new data");
+          console.log(data.distance, "new data");
           for (let ticket of tickets) {
             if (ticket.status === "error") {
               console.log("NOTIFICATION NOT SENT");
@@ -648,7 +647,7 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
 
   Promise.all(orderPromises)
     .then(() => {
-      res.json({ message: "Order has been sent to the pharmacy" });
+      res.json({ message: "Order has been sent to the delivary partner" });
     })
     .catch((err) => {
       console.error(err);
@@ -729,9 +728,11 @@ router.post("/createotp", async (req, res) => {
   }
 });
 
-router.post("/finalorder", async (req, res) => {
+router.post("/finalorder/send/:orderId", async (req, res) => {
+  console.log("Received a request to update order");
+  const { orderId } = req.params;
+  console.log("Order ID:", orderId);
   const {
-    orderId,
     pharmacyId,
     totalPrice,
     deliveryBoyId,
@@ -744,10 +745,17 @@ router.post("/finalorder", async (req, res) => {
     deliveryBoyLat,
     deliveryBoyLng,
     deliveryBoyName,
-    deliveryBoyPhone
+    deliveryBoyPhone,
+    status,
+    phamacydistance,
+    delivarydistance,
+    precriptionUrl 
   } = req.body;
-  const result = await finalorder.findOne({ orderId });
+
   try {
+    const result = await finalorder.findOne({ orderId: orderId });
+    console.log("Order found:", result);
+
     if (result) {
       // Update properties only if they are provided in the request body
       if (pharmacyId !== undefined) result.pharmacyId = pharmacyId;
@@ -763,16 +771,21 @@ router.post("/finalorder", async (req, res) => {
       if (deliveryBoyLng !== undefined) result.deliveryBoyLng = deliveryBoyLng;
       if (deliveryBoyName !== undefined) result.deliveryBoyName = deliveryBoyName;
       if (deliveryBoyPhone !== undefined) result.deliveryBoyPhone = deliveryBoyPhone;
-
+      if (status !== undefined) result.status = status;
+      if ( phamacydistance !== undefined) result.phamacydistance =  phamacydistance;
+      if ( delivarydistance !== undefined) result.delivarydistance =  delivarydistance;
+      if ( precriptionUrl  !== precriptionUrl ) result.precriptionUrl  =  precriptionUrl ;
       await result.save();
       res.status(200).json({ finalorder: result });
     } else {
       res.status(404).json({ message: "No matching order found" });
     }
   } catch (error) {
+    console.error("Error updating order:", error);
     res.status(500).json({ message: "Internal server error", error });
   }
 });
+
 
 router.post("/verifyotpOrder", async (req, res) => {
   const { otpValue, customerId, orderId } = req.body;
