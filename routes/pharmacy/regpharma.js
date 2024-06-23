@@ -111,6 +111,8 @@ router.post("/register", async (req, res) => {
 
 // ragister pharmacy 2
 
+
+
 router.post("/registerPharmacy", async (req, res) => {
   const {
     fullName,

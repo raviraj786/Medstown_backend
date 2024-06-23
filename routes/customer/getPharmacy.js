@@ -799,7 +799,7 @@ router.post("/verifyotpOrder", async (req, res) => {
       return res.status(400).json({ message: "OTP not found" });
     }
     if (otpValue === completedOrder.otpValue) {
-      completedOrder.status = "order is completed";
+      completedOrder.status = "Delivered";
       await completedOrder.save();
       res.status(200).json({
         finalorder: completedOrder,
