@@ -299,4 +299,14 @@ router.get("/getuser/:id" , async(req,res) => {
 
 
 
+router.get("/deleteuser/:id" ,async (req,res) =>{
+  const {id} = req.params;
+   await userdb.deleteOne({userId:id})
+  res.json("user is deleted")
+})
+
+
+
+
+
 module.exports = router;

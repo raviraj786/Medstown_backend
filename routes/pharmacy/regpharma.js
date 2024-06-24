@@ -499,6 +499,7 @@ router.get(
 );
 // edit bussinessName using pharmacyId
 router.post("/editbussinessname/:pharmacyId", async (req, res) => {
+  console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
   const pharmacyId = req.params.pharmacyId;
   const { bussinessName } = req.body;
   try {
@@ -593,6 +594,11 @@ router.post("/editbankdetails/:pharmacyId", async (req, res) => {
     });
   }
 });
+
+
+
+
+
 
 router.post("/addwalletbalance/:pharmacyId", async (req, res) => {
   const { walletBalance } = req.body;
