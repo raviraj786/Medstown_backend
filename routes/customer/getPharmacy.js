@@ -332,21 +332,6 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
           try {
             const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
             tickets.push(...ticketChunk);
-            await delivaryNotifaction.create({
-              orderId: orderData[i][1].orderId,
-              orderDetails: orderData[i][1].orderDetails,
-              userLat: orderData[i][1].userLat,
-              userLng: orderData[i][1].userLng,
-              pharmacyLat: orderData[i][1].pharmacyLat,
-              pharmacyLng: orderData[i][1].pharmacyLng,
-              pharmacyId: orderData[i][1].pharmacyId,
-              customerId: orderData[i][1].customerId,
-              totalPrice: orderData[i][1].totalPrice,
-              deliveryBoyId: orderData[i][0].deliveryBoyId,
-              deliveryBoyLat: orderData[i][1].deliveryBoyLat,
-              deliveryBoyLng: orderData[i][1].deliveryBoyLng,
-              status: "pending",
-            });
             await airorder.create({
               orderId: orderData[i][1].orderId,
               orderDetails: orderData[i][1].orderDetails,
@@ -417,6 +402,14 @@ router.get("/getOrders/:customerId", async (req, res) => {
   res.json(orders);
 });
 
+
+
+
+
+
+
+
+
 // get all  all order
 router.get("/getOrders", async (req, res) => {
   const orders = await airorder.find();
@@ -435,6 +428,22 @@ router.get("/findorder/:pharmacyId", async (req, res) => {
     res.status(500).json("server is not working");
   }
 });
+// router.get("/getdelivary/")
+router.get("/delivary/order/notify/:deliveryBoyId", async (req, res) => {
+  const { deliveryBoyId } = req.params;
+  try {
+    const orders = await airorder.find({ deliveryBoyId: deliveryBoyId });
+    console.log(orders);
+    res.status(200).json(orders);
+  } catch (error) {
+    console.log(error.message, "server is not working");
+    res.status(500).json("server is not working");
+  }
+});
+
+
+
+
 
 
 
