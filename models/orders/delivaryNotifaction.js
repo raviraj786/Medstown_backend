@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const orderSchema = new mongoose.Schema({
   customerId : {type: String, default: null},
   orderDetails : {type: Array, default: []},
@@ -19,7 +18,5 @@ const orderSchema = new mongoose.Schema({
   deliveryBoyLat : {type: String, default: null},
   deliveryBoyLng : {type: String, default: null},
 });
-
-const orderdb = mongoose.model("Order", orderSchema);
-
+const orderdb = mongoose.model("delivaryNotifaction", orderSchema);
 module.exports = orderdb;

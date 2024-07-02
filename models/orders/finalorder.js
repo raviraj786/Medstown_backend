@@ -5,8 +5,8 @@ const orderSchema = new mongoose.Schema({
   customerId: { type: String, default: null },
   totalPrice: { type: String, default: null },
   pharmacyId: { type: String, default: null },
-  orderId: { type: String, default: null, unique: true },
-  status: { type: String, default: "Accepted" },
+  orderId: { type: String, default: null },
+  status: { type: String, default: null },
   deliveryBoyId: { type: String, default: null },
   deliveryBoyName: { type: String, default: null },
   deliveryBoyPhone: { type: String, default: null },
@@ -20,10 +20,10 @@ const orderSchema = new mongoose.Schema({
   deliveryBoyLat: { type: String, default: null },
   deliveryBoyLng: { type: String, default: null },
   orderDetails: { type: Array, default: [] },
-  createdAt: { type: Date, default: Date.now },
   phamacydistance: { type: Number , default: null },
-  delivarydistance: { type: Number , default: null },
+  distance: { type: Number , default: null },
   precriptionUrl : {type : String , required : true , default: false},
+  createdAt: { type: Date, default: Date.now }
 });
 
 const orderdb = mongoose.model("finalorder", orderSchema);

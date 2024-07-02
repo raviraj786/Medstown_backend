@@ -8,9 +8,10 @@ const uuid = require("uuid");
 const airorder = require("../../models/orders/airorder.js");
 const deliveryboydb = require("../../models/deliverydb/deliveryuser.js");
 const finalorder = require("../../models/orders/finalorder.js");
+const delivaryNotifaction = require("../../models/orders/delivaryNotifaction.js");
+const { date } = require("yup");
 
 // show pharmacies
-
 router.post("/getPharmacy", async (req, res) => {
   try {
     const { lng, lat } = req.body;
@@ -28,7 +29,6 @@ router.post("/getPharmacy", async (req, res) => {
         },
       },
     };
-    // Search for pharmacies
     const pharmacies = await pharmacydb.find(options);
     res.status(200).json(pharmacies);
   } catch (error) {
@@ -37,11 +37,7 @@ router.post("/getPharmacy", async (req, res) => {
   }
 });
 
-
-
-
-// SHOW Delivery
-
+// show Delivery boys
 router.post("/getDelivary", async (req, res) => {
   try {
     const { lat, lng } = req.body;
@@ -67,278 +63,7 @@ router.post("/getDelivary", async (req, res) => {
   }
 });
 
-// router.post("/orderMedicine", async (req, res) => {
-//   const { customerId, orderDetails, price, quantity, lat, lng, orderId,totalPrice } =
-//     req.body;
-//   const options = {
-//     location: {
-//       $geoWithin: {
-//         $centerSphere: [[lng, lat], 30 / 3963.2],
-//       },
-//     },
-//   };
-//   const pharmacies = await pharmacydb.find(options);
-//   const arr = [];
-//   const orderData = [];
-//   if (pharmacies.length === 0) {
-//     res.json({ message: "NO PHARMACIES FOUND" });
-//     return;
-//   }
-//   for (let i = 0; i < pharmacies.length; i++) {
-//     const url =
-//       "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=" +
-//       lng +
-//       "," +
-//       lat +
-//       "&destinations=" +
-//       pharmacies[i].location.coordinates[0] +
-//       "," +
-//       pharmacies[i].location.coordinates[1] +
-//       "&key=" +
-//       process.env.GOOGLE_MAPS_API_KEY +
-//       "&mode=driving";
-//     console.log(url, "url");
-//     await axios
-//       .get(url)
-//       .then((response) => {
-//         console.log(
-//           response.data.rows[0].elements[0].distance.value,
-//           "response"
-//         );
-//         arr.push(response.data.rows[0].elements[0].distance.value);
-//         arr[i] = arr[i] / 1000;
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//     orderData.push([
-//       {
-//         pharmacyId: pharmacies[i].pharmacyId,
-//         distance: arr[i],
-//         expoToken: pharmacies[i].expoToken,
-//       },
-//       {
-//         price: price,
-//         quantity: quantity,
-//         orderDetails: orderDetails,
-//         customerId: customerId,
-//         orderStatus: "pending",
-//         orderId: "order" + orderId,
-//         totalPrice: totalPrice,
-//       },
-//     ]);
-//   }
-//   for (let i = 0; i < orderData.length; i++) {
-//     setTimeout(async function timer() {
-//       const order = await airorder.findOne({
-//         orderId: orderData[i][1].orderId,
-//       });
-//       if (
-//         order &&
-//         order.orderId != null &&
-//         orderData[i][1].orderId === order.orderId
-//       ) {
-//         if (order.orderNature === true) {
-//           res.json({
-//             message:
-//               "ORDER ALREADY ACCEPTED NOT SENDING NOTIFICATION TO OTHER PHARMACIES",
-//           });
-//           return;
-//         }
-//       }
-//       console.log("ENTERED IN ELSE");
-//       const expo = new Expo();
-//       const messages = [];
-//       const chunks = expo.chunkPushNotifications([
-//         {
-//           to: orderData[i][0].expoToken,
-//           sound: "default",
-//           title: "New Order",
-//           body: "You have a new order from customer",
-//           data: { orderData: orderData[i][1] },
-//         },
-//       ]);
-//       const tickets = [];
-//       (async () => {
-//         for (let chunk of chunks) {
-//           try {
-//             const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
-//             tickets.push(...ticketChunk);
-//             await airorder.create({
-//               orderId: orderData[i][1].orderId,
-//               orderDetails: orderData[i][1].orderDetails,
-//               price: orderData[i][1].price,
-//               quantity: orderData[i][1].quantity,
-//               customerId: orderData[i][1].customerId,
-//               pharmacyId: orderData[i][0].pharmacyId,
-//               orderStatus: orderData[i][1].orderStatus,
-//               totalPrice: orderData[i][1].price * orderData[i][1].quantity,
-//             });
-//             for (let ticket of tickets) {
-//               if (ticket.status === "error") {
-//                 console.log("NOTIFICATION NOT SENT");
-//                 if (ticket.details) {
-//                   console.error(`The error code is ${ticket.details.error}`);
-//                 }
-//               }
-//             }
-//           } catch (error) {
-//             console.error(error);
-//           }
-//         }
-//       })();
-//     }, i * 10000);
-//   }
-// });
-
-router.post("/orderMedicine", async (req, res) => {
-  const {
-    customerId,
-    orderDetails,
-    price,
-    quantity,
-    lat,
-    lng,
-    orderId,
-    totalPrice,
-  } = req.body;
-  const options = {
-    location: {
-      $geoWithin: {
-        $centerSphere: [[lng, lat], 30 / 3963.2],
-      },
-    },
-  };
-  const pharmacies = await pharmacydb.find(options);
-  console.log("phar", pharmacies);
-  const arr = [];
-  const orderData = [];
-  if (pharmacies.length === 0) {
-    res.json({ message: "NO PHARMACIES FOUND" });
-    return;
-  }
-  for (let i = 0; i < pharmacies.length; i++) {
-    const url =
-      "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=" +
-      lng +
-      "," +
-      lat +
-      "&destinations=" +
-      pharmacies[i].location.coordinates[0] +
-      s;
-    "," +
-      pharmacies[i].location.coordinates[1] +
-      "&key=" +
-      process.env.GOOGLE_MAPS_API_KEY +
-      "&mode=driving";
-    await axios
-      .get(url)
-      .then((response) => {
-        arr.push(response.data.rows[0].elements[0].distance.value);
-        arr[i] = arr[i] / 1000;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    orderData.push([
-      {
-        pharmacyId: pharmacies[i].pharmacyId,
-        distance: arr[i],
-        expoToken: pharmacies[i].expoToken,
-      },
-      {
-        price: price,
-        quantity: quantity,
-        orderDetails: orderDetails,
-        customerId: customerId,
-        orderStatus: "pending",
-        orderId: orderId,
-        totalPrice: totalPrice,
-        userLat: lat,
-        userLng: lng,
-      },
-    ]);
-  }
-  const orderPromises = orderData.map((order, i) => {
-    return new Promise((resolve) => {
-      setTimeout(async function timer() {
-        const order = await airorder.findOne({
-          orderId: orderData[i][1].orderId,
-        });
-        if (
-          order &&
-          order.orderId != null &&
-          orderData[i][1].orderId === order.orderId
-        ) {
-          if (order.orderNature === true) {
-            res.json({
-              message:
-                "ORDER ALREADY ACCEPTED NOT SENDING NOTIFICATION TO OTHER PHARMACIES",
-            });
-            return;
-          }
-        }
-        const expo = new Expo();
-        const messages = [];
-        const chunks = expo.chunkPushNotifications([
-          {
-            to: orderData[i][0].expoToken,
-            sound: "default",
-            title: "New Order",
-            body: "You have a new order from customer",
-            data: { orderData: orderData[i][1] },
-          },
-        ]);
-        const tickets = [];
-        (async () => {
-          for (let chunk of chunks) {
-            try {
-              const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
-              tickets.push(...ticketChunk);
-              await airorder.create({
-                orderId: orderData[i][1].orderId,
-                orderDetails: orderData[i][1].orderDetails,
-                price: orderData[i][1].price,
-                quantity: orderData[i][1].orderDetails.length,
-                customerId: orderData[i][1].customerId,
-                pharmacyId: orderData[i][0].pharmacyId,
-                orderStatus: orderData[i][1].orderStatus,
-                totalPrice: orderData[i][1].totalPrice,
-                userLat: orderData[i][1].userLat,
-                userLng: orderData[i][1].userLng,
-              });
-              for (let ticket of tickets) {
-                if (ticket.status === "error") {
-                  console.log("NOTIFICATION NOT SENT");
-                  if (ticket.details) {
-                    console.error(`The error code is ${ticket.details.error}`);
-                  }
-                }
-              }
-            } catch (error) {
-              console.error(error);
-            }
-          }
-        })();
-        resolve();
-      }, i * 10000);
-    });
-  });
-
-  Promise.all(orderPromises)
-    .then(() => {
-      res.json({ message: "Order has been sent to the pharmacy" });
-    })
-    .catch((err) => {
-      console.error(err);
-      res
-        .status(500)
-        .json({ message: "An error occurred while processing the orders" });
-    });
-});
-
 // ORDER MEDICINS
-
 router.post("/orderMedicines", async (req, res) => {
   try {
     const {
@@ -350,8 +75,6 @@ router.post("/orderMedicines", async (req, res) => {
       orderId,
       totalPrice,
     } = req.body;
-    // Input Validation
-
     const options = {
       location: {
         $geoWithin: {
@@ -360,6 +83,7 @@ router.post("/orderMedicines", async (req, res) => {
       },
     };
     const pharmacies = await pharmacydb.find(options);
+    console.log("pharmacy", pharmacies);
     if (pharmacies.length === 0) {
       return res.json({ message: "NO PHARMACIES FOUND" });
     }
@@ -386,7 +110,7 @@ router.post("/orderMedicines", async (req, res) => {
             orderDetails,
             quantity,
             customerId,
-            orderStatus: "pending",
+            status: "pending",
             orderId,
             totalPrice,
             userLat: lat,
@@ -403,7 +127,6 @@ router.post("/orderMedicines", async (req, res) => {
         // Handle Axios request error
       }
     }
-
     const orderPromises = orderData.map((data, i) => {
       return new Promise(async (resolve, reject) => {
         try {
@@ -417,7 +140,6 @@ router.post("/orderMedicines", async (req, res) => {
           ) {
             return res.json({ message: "ORDER ALREADY ACCEPTED" });
           }
-
           const expo = new Expo();
           const messages = [
             {
@@ -428,15 +150,14 @@ router.post("/orderMedicines", async (req, res) => {
               data,
             },
           ];
-
           const chunks = expo.chunkPushNotifications(messages);
           const tickets = [];
           for (let chunk of chunks) {
             const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
             tickets.push(...ticketChunk);
           }
+          console.log("ooooooooooooooooo", data)
           await airorder.create(data);
-          console.log(data.distance, "new data");
           for (let ticket of tickets) {
             if (ticket.status === "error") {
               console.log("NOTIFICATION NOT SENT");
@@ -452,7 +173,6 @@ router.post("/orderMedicines", async (req, res) => {
         }
       });
     });
-
     await Promise.all(orderPromises);
     res.json({ message: "Order has been sent to the pharmacy" });
   } catch (error) {
@@ -521,7 +241,6 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
     totalPrice,
     orderId,
   } = req.body;
-  console.log(req.body);
   const options = {
     location: {
       $geoWithin: {
@@ -535,7 +254,7 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
   if (deliveryBoy.length === 0) {
     return res.json({ message: "NO delivery boy FOUND" });
   }
-  console.log(deliveryBoy);
+  console.log("deliveryBoy :", deliveryBoy);
   for (let i = 0; i < deliveryBoy.length; i++) {
     const url =
       "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=" +
@@ -561,7 +280,7 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
       });
     orderData.push([
       {
-        deliveryBoyId: deliveryBoy[i].deliveryBoyId,
+        deliveryBoyId: deliveryBoy[i].partnerId,
         distance: arr[i],
         expoToken: deliveryBoy[i].expoToken,
       },
@@ -613,6 +332,21 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
           try {
             const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
             tickets.push(...ticketChunk);
+            await delivaryNotifaction.create({
+              orderId: orderData[i][1].orderId,
+              orderDetails: orderData[i][1].orderDetails,
+              userLat: orderData[i][1].userLat,
+              userLng: orderData[i][1].userLng,
+              pharmacyLat: orderData[i][1].pharmacyLat,
+              pharmacyLng: orderData[i][1].pharmacyLng,
+              pharmacyId: orderData[i][1].pharmacyId,
+              customerId: orderData[i][1].customerId,
+              totalPrice: orderData[i][1].totalPrice,
+              deliveryBoyId: orderData[i][0].deliveryBoyId,
+              deliveryBoyLat: orderData[i][1].deliveryBoyLat,
+              deliveryBoyLng: orderData[i][1].deliveryBoyLng,
+              status: "pending",
+            });
             await airorder.create({
               orderId: orderData[i][1].orderId,
               orderDetails: orderData[i][1].orderDetails,
@@ -626,7 +360,7 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
               deliveryBoyId: orderData[i][0].deliveryBoyId,
               deliveryBoyLat: orderData[i][1].deliveryBoyLat,
               deliveryBoyLng: orderData[i][1].deliveryBoyLng,
-              orderStatus: "pending",
+              status: "pending",
             });
             for (let ticket of tickets) {
               if (ticket.status === "error") {
@@ -690,10 +424,8 @@ router.get("/getOrders", async (req, res) => {
 });
 
 // router.get("/getPharmacyOrders/")
-
 router.get("/findorder/:pharmacyId", async (req, res) => {
   const { pharmacyId } = req.params;
-  console.log("Ssjskks", req.params);
   try {
     const orders = await airorder.find({ pharmacyId: pharmacyId });
     console.log(orders);
@@ -704,34 +436,65 @@ router.get("/findorder/:pharmacyId", async (req, res) => {
   }
 });
 
-// order otp api confim apis
 
-router.post("/createotp", async (req, res) => {
-  const { customerId, orderId, paymentType } = req.body;
-  if (!customerId || !orderId) {
-    return res.status(400).json({ message: "Missing required fields" });
-  }
+
+
+
+router.get("/delivry/notifaction/:deliveryBoyId" , async(req,res) => {
+const {deliveryBoyId} =  req.params;
+try {
+  const notifaction = await delivaryNotifaction.findOne({deliveryBoyId : deliveryBoyId});
+  res.status(200).json(notifaction);
+} catch (error) {
+  console.log(error.message, "server is not working");
+    res.status(500).json("server is not working");
+}
+})
+
+
+
+
+// order otp api confim apis
+router.post("/createfinalorder", async (req, res) => {
+  const {
+    orderId,
+    totalPrice,
+    quantity,
+    customerId,
+    status,
+    orderDetails,
+    paymentType,
+    userLat,
+    userLng,
+    precriptionUrl,
+    distance,
+  } = req.body;
   const otpValue = Math.floor(1000 + Math.random() * 9000).toString();
   try {
-    const otp = new finalorder({
-      customerId: customerId,
-      orderId: orderId,
+    const newOrder = await finalorder.create({
       otpValue: otpValue,
-      paymentType,
+      orderDetails: orderDetails,
+      paymentType: paymentType,
+      quantity: quantity,
+      customerId: customerId,
+      status: "Accepted",
+      orderId: orderId,
+      totalPrice: totalPrice,
+      userLat: userLat,
+      userLng: userLng,
+      distance: distance,
+      precriptionUrl: precriptionUrl,
     });
-    await otp.save(); // Save OTP in the database
-    console.log("OTP created:", otpValue);
-    res.status(200).json({ otp: otpValue });
+    newOrder.save();
+    res.status(201).json({ message: "otp & payment type save" });
   } catch (error) {
-    console.error("Error creating OTP:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.log(error.message);
+    res.status(500).json({ message: "Network not working" });
   }
 });
 
 router.post("/finalorder/send/:orderId", async (req, res) => {
-  console.log("Received a request to update order");
   const { orderId } = req.params;
-  console.log("Order ID:", orderId);
   const {
     pharmacyId,
     totalPrice,
@@ -749,13 +512,10 @@ router.post("/finalorder/send/:orderId", async (req, res) => {
     status,
     phamacydistance,
     delivarydistance,
-    precriptionUrl 
+    precriptionUrl,
   } = req.body;
-
   try {
     const result = await finalorder.findOne({ orderId: orderId });
-    console.log("Order found:", result);
-
     if (result) {
       // Update properties only if they are provided in the request body
       if (pharmacyId !== undefined) result.pharmacyId = pharmacyId;
@@ -769,12 +529,17 @@ router.post("/finalorder/send/:orderId", async (req, res) => {
       if (pharmacyLng !== undefined) result.pharmacyLng = pharmacyLng;
       if (deliveryBoyLat !== undefined) result.deliveryBoyLat = deliveryBoyLat;
       if (deliveryBoyLng !== undefined) result.deliveryBoyLng = deliveryBoyLng;
-      if (deliveryBoyName !== undefined) result.deliveryBoyName = deliveryBoyName;
-      if (deliveryBoyPhone !== undefined) result.deliveryBoyPhone = deliveryBoyPhone;
+      if (deliveryBoyName !== undefined)
+        result.deliveryBoyName = deliveryBoyName;
+      if (deliveryBoyPhone !== undefined)
+        result.deliveryBoyPhone = deliveryBoyPhone;
       if (status !== undefined) result.status = status;
-      if ( phamacydistance !== undefined) result.phamacydistance =  phamacydistance;
-      if ( delivarydistance !== undefined) result.delivarydistance =  delivarydistance;
-      if ( precriptionUrl  !== precriptionUrl ) result.precriptionUrl  =  precriptionUrl ;
+      if (phamacydistance !== undefined)
+        result.phamacydistance = phamacydistance;
+      if (delivarydistance !== undefined)
+        result.delivarydistance = delivarydistance;
+      if (precriptionUrl !== precriptionUrl)
+        result.precriptionUrl = precriptionUrl;
       await result.save();
       res.status(200).json({ finalorder: result });
     } else {
@@ -786,7 +551,7 @@ router.post("/finalorder/send/:orderId", async (req, res) => {
   }
 });
 
-
+//verify OTP order..............
 router.post("/verifyotpOrder", async (req, res) => {
   const { otpValue, customerId, orderId } = req.body;
   try {
@@ -799,7 +564,7 @@ router.post("/verifyotpOrder", async (req, res) => {
       return res.status(400).json({ message: "OTP not found" });
     }
     if (otpValue === completedOrder.otpValue) {
-      completedOrder.status = "Delivered";
+      completedOrder = "Delivered";
       await completedOrder.save();
       res.status(200).json({
         finalorder: completedOrder,
@@ -809,7 +574,6 @@ router.post("/verifyotpOrder", async (req, res) => {
       res.status(400).json({ message: "Invalid OTP" });
     }
   } catch (error) {
-    // console.error("Error verifying OTP:", error);
     res.status(500).json({ message: "Internal server error", error });
   }
 });
@@ -825,17 +589,12 @@ router.get("/finalorder/:deliveryBoyId", async (req, res) => {
   res.status(200).json(delivaryorder);
 });
 
-
-
 // get all orders by customerId
 router.get("/getfinalorder/:customerId", async (req, res) => {
   const { customerId } = req.params;
-  const orders = await  finalorder.find({ customerId: customerId });
+  const orders = await finalorder.find({ customerId: customerId });
   res.json(orders);
 });
-
-
-
 
 router.get("/finalorder/:pharmacyId", async (req, res) => {
   const { pharmacyId } = req.params;
@@ -843,27 +602,18 @@ router.get("/finalorder/:pharmacyId", async (req, res) => {
   res.status(200).json(delivarorder);
 });
 
-
-
-
 router.get("/findorderid/:orderId", async (req, res) => {
   const { orderId } = req.params;
   try {
     const forder = await finalorder.findOne({ orderId });
     if (!forder) {
-      return res.status(404).json({ error: 'Order not found' });
+      return res.status(404).json({ error: "Order not found" });
     }
     res.status(200).json(forder);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Network error' });
+    res.status(500).json({ error: "Network error" });
   }
 });
 
-
-
-
 module.exports = router;
-
-
-
