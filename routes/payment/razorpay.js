@@ -13,7 +13,7 @@ const instance = new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-console.log(process.env.RAZORPAY_KEY_SECRET)
+// console.log(process.env.RAZORPAY_KEY_SECRET)
 
 router.post("/makeNewPayment", async (req, res) => {
   console.log("api");

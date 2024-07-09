@@ -74,6 +74,7 @@ router.post("/orderMedicines", async (req, res) => {
       lng,
       orderId,
       totalPrice,
+      precriptionUrl,
     } = req.body;
     const options = {
       location: {
@@ -94,12 +95,7 @@ router.post("/orderMedicines", async (req, res) => {
         const response = await axios.get(url);
         if (
           response.data &&
-          response.data.rows &&
-          response.data.rows.length > 0 &&
-          response.data.rows[0].elements &&
-          response.data.rows[0].elements.length > 0 &&
-          response.data.rows[0].elements[0].distance &&
-          response.data.rows[0].elements[0].distance.value
+          response.data.rows[0].elements[0].status === "OK"
         ) {
           const distance =
             response.data.rows[0].elements[0].distance.value / 1000;
@@ -115,6 +111,7 @@ router.post("/orderMedicines", async (req, res) => {
             totalPrice,
             userLat: lat,
             userLng: lng,
+            precriptionUrl,
           });
         } else {
           console.error(
@@ -140,6 +137,13 @@ router.post("/orderMedicines", async (req, res) => {
           ) {
             return res.json({ message: "ORDER ALREADY ACCEPTED" });
           }
+          if (!data.expoToken || data.expoToken.trim() === "") {
+            console.log(
+              "Expo token is null or empty, skipping notification for this pharmacy"
+            );
+            resolve();
+            return;
+          }
           const expo = new Expo();
           const messages = [
             {
@@ -156,7 +160,7 @@ router.post("/orderMedicines", async (req, res) => {
             const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
             tickets.push(...ticketChunk);
           }
-          console.log("ooooooooooooooooo", data)
+          // console.log("ooooooooooooooooo", data)
           await airorder.create(data);
           for (let ticket of tickets) {
             if (ticket.status === "error") {
@@ -176,7 +180,7 @@ router.post("/orderMedicines", async (req, res) => {
     await Promise.all(orderPromises);
     res.json({ message: "Order has been sent to the pharmacy" });
   } catch (error) {
-    console.error("An error occurred:", error);
+    console.error("An error occurred:", error.message);
     res.status(500).json({ message: "internat server error" });
   }
 });
@@ -254,7 +258,8 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
   if (deliveryBoy.length === 0) {
     return res.json({ message: "NO delivery boy FOUND" });
   }
-  console.log("deliveryBoy :", deliveryBoy);
+  console.log("deliveryBoy :", deliveryBoy.length);
+
   for (let i = 0; i < deliveryBoy.length; i++) {
     const url =
       "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=" +
@@ -316,7 +321,17 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
             console.log("ORDER ALREADY ACCEPTED BY ANOTHER DELIVERY BOY");
             return resolve();
           }
+          if (
+            !orderData[i][0].expoToken ||
+            orderData[i][0].expoToken.trim() == ""
+          ) {
+            console.log(
+              "Expo token is null or empty, skipping notification for this delivaryboy"
+            );
+            return resolve();
+          }
         }
+
         const expo = new Expo();
         const chunks = expo.chunkPushNotifications([
           {
@@ -402,14 +417,6 @@ router.get("/getOrders/:customerId", async (req, res) => {
   res.json(orders);
 });
 
-
-
-
-
-
-
-
-
 // get all  all order
 router.get("/getOrders", async (req, res) => {
   const orders = await airorder.find();
@@ -441,27 +448,18 @@ router.get("/delivary/order/notify/:deliveryBoyId", async (req, res) => {
   }
 });
 
-
-
-
-
-
-
-
-
-router.get("/delivry/notifaction/:deliveryBoyId" , async(req,res) => {
-const {deliveryBoyId} =  req.params;
-try {
-  const notifaction = await delivaryNotifaction.findOne({deliveryBoyId : deliveryBoyId});
-  res.status(200).json(notifaction);
-} catch (error) {
-  console.log(error.message, "server is not working");
+router.get("/delivry/notifaction/:deliveryBoyId", async (req, res) => {
+  const { deliveryBoyId } = req.params;
+  try {
+    const notifaction = await delivaryNotifaction.findOne({
+      deliveryBoyId: deliveryBoyId,
+    });
+    res.status(200).json(notifaction);
+  } catch (error) {
+    console.log(error.message, "server is not working");
     res.status(500).json("server is not working");
-}
-})
-
-
-
+  }
+});
 
 // order otp api confim apis
 router.post("/createfinalorder", async (req, res) => {

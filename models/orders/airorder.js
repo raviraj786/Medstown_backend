@@ -18,6 +18,7 @@ const orderSchema = new mongoose.Schema({
   pharmacyLng : {type: String, default: null},
   deliveryBoyLat : {type: String, default: null},
   deliveryBoyLng : {type: String, default: null},
+  precriptionUrl : {type : String , required : true , default: false},
 });
 
 const orderdb = mongoose.model("Order", orderSchema);
