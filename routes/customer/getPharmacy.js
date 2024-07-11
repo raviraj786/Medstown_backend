@@ -84,7 +84,7 @@ router.post("/orderMedicines", async (req, res) => {
       },
     };
     const pharmacies = await pharmacydb.find(options);
-    console.log("pharmacy", pharmacies);
+    console.log("pharmacy", pharmacies.length);
     if (pharmacies.length === 0) {
       return res.json({ message: "NO PHARMACIES FOUND" });
     }
@@ -203,36 +203,80 @@ router.post("/acceptOrder", async (req, res) => {
 });
 
 // check order accepted or not using order id
+// router.post("/checkOrderAccepted", async (req, res) => {
+//   const { orderId } = req.body;
+//   const order = await airorder.findOne({
+//     orderId: orderId,
+//   });
+//   if (order) {
+//     console.log(order.status);
+//     if (order.status === "pending") {
+//       res.json({
+//         message: "Order is pending we will notify you when it is accepted",
+//         status: "pending",
+//       });
+//     } else if (order.status === "accepted") {
+//       res.json({
+//         message: "Order is accepted",
+//         status: "accepted",
+//       });
+//     } else if (order.status === "rejected") {
+//       res.json({
+//         message: "Order is rejected",
+//         status: "rejected",
+//       });
+//     }
+//   } else {
+//     res.json({ message: "NO ORDER FOUND" });
+//   }
+// });
+
+
+
+
+
 router.post("/checkOrderAccepted", async (req, res) => {
   const { orderId } = req.body;
-  const order = await airorder.findOne({
-    orderId: orderId,
-  });
-  if (order) {
-    console.log(order.status);
-    if (order.status === "pending") {
+  try {
+    const orders = await airorder.find({ orderId: orderId });
+    // Filter orders based on status
+    const acceptedOrders = orders.filter(item => item.status === "accepted");
+    const pendingOrders = orders.filter(item => item.status === "pending");
+    const rejectedOrders = orders.filter(item => item.status === "rejected");
+    if (acceptedOrders.length > 0) {
       res.json({
-        message: "Order is pending we will notify you when it is accepted",
-        status: "pending",
-      });
-    } else if (order.status === "accepted") {
-      res.json({
-        message: "Order is accepted",
+        message: "Order is accepted.",
         status: "accepted",
+        orders: acceptedOrders
       });
-    } else if (order.status === "rejected") {
+    } else if (pendingOrders.length > 0) {
       res.json({
-        message: "Order is rejected",
-        status: "rejected",
+        message: "Order is pending. We will notify you when it is accepted.",
+        status: "pending",
+        // orders: pendingOrders
       });
+    } else if (rejectedOrders.length > 0) {
+      res.json({
+        message: "Order is rejected.",
+        status: "rejected",
+        // orders: rejectedOrders
+      });
+    } else {
+      res.json({ message: "NO ORDER FOUND" });
     }
-  } else {
-    res.json({ message: "NO ORDER FOUND" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
-//send order to nearesrt delivery boy
 
+
+
+
+
+
+//send order to nearesrt delivery boy
 router.post("/sendOrderToDeliveryBoy", async (req, res) => {
   const {
     orderDetails,
