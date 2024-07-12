@@ -611,16 +611,18 @@ router.post("/verifyotpOrder", async (req, res) => {
       orderId,
       otpValue,
     });
+   
     if (!completedOrder) {
       return res.status(400).json({ message: "OTP not found" });
     }
     if (otpValue === completedOrder.otpValue) {
-      completedOrder = "Delivered";
-      await completedOrder.save();
+      completedOrder.status = "Delivered"
+      await completedOrder.save()
       res.status(200).json({
         finalorder: completedOrder,
         message: "otp verify successfully",
       });
+      console.log(completedOrder , "order")
     } else {
       res.status(400).json({ message: "Invalid OTP" });
     }
@@ -628,6 +630,12 @@ router.post("/verifyotpOrder", async (req, res) => {
     res.status(500).json({ message: "Internal server error", error });
   }
 });
+
+
+
+
+
+
 
 router.get("/finalorder", async (req, res) => {
   const forder = await finalorder.find();
