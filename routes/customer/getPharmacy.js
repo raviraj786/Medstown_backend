@@ -202,34 +202,7 @@ router.post("/acceptOrder", async (req, res) => {
   }
 });
 
-// check order accepted or not using order id
-// router.post("/checkOrderAccepted", async (req, res) => {
-//   const { orderId } = req.body;
-//   const order = await airorder.findOne({
-//     orderId: orderId,
-//   });
-//   if (order) {
-//     console.log(order.status);
-//     if (order.status === "pending") {
-//       res.json({
-//         message: "Order is pending we will notify you when it is accepted",
-//         status: "pending",
-//       });
-//     } else if (order.status === "accepted") {
-//       res.json({
-//         message: "Order is accepted",
-//         status: "accepted",
-//       });
-//     } else if (order.status === "rejected") {
-//       res.json({
-//         message: "Order is rejected",
-//         status: "rejected",
-//       });
-//     }
-//   } else {
-//     res.json({ message: "NO ORDER FOUND" });
-//   }
-// });
+
 
 router.post("/checkOrderAccepted", async (req, res) => {
   const { orderId } = req.body;
@@ -427,9 +400,9 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
 });
 
 router.post("/changedelivarystatatus", async (req, res) => {
-  const { pharmacyId, orderId } = req.body;
+  const { deliveryBoyId, orderId } = req.body;
   const order = await airorder.findOne({
-    pharmacyId: pharmacyId,
+  deliveryBoyId: deliveryBoyId,
     orderId: orderId,
   });
   if (order) {
