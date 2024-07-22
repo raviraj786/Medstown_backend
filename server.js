@@ -21,6 +21,7 @@ let datascarp = require("./routes/scrapping/nprec.js");
 let payment = require("./routes/payment/payment.js");
 let razorpay = require("./routes/payment/razorpay.js")
 let sendOrder = require("./routes/customer/sendOrder");
+let updetedApis = require("./routes/customer/updetedApis.js")
   
 // ******************************* customer api ************************************************
 let customerRegister = require("./routes/customer/user");
@@ -52,6 +53,7 @@ app.use("/customer", customerRegister);
 app.use("/customer", findPharmacy);
 app.use("/customer", homepageapi);
 app.use("/customer", sendOrder);
+app.use("/customer", updetedApis);
 
 // **********************************admin**************************************************
 app.use("/admin", getmeds);

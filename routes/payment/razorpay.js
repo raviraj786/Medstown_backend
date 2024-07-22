@@ -59,71 +59,8 @@ router.post("/makeNewPayment", async (req, res) => {
 
 
 
-// router.put("/verifyrazorpaypayment", async (req, res) => {
-//   try {
-//     const {
-//       orderId,
-//       orderDetails,
-//       orderTotal,
-//       orderStatus,
-//       orderNature,
-//       customerId,
-//       mobileNumber,
-//       paymentId,
-//       successData,
-//     } = req.body;
-//     console.log("Triggered getData route");
-//      console.log("Payment Id - ",paymentId);
-//      console.log("payment Id",successData.razorpay_payment_id);
 
 
-//   // Generate the HMAC SHA256 signature
-//   const hmac = crypto.createHmac('sha256',process.env.RAZORPAY_KEY_SECRET);
-//   hmac.update(orderId + "|" + successData.razorpay_payment_id);
-//   const generated_signature = hmac.digest('hex');
-
-//   console.log('Generated Signature:', generated_signature);
-//   console.log('Received Signature:', successData.razorpay_signature);
-
-//     if (generated_signature === successData.razorpay_signature) {
-//       const payment = new orderPayment({
-//         orderId: orderId,
-//         orderDetails: orderDetails,
-//         orderTotal: orderTotal,
-//         orderStatus: orderStatus,
-//         orderNature: orderNature,
-//         customerId: customerId,
-//         mobileNumber: mobileNumber,
-//         paymentStatus: "sucessful",
-//         paymentId: paymentId,
-//       });
-//       const savePayment = await payment.save();
-//       console.log("save payment - ", savePayment);
-//       return res
-//         .status(200)
-//         .json({ status: "Payment Successful", data: payment });
-//     } else {
-//       const payment = new orderPayment({
-//         orderId: orderId,
-//         orderDetails: orderDetails,
-//         orderTotal: orderTotal,
-//         orderStatus: orderStatus,
-//         orderNature: orderNature,
-//         customerId: customerId,
-//         mobileNumber: mobileNumber,
-//         paymentStatus: "fail",
-//         paymentId: paymentId,
-//       });
-//       const savePayment = await payment.save();
-//       console.log("save payment - ", savePayment);
-//       return res
-//         .status(201)
-//         .json({ status: "Payment Unsuccessful", data: payment });
-//     }
-//   } catch (error) {
-//     return res.send("Error Occurred!" + error.message);
-//   }
-// });
 router.put("/verifyrazorpaypayment", async (req, res) => {
   try {
     const {

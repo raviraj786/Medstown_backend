@@ -8,7 +8,7 @@ const uuid = require("uuid");
 const airorder = require("../../models/orders/airorder.js");
 const deliveryboydb = require("../../models/deliverydb/deliveryuser.js");
 const finalorder = require("../../models/orders/finalorder.js");
-const delivaryNotifaction = require("../../models/orders/delivaryNotifaction.js");
+
 const { date } = require("yup");
 
 // show pharmacies
@@ -470,18 +470,7 @@ router.get("/delivary/order/notify/:deliveryBoyId", async (req, res) => {
   }
 });
 
-router.get("/delivry/notifaction/:deliveryBoyId", async (req, res) => {
-  const { deliveryBoyId } = req.params;
-  try {
-    const notifaction = await delivaryNotifaction.findOne({
-      deliveryBoyId: deliveryBoyId,
-    });
-    res.status(200).json(notifaction);
-  } catch (error) {
-    console.log(error.message, "server is not working");
-    res.status(500).json("server is not working");
-  }
-});
+
 
 // order otp api confim apis
 router.post("/createfinalorder", async (req, res) => {
