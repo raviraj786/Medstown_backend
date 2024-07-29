@@ -4,6 +4,8 @@ const uuid = require("uuid");
 const deliverydb = require("../../models/deliverydb/deliveryuser.js");
 const FinalOrder = require("../../models/orders/finalorder.js");
 const axios = require("axios");
+const multer = require("multer");
+const S3 = require("aws-sdk/clients/s3");
 
 router.post("/register", async (req, res) => {
   const { fullname, phone, drivingLicense, vehicleNumber } = req.body;
@@ -182,8 +184,7 @@ router.post("/wallet/credit", async (req, res) => {
       status: "success",
       totalBalance: deliveryBoy.totalBalance,
       transcationId: obj.transactionId,
-      date : new Date()
-    
+      date: new Date(),
     });
   } catch (error) {
     console.log("Error - " + error);
@@ -222,14 +223,14 @@ router.post("/wallet/debit", async (req, res) => {
         status: "success",
         totalBalance: deliveryBoy.totalBalance,
         transcationId: obj.transactionId,
-        date : new Date()
+        date: new Date(),
       });
     } else {
       return res.send({
         message: `you have not sufficient balance`,
         status: "success",
         totalBalance: deliveryBoy.totalBalance,
-        date : new Date()
+        date: new Date(),
       });
     }
   } catch (error) {}
@@ -248,12 +249,178 @@ router.get("/getalldeliveryboy/:partnerId", async (req, res) => {
   const { partnerId } = req.params;
   try {
     const delivaryBoy = await deliverydb.findOne({ partnerId });
-    res.status(200).json({delivaryBoy});
+    res.status(200).json({ delivaryBoy });
   } catch (error) {
     console.log(error);
   }
 });
 
+// ******************* upload documant *********
 
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fieldSize: {
+      fileSize: 10 * 1024 * 1024,
+    },
+  },
+});
+
+const s3 = new S3({
+  endpoint: "https://usc1.contabostorage.com/medstown", // Ensure this is the correct endpoint for your provider
+  s3BucketEndpoint: true, // Typically, this is false for non-AWS endpoints
+  accessKeyId: "8fe5f069ca4c4b50bd74c7adf18fcf75",
+  secretAccessKey: "90ea5d8271241f37b3e248ecee1843ff",
+  region: "us-east-1", // Or the appropriate region if different
+});
+
+const uploadToS3 = (file) => {
+  return new Promise((resolve, reject) => {
+    const params = {
+      Bucket: "medstown",
+      Key: file.originalname.replace(/ /g, "_"),
+      Body: file.buffer,
+      ACL: "public-read",
+      ContentDisposition: "inline",
+      ContentType: file.mimetype,
+    };
+    s3.upload(params, (err, data) => {
+      if (err) {
+        console.error("S3 Upload Error:", err); // More detailed error logging
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+};
+
+//upload documnts
+
+
+
+router.post(
+  "/uploadadharcard/:partnerId",
+  upload.fields([
+    { name: "adharFront", maxCount: 1 },
+    { name: "adharBack", maxCount: 1 },
+  ]),
+  async (req, res) => {
+    const { partnerId } = req.params;
+    try {
+      const adharFrontFile = req.files.adharFront[0];
+      const adharBackFile = req.files.adharBack[0];
+      const adharFrontUpload = await uploadToS3(adharFrontFile);
+      const adharBackUpload = await uploadToS3(adharBackFile);
+      const delivery = await deliverydb.findOne({ partnerId }).exec();
+      if (!delivery) {
+        return res.status(404).send({ message: "Delivery not found" });
+      }
+      if (!delivery.adharCard) {
+        delivery.adharCard = [];
+      }
+      delivery.adharCard.push({
+        adharFront: `https://usc1.contabostorage.com/medstown/${adharFrontUpload.Key}`,
+        adharBack: `https://usc1.contabostorage.com/medstown/${adharBackUpload.Key}`,
+      });
+      await delivery.save();
+      res.send({
+        status: "success",
+        message: "Adhar card uploaded successfully",
+        data: delivery.adharCard,
+      });
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  }
+);
+
+//////////////////////upload  user details
+
+router.post(
+  "/uploaddoc/:partnerId",
+  upload.fields([
+    {name : "userImage" , maxCount :1},
+    {name : "penCard" , maxCount: 1},
+    { name: "adharFront", maxCount: 1 },
+    { name: "adharBack", maxCount: 1 },
+    { name: "rcFront", maxCount: 1 },
+    { name: "rcBack", maxCount: 1 },
+    { name: "drivingLicenseFront", maxCount: 1 },
+    { name: "drivingLicenseBack", maxCount: 1 },
+  ]),
+  async (req, res) => {
+    const { partnerId } = req.params;
+    try {
+      const userImageupload =  await uploadToS3(req.files.userImage[0]);
+      const penCardUpload = await uploadToS3(req.files.penCard[0]);
+      const adharFrontupload = await uploadToS3(req.files.adharFront[0]);
+      const adharBackUpload  = await uploadToS3(req.files.adharBack[0]);
+      const rcFrontupload = await uploadToS3(req.files.rcFront[0]);
+      const rcBackupload = await uploadToS3(req.files.rcBack[0]);
+      const drivingLicenseFrontupload = await uploadToS3(
+        req.files.drivingLicenseFront[0]
+      );
+      const drivingLicenseBackupload = await uploadToS3(
+        req.files.drivingLicenseBack[0]
+      );
+      let delivery = await deliverydb.findOne({ partnerId: partnerId }).exec();
+      if (!delivery) {
+        return res.status(404).send({
+          status: "error",
+          message: "Partner not found",
+        });
+      }
+      if (!delivery.documnetUploaded) {
+        delivery.documnetUploaded = [];
+      }
+      delivery.documnetUploaded.push({
+        userImage : `https://usc1.contabostorage.com/medstown/${userImageupload.Key}`,
+        penCard : `https://usc1.contabostorage.com/medstown/${penCardUpload.Key}`,
+        adharFront : `https://usc1.contabostorage.com/medstown/${adharFrontupload.Key}`,
+        adharBack : `https://usc1.contabostorage.com/medstown/${adharBackUpload.Key}`,
+        rcFront: `https://usc1.contabostorage.com/medstown/${rcFrontupload.Key}`,
+        rcBack: `https://usc1.contabostorage.com/medstown/${rcBackupload.Key}`,
+        drivingLicenseFront: `https://usc1.contabostorage.com/medstown/${drivingLicenseFrontupload.Key}`,
+        drivingLicenseBack: `https://usc1.contabostorage.com/medstown/${drivingLicenseBackupload.Key}`,
+      });
+      await delivery.save();
+      res.send({
+        status: "success",
+        message: "Documents uploaded successfully",
+        data: delivery.documnetUploaded,
+      });
+    } catch (error) {
+      res.status(500).send({
+        status: "error",
+        message: error.message,
+      });
+    }
+  }
+);
+
+router.get("/getdoc/:partnerId", async (req, res) => {
+  const { partnerId } = req.params;
+  try {
+    const deliveryBoy = await deliverydb.findOne({ partnerId: partnerId }).exec();
+    if (!deliveryBoy) {
+      return res.status(404).send({
+        status: "error",
+        message: "Partner not found",
+      });
+    }
+    res.send({
+      userImage: deliveryBoy.userImage,
+      adharCard: deliveryBoy.adharCard,
+      penCardImage: deliveryBoy.penCardImage,
+      documnetUploaded: deliveryBoy.documnetUploaded,
+    });
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: error.message,
+    });
+  }
+});
 
 module.exports = router;

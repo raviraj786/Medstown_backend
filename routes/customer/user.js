@@ -27,6 +27,7 @@ const s3 = new S3({
   s3BucketEndpoint: true,
   publicReadAccess: true,
 });
+
 const uploadToS3 = (file) => {
   return new Promise((resolve, reject) => {
     const params = {

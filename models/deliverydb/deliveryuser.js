@@ -6,13 +6,19 @@ const userSchema = new mongoose.Schema({
   activationCode: { type: String, required: false },
   drivingLicense: { type: String, required: false },
   vehicleNumber: { type: String, required: false },
-  drivingLicenseImage: { type: String, required: false },
-  userImage: { type: String, required: false },
-  bikeRCFrontImage : {type : String , required : false},
-  bikeRCBackImage : {type : String , required : false},
-  penCardImage : {type : String , required : false},
-  adharCardFrontImage : {type : String , required : false},
-  adharCardBackImage : {type : String , required : false},
+
+ documnetUploaded : [{
+  userImage : {type : String , required : false },
+  penCard : {type : String , required : false },
+  adharFront : {type : String , required : false},
+  adharBack : {type : String , required : false},
+  rcFront : {type : String , required : false },
+  rcBack : {type : String , required : false },
+  drivingLicenseFront : {type : String , required : false },
+  drivingLicenseBack : {type : String , required : false },
+}],
+ 
+
   partnerId: { type: String, required: false },
   expoToken: { type: String, required: false },
   totalBalance: { type: Number, deafult: 0, require: false },
