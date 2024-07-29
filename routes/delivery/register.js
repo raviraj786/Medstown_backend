@@ -397,6 +397,8 @@ router.post(
         status: "success",
         message: "Documents uploaded successfully",
         data: delivery.documnetUploaded,
+        partnerId : delivery.partnerId,
+        phone :  delivery.phone
       });
     } catch (error) {
       console.error("Error uploading documents:", error);
