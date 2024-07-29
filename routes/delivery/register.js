@@ -6,6 +6,7 @@ const FinalOrder = require("../../models/orders/finalorder.js");
 const axios = require("axios");
 const multer = require("multer");
 const S3 = require("aws-sdk/clients/s3");
+const { date } = require("yup");
 
 router.post("/register", async (req, res) => {
   const { fullname, phone, drivingLicense, vehicleNumber } = req.body;
@@ -53,7 +54,7 @@ router.post("/generateotp", async (req, res) => {
       !documents.documnetUploaded ||
       documents.documnetUploaded.length === 0
     ) {
-      return res.send("Upload required documents");
+      return res.send({  message :"Upload required documents" , partnerId : documents.partnerId  });
     }
 
     deliverydb
