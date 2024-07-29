@@ -22,6 +22,7 @@ router.post("/register", async (req, res) => {
         vehicleNumber,
         partnerId: uuid.v4(),
         totalBalance: 0,
+        documnetUploaded: [],
       });
       newUser
         .save()
@@ -39,34 +40,64 @@ router.post("/register", async (req, res) => {
 router.post("/generateotp", async (req, res) => {
   const { phone } = req.body;
   const otpno = Math.floor(100000 + Math.random() * 900000);
-  if (phone === 9999999999) {
-    res.json({ message: "OTP sent successfully" });
-  } else {
-    deliverydb.findOne({ phone: phone }).then((user) => {
-      if (user) {
-        deliverydb
-          .findOneAndUpdate(
-            { phone: phone },
-            { $set: { otp: otpno } },
-            { new: true }
-          )
-          .then((user) => {
-            console.log(user);
-            let url = `http://37.59.76.46/api/mt/SendSMS?user=Wowerr-Technologies&password=q12345&senderid=MEDSTN&channel=Trans&DCS=0&flashsms=0&number=${user.phone}&text=Your%20login%20OTP%20for%20Medstown%20account%20is%20${user.otp}.%20OTP%20is%20valid%20for%2010mins.%20Do%20not%20share%20with%20anyone.%20If%20not%20requested%20by%20you,%20reach%20support@medstown.com%20-MEDSTOWN`;
-            axios.get(url).then((response) => {
-              console.log(response);
-              res.send({ message: "OTP sent successfully" });
+
+  try {
+    if (phone === 9999999999) {
+      return res.json({ message: "OTP sent successfully" });
+    }
+
+    const documents = await deliverydb.findOne({ phone });
+
+    if (
+      !documents ||
+      !documents.documnetUploaded ||
+      documents.documnetUploaded.length === 0
+    ) {
+      return res.send("Upload required documents");
+    }
+
+    deliverydb
+      .findOne({ phone })
+      .then((user) => {
+        if (user) {
+          deliverydb
+            .findOneAndUpdate(
+              { phone },
+              { $set: { otp: otpno } },
+              { new: true }
+            )
+            .then((user) => {
+              console.log(user);
+              let url = `http://37.59.76.46/api/mt/SendSMS?user=Wowerr-Technologies&password=q12345&senderid=MEDSTN&channel=Trans&DCS=0&flashsms=0&number=${user.phone}&text=Your%20login%20OTP%20for%20Medstown%20account%20is%20${user.otp}.%20OTP%20is%20valid%20for%2010mins.%20Do%20not%20share%20with%20anyone.%20If%20not%20requested%20by%20you,%20reach%20support@medstown.com%20-MEDSTOWN`;
+              axios
+                .get(url)
+                .then((response) => {
+                  console.log(response.data);
+                  return res.json({ message: "OTP sent successfully" });
+                })
+                .catch((error) => {
+                  console.error("Error sending OTP:", error);
+                  return res.status(500).json({ message: "Error sending OTP" });
+                });
+            })
+            .catch((err) => {
+              console.error("Error updating user:", err);
+              return res.status(500).json({ message: "Error updating user" });
             });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } else {
-        res.json("User not found");
-      }
-    });
+        } else {
+          return res.json({ message: "User not found" });
+        }
+      })
+      .catch((err) => {
+        console.error("Error finding user:", err);
+        return res.status(500).json({ message: "Error finding user" });
+      });
+  } catch (error) {
+    console.error("Error during OTP generation:", error);
+    return res.status(500).json({ message: "An error occurred" });
   }
 });
+
 //verify otp
 router.post("/verifyotp", async (req, res) => {
   const { phone, otp } = req.body;
@@ -297,51 +328,13 @@ const uploadToS3 = (file) => {
 
 //upload documnts
 
-
-
-router.post(
-  "/uploadadharcard/:partnerId",
-  upload.fields([
-    { name: "adharFront", maxCount: 1 },
-    { name: "adharBack", maxCount: 1 },
-  ]),
-  async (req, res) => {
-    const { partnerId } = req.params;
-    try {
-      const adharFrontFile = req.files.adharFront[0];
-      const adharBackFile = req.files.adharBack[0];
-      const adharFrontUpload = await uploadToS3(adharFrontFile);
-      const adharBackUpload = await uploadToS3(adharBackFile);
-      const delivery = await deliverydb.findOne({ partnerId }).exec();
-      if (!delivery) {
-        return res.status(404).send({ message: "Delivery not found" });
-      }
-      if (!delivery.adharCard) {
-        delivery.adharCard = [];
-      }
-      delivery.adharCard.push({
-        adharFront: `https://usc1.contabostorage.com/medstown/${adharFrontUpload.Key}`,
-        adharBack: `https://usc1.contabostorage.com/medstown/${adharBackUpload.Key}`,
-      });
-      await delivery.save();
-      res.send({
-        status: "success",
-        message: "Adhar card uploaded successfully",
-        data: delivery.adharCard,
-      });
-    } catch (error) {
-      res.status(500).send({ message: error.message });
-    }
-  }
-);
-
 //////////////////////upload  user details
 
 router.post(
   "/uploaddoc/:partnerId",
   upload.fields([
-    {name : "userImage" , maxCount :1},
-    {name : "penCard" , maxCount: 1},
+    { name: "userImage", maxCount: 1 },
+    { name: "penCard", maxCount: 1 },
     { name: "adharFront", maxCount: 1 },
     { name: "adharBack", maxCount: 1 },
     { name: "rcFront", maxCount: 1 },
@@ -351,19 +344,44 @@ router.post(
   ]),
   async (req, res) => {
     const { partnerId } = req.params;
+
     try {
-      const userImageupload =  await uploadToS3(req.files.userImage[0]);
-      const penCardUpload = await uploadToS3(req.files.penCard[0]);
-      const adharFrontupload = await uploadToS3(req.files.adharFront[0]);
-      const adharBackUpload  = await uploadToS3(req.files.adharBack[0]);
-      const rcFrontupload = await uploadToS3(req.files.rcFront[0]);
-      const rcBackupload = await uploadToS3(req.files.rcBack[0]);
-      const drivingLicenseFrontupload = await uploadToS3(
-        req.files.drivingLicenseFront[0]
-      );
-      const drivingLicenseBackupload = await uploadToS3(
-        req.files.drivingLicenseBack[0]
-      );
+      // Check if files are provided
+      const files = req.files || {};
+      if (!files.userImage || !files.penCard || !files.adharFront || !files.adharBack || !files.rcFront || !files.rcBack || !files.drivingLicenseFront || !files.drivingLicenseBack) {
+        return res.status(400).send({
+          status: "error",
+          message: "All required documents are not provided",
+        });
+      }
+
+      // Upload files to S3
+      const uploadPromises = {
+        userImage: uploadToS3(files.userImage[0]),
+        penCard: uploadToS3(files.penCard[0]),
+        adharFront: uploadToS3(files.adharFront[0]),
+        adharBack: uploadToS3(files.adharBack[0]),
+        rcFront: uploadToS3(files.rcFront[0]),
+        rcBack: uploadToS3(files.rcBack[0]),
+        drivingLicenseFront: uploadToS3(files.drivingLicenseFront[0]),
+        drivingLicenseBack: uploadToS3(files.drivingLicenseBack[0]),
+      };
+
+      const uploadedFiles = await Promise.all(Object.values(uploadPromises));
+      
+      // Create URLs for the uploaded files
+      const fileUrls = {
+        userImage: `https://usc1.contabostorage.com/medstown/${uploadedFiles[0].Key}`,
+        penCard: `https://usc1.contabostorage.com/medstown/${uploadedFiles[1].Key}`,
+        adharFront: `https://usc1.contabostorage.com/medstown/${uploadedFiles[2].Key}`,
+        adharBack: `https://usc1.contabostorage.com/medstown/${uploadedFiles[3].Key}`,
+        rcFront: `https://usc1.contabostorage.com/medstown/${uploadedFiles[4].Key}`,
+        rcBack: `https://usc1.contabostorage.com/medstown/${uploadedFiles[5].Key}`,
+        drivingLicenseFront: `https://usc1.contabostorage.com/medstown/${uploadedFiles[6].Key}`,
+        drivingLicenseBack: `https://usc1.contabostorage.com/medstown/${uploadedFiles[7].Key}`,
+      };
+
+      // Find and update the delivery record
       let delivery = await deliverydb.findOne({ partnerId: partnerId }).exec();
       if (!delivery) {
         return res.status(404).send({
@@ -371,26 +389,17 @@ router.post(
           message: "Partner not found",
         });
       }
-      if (!delivery.documnetUploaded) {
-        delivery.documnetUploaded = [];
-      }
-      delivery.documnetUploaded.push({
-        userImage : `https://usc1.contabostorage.com/medstown/${userImageupload.Key}`,
-        penCard : `https://usc1.contabostorage.com/medstown/${penCardUpload.Key}`,
-        adharFront : `https://usc1.contabostorage.com/medstown/${adharFrontupload.Key}`,
-        adharBack : `https://usc1.contabostorage.com/medstown/${adharBackUpload.Key}`,
-        rcFront: `https://usc1.contabostorage.com/medstown/${rcFrontupload.Key}`,
-        rcBack: `https://usc1.contabostorage.com/medstown/${rcBackupload.Key}`,
-        drivingLicenseFront: `https://usc1.contabostorage.com/medstown/${drivingLicenseFrontupload.Key}`,
-        drivingLicenseBack: `https://usc1.contabostorage.com/medstown/${drivingLicenseBackupload.Key}`,
-      });
+
+      delivery.documnetUploaded = fileUrls;
       await delivery.save();
+
       res.send({
         status: "success",
         message: "Documents uploaded successfully",
         data: delivery.documnetUploaded,
       });
     } catch (error) {
+      console.error("Error uploading documents:", error);
       res.status(500).send({
         status: "error",
         message: error.message,
@@ -402,7 +411,9 @@ router.post(
 router.get("/getdoc/:partnerId", async (req, res) => {
   const { partnerId } = req.params;
   try {
-    const deliveryBoy = await deliverydb.findOne({ partnerId: partnerId }).exec();
+    const deliveryBoy = await deliverydb
+      .findOne({ partnerId: partnerId })
+      .exec();
     if (!deliveryBoy) {
       return res.status(404).send({
         status: "error",
