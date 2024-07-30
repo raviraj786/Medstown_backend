@@ -41,7 +41,6 @@ router.post("/register", async (req, res) => {
 router.post("/generateotp", async (req, res) => {
   const { phone } = req.body;
   const otpno = Math.floor(100000 + Math.random() * 900000);
-
   try {
     if (phone === 9999999999) {
       return res.json({ message: "OTP sent successfully" });
@@ -49,12 +48,18 @@ router.post("/generateotp", async (req, res) => {
 
     const documents = await deliverydb.findOne({ phone });
 
+    if (!documents) {
+      return res.json({ message: "User not found" });
+    }
+
     if (
-      !documents ||
       !documents.documnetUploaded ||
       documents.documnetUploaded.length === 0
     ) {
-      return res.send({  message :"Upload required documents" , partnerId : documents.partnerId  });
+      return res.send({
+        message: "Upload required documents",
+        partnerId: documents.partnerId,
+      });
     }
 
     deliverydb
@@ -67,9 +72,9 @@ router.post("/generateotp", async (req, res) => {
               { $set: { otp: otpno } },
               { new: true }
             )
-            .then((user) => {
-              console.log(user);
-              let url = `http://37.59.76.46/api/mt/SendSMS?user=Wowerr-Technologies&password=q12345&senderid=MEDSTN&channel=Trans&DCS=0&flashsms=0&number=${user.phone}&text=Your%20login%20OTP%20for%20Medstown%20account%20is%20${user.otp}.%20OTP%20is%20valid%20for%2010mins.%20Do%20not%20share%20with%20anyone.%20If%20not%20requested%20by%20you,%20reach%20support@medstown.com%20-MEDSTOWN`;
+            .then((updatedUser) => {
+              console.log(updatedUser);
+              let url = `http://37.59.76.46/api/mt/SendSMS?user=Wowerr-Technologies&password=q12345&senderid=MEDSTN&channel=Trans&DCS=0&flashsms=0&number=${updatedUser.phone}&text=Your%20login%20OTP%20for%20Medstown%20account%20is%20${updatedUser.otp}.%20OTP%20is%20valid%20for%2010mins.%20Do%20not%20share%20with%20anyone.%20If%20not%20requested%20by%20you,%20reach%20support@medstown.com%20-MEDSTOWN`;
               axios
                 .get(url)
                 .then((response) => {
@@ -95,7 +100,7 @@ router.post("/generateotp", async (req, res) => {
       });
   } catch (error) {
     console.error("Error during OTP generation:", error);
-    return res.status(500).json({ message: "An error occurred" });
+    return res.status(500).json({ message: "Internet server not working" });
   }
 });
 
@@ -349,7 +354,16 @@ router.post(
     try {
       // Check if files are provided
       const files = req.files || {};
-      if (!files.userImage || !files.penCard || !files.adharFront || !files.adharBack || !files.rcFront || !files.rcBack || !files.drivingLicenseFront || !files.drivingLicenseBack) {
+      if (
+        !files.userImage ||
+        !files.penCard ||
+        !files.adharFront ||
+        !files.adharBack ||
+        !files.rcFront ||
+        !files.rcBack ||
+        !files.drivingLicenseFront ||
+        !files.drivingLicenseBack
+      ) {
         return res.status(400).send({
           status: "error",
           message: "All required documents are not provided",
@@ -369,7 +383,7 @@ router.post(
       };
 
       const uploadedFiles = await Promise.all(Object.values(uploadPromises));
-      
+
       // Create URLs for the uploaded files
       const fileUrls = {
         userImage: `https://usc1.contabostorage.com/medstown/${uploadedFiles[0].Key}`,
@@ -398,8 +412,8 @@ router.post(
         status: "success",
         message: "Documents uploaded successfully",
         data: delivery.documnetUploaded,
-        partnerId : delivery.partnerId,
-        phone :  delivery.phone
+        partnerId: delivery.partnerId,
+        phone: delivery.phone,
       });
     } catch (error) {
       console.error("Error uploading documents:", error);
