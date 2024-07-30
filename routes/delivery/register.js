@@ -309,6 +309,7 @@ const s3 = new S3({
   accessKeyId: "8fe5f069ca4c4b50bd74c7adf18fcf75",
   secretAccessKey: "90ea5d8271241f37b3e248ecee1843ff",
   region: "us-east-1", // Or the appropriate region if different
+  publicReadAccess: true,
 });
 
 const uploadToS3 = (file) => {
@@ -386,14 +387,14 @@ router.post(
 
       // Create URLs for the uploaded files
       const fileUrls = {
-        userImage: `https://usc1.contabostorage.com/medstown/${uploadedFiles[0].Key}`,
-        penCard: `https://usc1.contabostorage.com/medstown/${uploadedFiles[1].Key}`,
-        adharFront: `https://usc1.contabostorage.com/medstown/${uploadedFiles[2].Key}`,
-        adharBack: `https://usc1.contabostorage.com/medstown/${uploadedFiles[3].Key}`,
-        rcFront: `https://usc1.contabostorage.com/medstown/${uploadedFiles[4].Key}`,
-        rcBack: `https://usc1.contabostorage.com/medstown/${uploadedFiles[5].Key}`,
-        drivingLicenseFront: `https://usc1.contabostorage.com/medstown/${uploadedFiles[6].Key}`,
-        drivingLicenseBack: `https://usc1.contabostorage.com/medstown/${uploadedFiles[7].Key}`,
+        userImage: `https://usc1.contabostorage.com/f49065475849480fbcd19fb8279b2f98:medstown/${uploadedFiles[0].Key}`,
+        penCard: `https://usc1.contabostorage.com/f49065475849480fbcd19fb8279b2f98:medstown/${uploadedFiles[1].Key}`,
+        adharFront: `https://usc1.contabostorage.com/f49065475849480fbcd19fb8279b2f98:medstown/${uploadedFiles[2].Key}`,
+        adharBack: `https://usc1.contabostorage.com/f49065475849480fbcd19fb8279b2f98:medstown/${uploadedFiles[3].Key}`,
+        rcFront: `https://usc1.contabostorage.com/f49065475849480fbcd19fb8279b2f98:medstown/${uploadedFiles[4].Key}`,
+        rcBack: `https://usc1.contabostorage.com/f49065475849480fbcd19fb8279b2f98:medstown/${uploadedFiles[5].Key}`,
+        drivingLicenseFront: `https://usc1.contabostorage.com/f49065475849480fbcd19fb8279b2f98:medstown/${uploadedFiles[6].Key}`,
+        drivingLicenseBack: `https://usc1.contabostorage.com/f49065475849480fbcd19fb8279b2f98:medstown/${uploadedFiles[7].Key}`,
       };
 
       // Find and update the delivery record
