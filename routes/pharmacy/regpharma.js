@@ -1013,4 +1013,26 @@ router.get("/getOrders/:pharmacyId", async (req, res) => {
   }
 });
 
+
+
+router.get("/getpharmacy", async (req, res) => {
+  try {
+    const pharmacies = await pharmacydb.find(); // Fetch all pharmacies
+    res.send({ pharmacies }); // Send the data as a response
+  } catch (error) {
+    console.error("Error fetching pharmacies:", error);
+    res.status(500).send({ error: "An error occurred while fetching pharmacy data." });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;
