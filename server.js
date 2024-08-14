@@ -31,7 +31,7 @@ let homepageapi = require("./routes/customer/homePageApi");
 // ******************************* pharmacy api ************************************************
 
 // ******************************* admin api ************************************************
-let getmeds = require("./routes/admin/getallmeds");
+let medicine_crud = require("./routes/admin/medicine_crud.js");
 let getpharmacy = require("./routes/admin/getallpharmacy");
 let  loginadmin = require("./routes/admin/loginadmin");
 
@@ -56,7 +56,7 @@ app.use("/customer", sendOrder);
 app.use("/customer", updetedApis);
 
 // **********************************admin**************************************************
-app.use("/admin", getmeds);
+app.use("/admin", medicine_crud);
 app.use("/admin", getpharmacy);
 app.use("/admin", loginadmin);
 

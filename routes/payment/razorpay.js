@@ -1,11 +1,9 @@
 // code is start
 const express = require("express");
 const router = express.Router();
-const crypto = require('crypto');
+const crypto = require("crypto");
 const orderPayment = require("../../models/payment/orderPayment.js");
 const Razorpay = require("razorpay");
-
-
 
 const QRCode = require("qrcode");
 const instance = new Razorpay({
@@ -57,10 +55,6 @@ router.post("/makeNewPayment", async (req, res) => {
   }
 });
 
-
-
-
-
 router.put("/verifyrazorpaypayment", async (req, res) => {
   try {
     const {
@@ -75,14 +69,14 @@ router.put("/verifyrazorpaypayment", async (req, res) => {
       successData,
     } = req.body;
     console.log("Triggered getData route");
-     console.log("Payment Id - ",paymentId);
-     console.log("payment Id",successData.razorpay_payment_id);
+    console.log("Payment Id - ", paymentId);
+    console.log("payment Id", successData.razorpay_payment_id);
     const payload =
       successData.razorpay_order_id + "|" + successData.razorpay_payment_id;
     const hmac = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET);
     hmac.update(payload);
     const generated_signature = hmac.digest("hex");
-      console.log('Generated Signature:',generated_signature);
+    console.log("Generated Signature:", generated_signature);
     if (generated_signature === successData.razorpay_signature) {
       const payment = new orderPayment({
         orderId: orderId,
@@ -122,9 +116,6 @@ router.put("/verifyrazorpaypayment", async (req, res) => {
     return res.send("Error Occurred!" + error.message);
   }
 });
-
-
-
 
 // Rezorpay qrCode APIS
 
@@ -255,13 +246,28 @@ router.get("/qrCodeConfimpay/:paymentId", async (req, res) => {
     res.status(201).json({ respone, updatedPayment });
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).json({ error: "Internal Server Error" , error });
+    res.status(500).json({ error: "Internal Server Error", error });
   }
 });
 
+router.get("/getpayments", async (req, res) => {
+  try {
+    const payment = await orderPayment.find();
+    const total_transaction = payment.length;
+    const total_amount = payment.reduce(
+      (previousValue, currentValue) =>
+        (parseFloat(currentValue.orderTotal) + previousValue) / 100,
+      0
+    );
 
-
-
-
+    res.status(200).send({
+      total_transaction: total_transaction,
+      total_amount: total_amount,
+      payment: payment.reverse(),
+    });
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
 
 module.exports = router;
