@@ -193,7 +193,7 @@ router.post("/updatemedicine", async (req, res) => {
     } = req.body;
     // Find the existing medicine
     let existingMedicine;
-    if (medicineType === "non-prescription") {
+    if (type === "non-prescription") {
       existingMedicine = await nonprescriptiondb.findOne({ medicineId });
     } else {
       existingMedicine = await prescriptiondb.findOne({ medicineId });
@@ -214,6 +214,8 @@ router.post("/updatemedicine", async (req, res) => {
       verified,
       type,
     };
+
+    console.log( updateData)
 
     let updatedMedicine;
     if (type === "non-prescription") {
@@ -238,6 +240,8 @@ router.post("/updatemedicine", async (req, res) => {
         disease: updatedMedicine.disease,
       }
     );
+ 
+
 
     res.status(200).json({
       message: "Medicine updated successfully",
@@ -250,6 +254,10 @@ router.post("/updatemedicine", async (req, res) => {
       .json({ message: "An error occurred while updating the medicine" });
   }
 });
+
+
+
+
 
 router.delete("/deletemedicine/:medicineId", async (req, res) => {
   try {
