@@ -201,6 +201,25 @@ router.post("/acceptOrder", async (req, res) => {
     res.json({ message: "NO ORDER FOUND" });
   }
 });
+// rejected order using pharmacy id and order id
+router.post("/rejectedorders", async (req, res) => {
+  const { pharmacyId, orderId, status } = req.body;
+  console.log(pharmacyId, orderId);
+  const order = await airorder.findOne({
+    pharmacyId: pharmacyId,
+    orderId: orderId,
+  });
+  if (order) {
+    order.status = "rejected";
+    await order.save();
+    res.json(order);
+  } else {
+    res.json({ message: "NO ORDER FOUND" });
+  }
+});
+
+
+
 
 
 
@@ -413,6 +432,53 @@ router.post("/changedelivarystatatus", async (req, res) => {
     res.json("no network");
   }
 });
+
+
+
+
+
+
+
+
+router.post("/finalorder/status", async (req, res) => {
+  const { orderId } = req.body;
+  try {
+    const order = await finalorder.findOne({ orderId: orderId });
+    const notfypharmacyList = await airorder.find({ orderId: orderId });
+    if (notfypharmacyList.length > 0) {
+      notfypharmacyList.forEach(async (notfypharmacy) => {
+        notfypharmacy.status = "Order Cancelled";
+        await notfypharmacy.save();
+      });
+      if (order) {
+        order.status = "Order Cancelled";
+        await order.save();
+        res.json(order);
+      } else {
+        res.status(404).json({ message: "Order not found" });
+      }
+    } else {
+      res.status(404).json({ message: "Pharmacy notifications not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "An error occurred", error: error.message });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.post("/changePharmacyMedsStatus", async (req, res) => {
   const { pharmacyId, orderId, medicineId } = req.body;
