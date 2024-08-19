@@ -445,21 +445,13 @@ router.post("/finalorder/status", async (req, res) => {
   try {
     const order = await finalorder.findOne({ orderId: orderId });
     const notfypharmacyList = await airorder.find({ orderId: orderId });
-    if (notfypharmacyList.length > 0) {
-      notfypharmacyList.forEach(async (notfypharmacy) => {
-        notfypharmacy.status = "Order Cancelled";
-        await notfypharmacy.save();
-      });
-      if (order) {
-        order.status = "Order Cancelled";
-        await order.save();
-        res.json(order);
-      } else {
-        res.status(404).json({ message: "Order not found" });
-      }
-    } else {
-      res.status(404).json({ message: "Pharmacy notifications not found" });
-    }
+    notfypharmacyList.forEach(async (notfypharmacy) => {
+      notfypharmacy.status = "Order Cancelled";
+      await notfypharmacy.save();
+    });
+    order.status = "Order Cancelled";
+    await order.save();
+    res.json({ message: "Order successfully cancelled" });
   } catch (error) {
     res.status(500).json({ message: "An error occurred", error: error.message });
   }
