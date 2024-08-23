@@ -1,0 +1,17 @@
+2024/08/21-16:13:41.284 1f24 Creating DB D:\My_Works\techprime\Medstown\Medstown_backend\tmp\Default\IndexedDB\https_www.netmeds.com_0.indexeddb.leveldb since it was missing.
+2024/08/21-16:13:41.943 1f24 Reusing MANIFEST D:\My_Works\techprime\Medstown\Medstown_backend\tmp\Default\IndexedDB\https_www.netmeds.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/08/21-16:31:54.552 2dc0 Level-0 table #5: started
+2024/08/21-16:31:54.783 2dc0 Level-0 table #5: 744236 bytes OK
+2024/08/21-16:31:54.786 2dc0 Delete type=0 #3
+2024/08/21-16:56:12.078 1f24 Level-0 table #7: started
+2024/08/21-16:56:12.116 1f24 Level-0 table #7: 615478 bytes OK
+2024/08/21-16:56:12.119 1f24 Delete type=0 #4
+2024/08/21-16:56:12.120 1f24 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2024/08/21-16:56:12.121 1f24 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x02\x01 \x03\x00\x10\xcb\xf2J\x17yB\x00\x018\x00j\x00s\x00-\x00c\x00a\x00c\x00h\x00e\x001\x005\x008\x009\x009\x005\x004\x002\x006\x002\x00|\x00h\x00t\x00t\x00p\x00s\x00:\x00/\x00/\x00s\x00t\x00a\x00t\x00i\x00c\x00.\x00c\x00r\x00i\x00t\x00e\x00o\x00.\x00n\x00e\x00t\x00/\x00j\x00s\x00/\x00l\x00d\x00/\x00l\x00d\x00.\x00j\x00s' @ 44111 : 1
+2024/08/21-16:56:12.121 1f24 Compacting 1@1 + 1@2 files
+2024/08/21-16:56:12.722 1f24 Generated table #8@1: 187 keys, 18067 bytes
+2024/08/21-16:56:12.722 1f24 Compacted 1@1 + 1@2 files => 18067 bytes
+2024/08/21-16:56:12.725 1f24 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/08/21-16:56:12.727 1f24 Delete type=2 #5
+2024/08/21-16:56:12.727 1f24 Delete type=2 #7
+2024/08/21-16:56:12.729 1f24 Manual compaction at level-1 from '\x00\x02\x01 \x03\x00\x10\xcb\xf2J\x17yB\x00\x018\x00j\x00s\x00-\x00c\x00a\x00c\x00h\x00e\x001\x005\x008\x009\x009\x005\x004\x002\x006\x002\x00|\x00h\x00t\x00t\x00p\x00s\x00:\x00/\x00/\x00s\x00t\x00a\x00t\x00i\x00c\x00.\x00c\x00r\x00i\x00t\x00e\x00o\x00.\x00n\x00e\x00t\x00/\x00j\x00s\x00/\x00l\x00d\x00/\x00l\x00d\x00.\x00j\x00s' @ 44111 : 1 .. (end); will stop at (end)

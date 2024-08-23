@@ -1,0 +1,11 @@
+2024/08/21-16:13:09.397 26d8 Creating DB D:\My_Works\techprime\Medstown\Medstown_backend\tmp\Default\Local Storage\leveldb since it was missing.
+2024/08/21-16:13:09.930 26d8 Reusing MANIFEST D:\My_Works\techprime\Medstown\Medstown_backend\tmp\Default\Local Storage\leveldb/MANIFEST-000001
+2024/08/21-16:26:31.107 1f24 Level-0 table #5: started
+2024/08/21-16:26:31.117 1f24 Level-0 table #5: 33170 bytes OK
+2024/08/21-16:26:31.120 1f24 Delete type=0 #3
+2024/08/21-16:39:17.496 1f24 Level-0 table #7: started
+2024/08/21-16:39:17.843 1f24 Level-0 table #7: 33348 bytes OK
+2024/08/21-16:39:17.848 1f24 Delete type=0 #4
+2024/08/21-16:50:31.142 1f24 Level-0 table #9: started
+2024/08/21-16:50:31.149 1f24 Level-0 table #9: 25825 bytes OK
+2024/08/21-16:50:31.152 1f24 Delete type=0 #6

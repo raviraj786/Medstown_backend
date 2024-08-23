@@ -8,7 +8,6 @@ const uuid = require("uuid");
 const airorder = require("../../models/orders/airorder.js");
 const deliveryboydb = require("../../models/deliverydb/deliveryuser.js");
 const finalorder = require("../../models/orders/finalorder.js");
-
 const { date } = require("yup");
 
 // show pharmacies
@@ -201,27 +200,6 @@ router.post("/acceptOrder", async (req, res) => {
     res.json({ message: "NO ORDER FOUND" });
   }
 });
-// rejected order using pharmacy id and order id
-router.post("/rejectedorders", async (req, res) => {
-  const { pharmacyId, orderId, status } = req.body;
-  console.log(pharmacyId, orderId);
-  const order = await airorder.findOne({
-    pharmacyId: pharmacyId,
-    orderId: orderId,
-  });
-  if (order) {
-    order.status = "rejected";
-    await order.save();
-    res.json(order);
-  } else {
-    res.json({ message: "NO ORDER FOUND" });
-  }
-});
-
-
-
-
-
 
 router.post("/checkOrderAccepted", async (req, res) => {
   const { orderId } = req.body;
@@ -421,7 +399,7 @@ router.post("/sendOrderToDeliveryBoy", async (req, res) => {
 router.post("/changedelivarystatatus", async (req, res) => {
   const { deliveryBoyId, orderId } = req.body;
   const order = await airorder.findOne({
-  deliveryBoyId: deliveryBoyId,
+    deliveryBoyId: deliveryBoyId,
     orderId: orderId,
   });
   if (order) {
@@ -432,13 +410,6 @@ router.post("/changedelivarystatatus", async (req, res) => {
     res.json("no network");
   }
 });
-
-
-
-
-
-
-
 
 router.post("/finalorder/status", async (req, res) => {
   const { orderId } = req.body;
@@ -453,24 +424,11 @@ router.post("/finalorder/status", async (req, res) => {
     await order.save();
     res.json({ message: "Order successfully cancelled" });
   } catch (error) {
-    res.status(500).json({ message: "An error occurred", error: error.message });
+    res
+      .status(500)
+      .json({ message: "An error occurred", error: error.message });
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 router.post("/changePharmacyMedsStatus", async (req, res) => {
   const { pharmacyId, orderId, medicineId } = req.body;
@@ -527,8 +485,6 @@ router.get("/delivary/order/notify/:deliveryBoyId", async (req, res) => {
     res.status(500).json("server is not working");
   }
 });
-
-
 
 // order otp api confim apis
 router.post("/createfinalorder", async (req, res) => {
@@ -611,12 +567,17 @@ router.post("/finalorder/send/:orderId", async (req, res) => {
       if (orderDetails !== undefined) result.orderDetails = orderDetails;
       if (deliveryBoyLat !== undefined) result.deliveryBoyLat = deliveryBoyLat;
       if (deliveryBoyLng !== undefined) result.deliveryBoyLng = deliveryBoyLng;
-      if (deliveryBoyName !== undefined)result.deliveryBoyName = deliveryBoyName;
-      if (deliveryBoyPhone !== undefined) result.deliveryBoyPhone = deliveryBoyPhone;
+      if (deliveryBoyName !== undefined)
+        result.deliveryBoyName = deliveryBoyName;
+      if (deliveryBoyPhone !== undefined)
+        result.deliveryBoyPhone = deliveryBoyPhone;
       if (status !== undefined) result.status = status;
-      if (phamacydistance !== undefined)result.phamacydistance = phamacydistance;
-      if (delivarydistance !== undefined) result.delivarydistance = delivarydistance;
-      if (precriptionUrl !== precriptionUrl)result.precriptionUrl = precriptionUrl;
+      if (phamacydistance !== undefined)
+        result.phamacydistance = phamacydistance;
+      if (delivarydistance !== undefined)
+        result.delivarydistance = delivarydistance;
+      if (precriptionUrl !== precriptionUrl)
+        result.precriptionUrl = precriptionUrl;
       await result.save();
       res.status(200).json({ finalorder: result });
     } else {

@@ -1,0 +1,824 @@
+ <!doctype html> <html lang="en-US"> <head> <title>Netmeds.com</title> <meta charset="utf-8"> <meta name="robots" content="INDEX,FOLLOW"> <meta name="description" content="Netmeds.com is a trusted Indian online medical store. Order prescription/OTC medicines online. Cash on Delivery available. FREE Delivery on orders of Rs.1000 or more." /> <meta name="keywords" content="Online Pharmacy India, Medicine Online, Medicine Store, Online Medical Store, Purchase Medicine Online " /> <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> <meta property='fb:app_id' content='182448335501476' /> <meta property="al:web:should_fallback" content="false"> <!-- Android App Meta Tag --> <meta property="al:android:url" content="netmeds://home"> <meta property="al:android:app_name" content="“Netmeds”"> <meta property="al:android:package" content="com.netmedsmarketplace.netmeds"> <meta property="al:android:class" content="com.netmedsmarketplace.netmeds.AppUriSchemeHandler"> <!-- IOS App Meta Tag --> <meta property="al:ios:url" content="netmeds://home/offers" /> <meta property="al:ios:app_store_id" content="1011070011" /> <meta property="al:ios:app_name" content="Netmeds" /> <meta property='fb:app_id' content='182448335501476' /> <meta name='facebook-domain-verification' content='oflpdfyojsek659ygvex1nmmvpsiit' /> <link rel="canonical" href="https://www.netmeds.com/api/v1/homesection" /> <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.netmeds.com/api/v1/homesection" /> <script> var scriptTagRegex = /<script[^>]*>.*<\/script>/i;
+
+    if (scriptTagRegex.test(localStorage.getItem('nms_mgo_pincode'))) {
+        localStorage.setItem("nms_mgo_pincode",'110001');
+    }
+</script> <meta property="og:site_name" content="Netmeds" /> <meta property="og:type" content="website" /> <meta property="og:title" content="Netmeds.com" /> <meta property="og:description" content="Netmeds.com is a trusted Indian online medical store. Order prescription/OTC medicines online. Cash on Delivery available. FREE Delivery on orders of Rs.1000 or more." /> <meta property="og:url" content="https://www.netmeds.com/api/v1/homesection" /> <meta property="og:image" content="https://www.netmeds.com/images/cms/wysiwyg/opengraph/logo-fb.png" /> <!-- Appple Touch Icons --> <link rel="apple-touch-icon" sizes="48x48" href="https://www.netmeds.com/assets/global/apple-touch-icon-48x48.png"> <link rel="apple-touch-icon" sizes="72x72" href="https://www.netmeds.com/assets/global/apple-touch-icon-72x72.png"> <link rel="apple-touch-icon" sizes="128x128" href="https://www.netmeds.com/assets/global/apple-touch-icon-128x128.png"> <link rel="apple-touch-icon" sizes="256x256" href="https://www.netmeds.com/assets/global/apple-touch-icon-256x256.png"> <link rel="apple-touch-icon" href="https://www.netmeds.com/assets/global//apple-touch-icon-48x48.png"> <!-- Twitter Meta Data --> <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:site" content="@NetMeds"> <meta name="twitter:title" content="Netmeds.com" /> <meta name="twitter:description" content="Netmeds.com is a trusted Indian online medical store. Order prescription/OTC medicines online. Cash on Delivery available. FREE Delivery on orders of Rs.1000 or more."> <meta name="twitter:image" content="https://www.netmeds.com/images/cms/wysiwyg/opengraph/logo-fb.png" /> <meta name="twitter:app:country" content="IN"> <meta name="twitter:app:name:iphone" content="Netmeds"> <meta name="twitter:app:id:iphone" content="1011070011"> <meta name="twitter:app:url:iphone" content="https://itunes.apple.com/in/app/netmeds/id1011070011?mt=8"> <meta name="twitter:app:name:ipad" content="Netmeds"> <meta name="twitter:app:id:ipad" content="1011070011"> <meta name="twitter:app:url:ipad" content="https://itunes.apple.com/in/app/netmeds/id1011070011?mt=8"> <meta name="twitter:app:name:googleplay" content="Netmeds"> <meta name="twitter:app:id:googleplay" content="com.NetmedsMarketplace.Netmeds"> <meta name="twitter:app:url:googleplay" content="https://play.google.com/store/apps/details?id=com.NetmedsMarketplace.Netmeds"> <meta name="theme-color" content="#ffffff"/> <link rel="preload" crossorigin="anonymous" href="https://www.netmeds.com/assets/gloryweb/fonts/lato/Lato-Regular.woff2" as="font"> <link rel="preload" crossorigin="anonymous" href="https://www.netmeds.com/assets/gloryweb/fonts/lato/Lato-Bold.woff2" as="font"> <link rel="preload" crossorigin="anonymous" href="https://www.netmeds.com/assets/gloryweb/fonts/lato/Lato-Italic.woff2" as="font"> <link rel="preload" crossorigin="anonymous" href="https://www.netmeds.com/assets/gloryweb/fonts/Blank-Theme-Icons/Blank-Theme-Icons.woff2" as="font"> <link rel="preload" crossorigin="anonymous" href="https://www.netmeds.com/assets/gloryweb/fonts/lato/7d1c0df7a7b61f4189d0ca451f707db0.woff2" as="font"> <link rel="shortcut icon" type="image/x-icon" href="https://www.netmeds.com/assets/gloryweb/favicon.png" /> <link rel="stylesheet" type="text/css" media="all" href="https://www.netmeds.com/assets/version1718735327/gloryweb/css/main.min.css" /> <link rel="stylesheet" type="text/css" media="all" href="https://www.netmeds.com/assets/version1718735327/gloryweb/css/style.min.css" /> <link rel="stylesheet" type="text/css" media="all" href="https://www.netmeds.com/assets/version1718735327/gloryweb/css/layout.min.css" /> <link rel="stylesheet" type="text/css" media="all" href="https://www.netmeds.com/assets/version1718735327/gloryweb/css/offers.min.css" /> <link rel="stylesheet" type="text/css" media="all" href="https://www.netmeds.com/assets/version1718735327/gloryweb/css/home.min.css" /> <link rel="stylesheet" type="text/css" media="all" href="https://www.netmeds.com/assets/version1718735327/gloryweb/css/searchpage.min.css" /> <link rel="stylesheet" type="text/css" media="all" href="https://www.netmeds.com/assets/gloryweb/css/jquery-ui.min.css" /> <link rel="stylesheet" type="text/css" media="all" href="https://www.netmeds.com/assets/version1718735327/gloryweb/css/partner.min.css" /> <link rel="stylesheet" type="text/css" media="all" href="https://www.netmeds.com/assets/version1718735327/gloryweb/css/static.min.css" /> <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-56CPBN');</script> <script>
+(function () {
+    window._uxa = window._uxa || [];
+    if (typeof CS_CONF === 'undefined') {
+        window._uxa.push(['setPath', window.location.pathname+window.location.hash.replace('#','?__')]);
+        var mt = document.createElement('script'); mt.type = 'text/javascript'; mt.async = true;
+        mt.src = '//t.contentsquare.net/uxa/6b2a5a65a9bb9.js';
+        document.getElementsByTagName('head')[0].appendChild(mt);
+    }
+    else {
+        window._uxa.push(['trackPageview', window.location.pathname+window.location.hash.replace('#','?__')]);
+    }
+})();
+</script> <script language="javascript" type="text/javascript">async function cid(){let e=new URLSearchParams(window.location.search).get("pid");return null===e?null:fetch("http://secure.traqkarr.com/click?pid="+e+"&offer_id=43&format=json").then(e=>e.json())}function sc(e){let c=new Date;c.setTime(c.getTime()+(365*24*60*60*1000)),document.cookie="affclick="+e+";expires="+c.toUTCString()+";path=/",localStorage.setItem("affclick",e)}(async()=>{const e=await cid();null!==e&&sc(e.clickid)})();</script> <style> /*.beauty #in_the_spotlight .header_banner{display: none !Important} */ .home-payment-offer{ max-height:initial !important; } .healthstore .home-payment-offer h2 { font-family: LatoBold; font-size: 24px; line-height: 32px; margin: 0 0 24px; color: #0b1219; padding: 0; } .health-library-single-post #side_container{z-index: 1000}cc-inweb{--cc-inweb-icon-margin: 12px;} .home-save-member .right-block{ background: none !important; width:45% !important; } .healthstore .home-health-library{display:none !important;} .product_desc_info h2 { font-family: LatoBold; font-size: 14px; margin: 0 0 10px 0; color: #757088; } .img-post{ text-align:center; } .single-post-view .cBlock-post-view .column_post_view .post-content .img-post img{ margin: 8px auto 16px; border-radius: 0; width: auto !important; height: auto; } .single-post-view .cBlock-post-view .column_post_view .post-content img { width: auto !important; } .healthstore .main-navigation .explorer-menu ul li { padding-top: 0px !important; } .healthstore .main-navigation .explorer-menu ul li.o-menu ul{ z-index: 2; } .healthstore .main-navigation .explorer-menu ul li a { height: 46px !important; font-family: LatoSemiBold !important; line-height: 46px !important; color: rgba(255,255,255,.8); } .healthstore .main-navigation .explorer-menu ul li.o-menu::before , .healthstore .main-navigation .explorer-menu ul li.b-app::before { right: -20px; position: absolute; float: none !important; margin-right: 0 !important; height: 46px !important; background-position: center !important; } .beauty .uPres .mini_banner_partercode{ display: none !important; } .static-page.cms-health-packages .staticcontent, .static-page.cms-radiology .staticcontent, .static-page.cms-pathology .staticcontent{ padding: 0px; } .static-page.cms-health-packages .staticcontent .center , .static-page.cms-radiology .staticcontent .center, .static-page.cms-pathology .staticcontent .center{ padding: 0; margin: 0; border-right: 0px; } .static-page.cms-health-packages footer, .static-page.cms-radiology footer, .static-page.cms-pathology footer{ margin-top: 0px !important; } /*.drug-list-page .left-block .white-bg .filter .layer-scroll#alg_price_filter { height: 42px !important; } .drug-list-page .left-block .white-bg .filter .layer-scroll#alg_discount_filter { height: 42px !important; }*/ .home-health-library .home-health-library-slides .swiper-slide .post-header .post-item-link .post-ftimg-hld { height: auto !important; } .embed-responsive { position: relative; display: block; width: 100%; padding: 0; overflow: hidden; } .embed-responsive::before { display: block; content: ""; } .embed-responsive .embed-responsive-item, .embed-responsive iframe, .embed-responsive embed, .embed-responsive object, .embed-responsive video { position: absolute; top: 0; bottom: 0; left: 0; width: 100%; height: 100%; border: 0; } .embed-responsive-21by9::before { padding-top: 42.857143%; } .embed-responsive-16by9::before { padding-top: 56.25%; } .embed-responsive-4by3::before { padding-top: 75%; } .embed-responsive-1by1::before { padding-top: 100%; } .health-library-single-post .pages{ margin-top: 5px; } .blog-cat-nav ul li{ padding: 0 18px !important; } .post-view .column-post-view .blog-cat-nav ul li{ padding: 0 16px !important; } .limited-deal .beauty-top-products .swiper-slide .pro_detail a .cat_title{ text-align: left; line-height: inherit; padding: 0 8px; max-height: 48px; min-height: 48px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; } .bootstrap-select > select.mobile-device{ padding: 0 10px !important; } .ltdNew .beauty-top-products{ margin-top: 0px !important; } .healthstore .copyright{display: none;} .drug-list-page .right-block .white-bg .shopby-category .category-swipe .swiper-slide{ width: 180px !important; height: auto !important; } .cms-swasth-india-sale .page-header .page-headerSec .panel-wrapper .panel-header .uPres a { display: none !important; } </style> <script>
+        window.algolia_filter = false;
+        window.algolia_app_id = "0Z9Q3SE3DL";
+        window.algolia_api_key = "daff858f97cc3361e1a3f722e3729753";
+        window.algolia_index_name = "prod_meds";
+        window.product_image_path = "https://www.netmeds.com/";
+    </script> <style> .page-wrapper { width: 100%; box-sizing: border-box; display: block; margin: 0px; padding: 0px; font-family: Lato; color: #151b39; font-size: 13px } :focus { outline: none } a { text-decoration: none } .clearfix { height: 0px; clear: both; display: flex } .ellipsis { text-overflow: ellipsis } h2 { font-family: LatoBold; font-size: 20px; letter-spacing: 0.25px; display: block; padding: 4px 0px } .oHoldSec { background: #ffffff; } .oHoldSec .oHold { display: flex; align-items: center; justify-content: space-between; min-width: 1030px; max-width: 1680px; margin: 0px auto; padding: 0px 16px; } .oHoldSec .oHold .lSec { width: 50%; display: flex; align-items: center; } .oHoldSec .oHold .lSec img { width: 70px; height: 70px; } .oHoldSec .oHold .lSec .conTxt { margin: 0px 0px 0px 6px; } .oHoldSec .oHold .lSec .conTxt p { margin: 0px; padding: 0px; font-size: 16px; font-family: LatoSemiBold; color: #000000; } .oHoldSec .oHold .lSec .conTxt span { margin: 0px; padding: 0px; font-size: 13px; font-family: Lato; color: #83878a; } .oHoldSec .oHold .rSec { width: 50%; text-align: right; display: flex; align-items: center; justify-content: flex-end; } .oHoldSec .oHold .rSec .button { background: #24aeb1; font-family: LatoSemiBold; border: none; color: #ffffff; padding: 0px 32px; height: 30px; line-height: 30px; text-align: center; text-decoration: none; display: inline-block; font-size: 13px; cursor: pointer; border-radius: 4px; } .oHoldSec .oHold .rSec img { width: 32px; } .page-headerSec{ background: #32aeb1; position: relative } .page-header .panel-wrapper { min-width: 1030px; max-width: 1280px; margin: 0px auto; box-sizing: border-box; padding: 0px 12px } .page-header .panel-wrapper .panel-header { display: flex; height: 90px; line-height: 90px } .page-header .panel-wrapper .panel-header .logo { max-width: 168px; margin: 0 20px 0 0 } .page-header .panel-wrapper .panel-header .logo img { width: 168px; height: 60px } .page-header .panel-wrapper .panel-header .search-bar { max-width: calc(100% - 649px); -webkit-align-items: center; -ms-flex-align: center; align-items: center; display: -webkit-flex; display: -ms-flexbox; display: flex } .page-header .panel-wrapper .panel-header .search-bar .block-search { height: 48px; position: relative; background: #ffffff; border-radius: 6px; line-height: normal } .page-header .panel-wrapper .panel-header .search-bar .block-search .pinCode { position: relative; width: 160px; height: auto; margin: 13px 0; display: inline-block; padding: 0px 0 0px 16px; font-family: LatoSemiBold; font-size: 13px; font-stretch: normal; font-style: normal; line-height: 22px; letter-spacing: normal; color: rgba(11, 18, 25, 0.5); float: left; /* background: rgba(21, 27, 57, 0.06) url(/assets/gloryweb/images/icons/location-on.svg) 11% 50% no-repeat; */ border-right: 1px solid rgba(11, 18, 25, 0.2); } .page-header .panel-wrapper .panel-header .search-bar .block-search .pinCode .get-location { position: absolute; top: 14px; left: 13px; width: 22px; height: 22px; text-indent: 0; font-size: 0px; border: 0px; background: transparent; -webkit-appearance: none } .page-header .panel-wrapper .panel-header .search-bar .block-search .pinCode .pinNum { font-family: LatoBold; font-size: 14px; font-stretch: normal; letter-spacing: normal; color: #24aeb1; border: 0px; width: 74px; background: url(/assets/gloryweb/images/icons/expand_more.svg) center right no-repeat; cursor: pointer; } .page-header .panel-wrapper .panel-header .search-bar .block-search .pinCode span { display: inline-block line-height: 22px; } .page-header .panel-wrapper .panel-header .search-bar .block-search .pinCode .editIcon { background: url(/assets/gloryweb/images/icons/edit.svg) center no-repeat; width: 12px; height: 12px; margin-left: 0px; box-shadow: none; border: 0px; background-size: 12px; position: absolute; bottom: 10px; right: 18px; z-index: 999 } .page-header .panel-wrapper .panel-header .search-bar .block-search .auto-search { min-width: 50%; width: calc(100% - 160px); height: 48px; float: left; position: relative; display: block } .page-header .panel-wrapper .panel-header .search-bar .block-search .auto-search .search-section { display: inline-block; margin: 0; float: left; width: 100% } .page-header .panel-wrapper .panel-header .search-bar .block-search .auto-search .search-section .input-text { margin: 0px; padding: 0px 64px 0px 12px; height: 48px; border: 0px; width: 100%; background: transparent; font-size: 14px } .page-header .panel-wrapper .panel-header .search-bar .block-search .auto-search .iconSearch { width: 56px; float: right; height: 48px; display: inline-block; background: url(/assets/gloryweb/images/icons/search-blue-icon.svg) no-repeat center center rgba(21, 27, 57, 0.06); position: absolute; top: 0px; right: 0px; -webkit-appearance: none; box-shadow: none; border: 0px; } .page-header .panel-wrapper .panel-header .uPres { margin: 0 24px; max-width: 212px; padding: 0px } .page-header .panel-wrapper .panel-header .uPres a { font-family: LatoSemiBold; font-size: 14px; font-stretch: normal; font-style: normal; letter-spacing: 1px; text-align: center; color: #ffffff; background: url(/assets/gloryweb/images/icons/upload_rx.svg) no-repeat left center; background-size: 24px; padding-left: 32px; height: 90px; display: inline-block; } .page-header .panel-wrapper .panel-header .new_offers { max-width: 72px; margin: 0 24px 0px 0px; position: relative; } .page-header .panel-wrapper .panel-header .new_offers .new_offers_icon { background: url(/assets/gloryweb/images/icons/offers_icon.svg) no-repeat left center; background-size: 24px; color: #ffffff; height: 90px; padding: 0px; float: right; font-family: LatoSemiBold; padding-left: 30px; letter-spacing: 1px; } .page-header .panel-wrapper .panel-header .mini-cart { max-width: 70px; margin: 0 24px 0px 0px; position: relative } .page-header .panel-wrapper .panel-header .mini-cart .text { background: url(/assets/gloryweb/images/icons/cart_icon.svg) no-repeat left center; background-size: 24px; color: #ffffff; height: 90px; padding: 0px; width: 70px; float: right; font-family: 'LatoSemibold'; padding-left: 34px; letter-spacing: 1px; } .page-header .panel-wrapper .panel-header .mini-cart .text .counter-number { -moz-border-radius: 6.5px; -webkit-border-radius: 6.5px; background: #ee4380!important; border-radius: 6.5px; color: #ffffff!important; display: block; font-family: LatoBold; font-size: 10px; height: 13px; line-height: 14px; padding: 0px; position: absolute; left: 10px; text-align: center; text-indent: 0px; top: 32px; width: 17px; letter-spacing: 0px; } .page-header .panel-wrapper .panel-header .login { margin: 0px; max-width: 160px; } .page-header .panel-wrapper .panel-header .login a { font-family: Lato; font-size: 14px; font-weight: normal; font-stretch: normal; font-style: normal; letter-spacing: normal; color: #ffffff; background: url(/assets/gloryweb/images/icons/profile_icon.svg) no-repeat left center; background-size: 24px; padding-left: 32px; height: 90px; display: inline-block; } .main-navigation { background: #32aeb1; position: relative; padding-bottom: 16px; } .main-navigation .explorer-menu { height: auto; max-width: 1030px; min-width: 1030px; margin: 0px auto; box-sizing: border-box; padding: 0px 12px; } .main-navigation .explorer-menu ul { margin: 0px auto; padding: 0px; list-style: none; height: auto; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between; } .main-navigation .explorer-menu ul li { display: inline-block; width: auto; padding: 0; height: 46px; position: relative; } .main-navigation .explorer-menu ul li:last-child { padding-right: 0px; } .main-navigation .explorer-menu ul li a { height: 46px; font-family: LatoSemiBold; font-size: 14px; font-stretch: normal; font-style: normal; line-height: 46px; letter-spacing: normal; color: rgba(255,255,255, .8); display: inline-block; padding: 0; } .main-navigation .explorer-menu ul li a small { height: 12px; font-family: Lato; font-size: 10px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: normal; letter-spacing: normal; color: rgba(255, 255, 255, 0.8); display: -webkit-box; } .main-navigation .explorer-menu ul li a.m-pro { background: url(/assets/gloryweb/images/icons/medicine.svg) 0 0 no-repeat; background-size: 40px; padding-left: 48px; } .main-navigation .explorer-menu ul li a.h-pro { background: url(/assets/gloryweb/images/icons/wellness.svg) 0 0 no-repeat; background-size: 40px; padding-left: 48px; } .main-navigation .explorer-menu ul li a.b-app { background: url(/assets/gloryweb/images/icons/health-library.svg) 0 0 no-repeat; background-size: 40px; padding-left: 48px; } .main-navigation .explorer-menu ul li a.b-check { background: url(/assets/gloryweb/images/icons/diagnostics.svg) 0 0 no-repeat; background-size: 40px; padding-left: 48px; } .main-navigation .explorer-menu ul li.o-menu { background: url(/assets/gloryweb/images/icons/beauty.svg) 0 0 no-repeat; background-size: 40px; padding-left: 48px } .main-navigation .explorer-menu ul li.o-menu ul { display: none; position: absolute; background: rgb(247, 247, 247); min-width: 160px; box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.2); z-index: 2; top: 40px; padding: 0px; height: auto } .main-navigation .explorer-menu ul li.o-menu a { padding: 0px; } .main-navigation .explorer-menu ul li.o-menu ul li { margin: 0px; padding: 0px; height: auto; width: 100% } .main-navigation .explorer-menu ul li.o-menu ul li a { color: #151b39; text-decoration: none; font-family: Lato; font-size: 13px; height: 38px; line-height: 40px; display: block; width: 100%; padding: 0px 12px } .nav-sections { webkit-flex-shrink: 0; flex-shrink: 0; -webkit-flex-basis: auto; flex-basis: auto; margin-bottom: 16px; margin-top: 0px; border-top: #02b7c2 solid 0px } .nav-sections .navigation { background: none; box-sizing: border-box; display: block; margin-left: auto; margin-right: auto; max-width: 1030px; padding: 0px 10px } .nav-sections .navigation .ui-menu { list-style: none; margin: 0px; padding: 0px; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between } .nav-sections .navigation .ui-menu li { box-sizing: border-box; color: #151b39; display: inline-block; font-family: Lato; font-size: 13px; font-weight: normal; position: relative; text-decoration: none; text-transform: uppercase } .nav-sections .navigation .ui-menu li .level-top { box-sizing: border-box; color: #151b39; line-height: 42px; padding: 0px; position: relative; text-decoration: none; text-transform: capitalize } .nav-sections .navigation .ui-menu li:last-child .level-top { padding-right: 0px } .home-content { min-width: 1030px; max-width: 1680px; margin: 0px auto; padding: 0px 16px } .home-banner { clear: both; width: 100%; max-height: 320px; margin: 0px auto 32px; overflow: hidden; position: relative; display: flex; justify-content: center; align-items: center } .home-banner .banner_img { height: 320px; object-fit: cover; cursor: pointer; } .home-banner .home-slides { height: 320px } .home-banner .home-slides .banner_img { margin: 0 auto; display: list-item; max-width: 100%; height: 320px; object-fit: cover; cursor: pointer; } .home-banner .swiper-home-btn-next { background: url(/assets/gloryweb/images/icons/next.svg) center no-repeat!important; width: 26px; height: 26px; background-size: 26px!important; right: 10px!important } .home-banner .swiper-home-btn-prev { background: url(/assets/gloryweb/images/icons/prev.svg) center no-repeat!important; width: 26px; height: 26px; background-size: 26px!important; left: 10px!important } .home-banner .customise-pagination { position: absolute; bottom: 0px } .home-payment-offer { clear: both; width: 100%; max-height: 144px; margin: 0 0 32px; overflow: hidden; position: relative; padding: 0; } .home-payment-offer h2 { font-family: LatoBold; font-size: 24px; line-height: 32px; margin: 0 0 16px; color: #0b1219; padding: 0; } .home-payment-offer .swiper-payment-next { background: url(/assets/gloryweb/images/icons/white_next.svg) center no-repeat!important; width: 42px; height: 42px; top: 70%; background-size: 42px!important; right: 0px!important } .home-payment-offer .swiper-payment-prev { background: url(/assets/gloryweb/images/icons/white_prev.svg) center no-repeat!important; width: 42px; height: 42px; top: 70%; background-size: 42px!important; left: 0px!important } .home-payment-offer .home-payment-slides { margin: 0px 18px; } .home-payment-offer .home-payment-slides .swiper-slide { height: 74px; padding: 0px; display: -webkit-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; background: #ffffff; border-radius: 8px } .home-payment-offer .home-payment-slides .swiper-slide .slide-section { height: 74px; padding: 12px 16px; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-align-items: center; -ms-flex-align: center; align-items: center } .home-payment-offer .home-payment-slides .swiper-slide .slide-section a { display: contents } .home-payment-offer .home-payment-slides .swiper-slide .slide-section a img { height: 36px; width: 52px; margin-right: 14px; float: left; padding-right: 14px; border-right: 1px solid rgba(21, 27, 57, 0.1) } .home-payment-offer .home-payment-slides .swiper-slide .slide-section a .description-slide { float: right!important; width: 81%; line-height: normal; overflow: hidden; } .home-payment-offer .home-payment-slides .swiper-slide .slide-section a .description-slide h2 { margin: 0px 0px 0px !important; font-size: 12px; font-family: LatoBold; color: #151b39; width: 100%; overflow: hidden; white-space: nowrap; padding: 0px; letter-spacing: 0; line-height: 24px !important; } .home-payment-offer .home-payment-slides .swiper-slide .slide-section a .description-slide h3 { margin: 0px 0px 0px !important; font-size: 12px; font-family: LatoBold; color: #151b39; width: 100%; overflow: hidden; white-space: nowrap; padding: 0px; letter-spacing: 0; line-height: 24px !important; } .home-payment-offer .home-payment-slides .swiper-slide .slide-section a .description-slide p { font-family: Lato; font-size: 11px; color: #6F7284; margin: 0px; word-wrap: break-word; word-break: break-all } .home-diagnostic { margin: 8px 18px; padding: 16px 24px; border-radius: 8px; background: #ffffff; position: relative; overflow: visible } .home-diagnostic h2 { font-family: LatoBold; font-size: 12px; margin: 0px; color: #6F7284; letter-spacing: 1px; padding: 0px 0px 16px } .home-diagnostic h2 span { font-family: Lato; color: #151b39; font-size: 20px; letter-spacing: 0.25px; display: block; padding: 4px 0 } .home-diagnostic h2 small { font-size: 12px; font-family: Lato; letter-spacing: 0; display: block } .home-diagnostic .home-diagnostic-slides .four-col { width: 25% } .home-diagnostic .home-diagnostic-slides .swiper-slide { padding: 0px; display: -webkit-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: left; -ms-flex-pack: left; -webkit-justify-content: left; justify-content: left; -webkit-box-align: left; -ms-flex-align: left; -webkit-align-items: left; align-items: left; border-radius: 0px } .home-diagnostic .home-diagnostic-slides .swiper-slide .diag-section { min-height: 1px; position: relative; width: 100% } .home-diagnostic .home-diagnostic-slides .swiper-slide .diag-section .diag-img img { border-radius: 8px; height: 216px; object-fit: contain; width: 100% } .swiper-wrapper { position: relative; width: 100%; z-index: 1; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-transition-property: -webkit-transform; -moz-transition-property: -moz-transform; -o-transition-property: -o-transform; -ms-transition-property: -ms-transform; transition-property: transform; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; } .outer-border { background: url(/assets/gloryweb/images/loader.gif) no-repeat center; transform: translate(-50%, -50%); left: 50%; top: 50%; position: absolute; text-align: center; padding: 18px; } .loaderfix { position: fixed; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.6); display: inline-block; z-index: 99999; } .loaderfix .spinner-border { opacity: .6; } .nms_loading { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 100%; margin: 15px 0px; } .nms_loader { width: 50px; height: 50px; border: 5px solid #d5dbdb; border-top: 5px solid transparent; border-radius: 50%; -webkit-animation: spin 0.5s linear 0s infinite; animation: spin 0.5s linear 0s infinite; } @-webkit-keyframes spin { from { -webkit-transform: rotate(0); transform: rotate(0); } to { -webkit-transform: rotate(360deg); transform: rotate(360deg); } } @keyframes spin { from { -webkit-transform: rotate(0); transform: rotate(0); } to { -webkit-transform: rotate(360deg); transform: rotate(360deg); } } .main-content { position: relative; } .main-content #nms_fullpage_load { width: 100%; height: 100%; position: absolute; z-index: 98; display: -webkit-box; display: -ms-flexbox; display: flex; background: #f3f3f3; } .main-content #nms_fullpage_load .nms_fullpage_loader { width: 50px; height: 50px; border: 5px solid #d5dbdb; border-top: 5px solid transparent; border-radius: 50%; -webkit-animation: spinning 0.5s linear 0s infinite; animation: spinning 0.5s linear 0s infinite; margin: auto; left: 0; right: 0; top: 0; bottom: 0; position: fixed; } @-webkit-keyframes spinning { from { -webkit-transform: rotate(0); transform: rotate(0); } to { -webkit-transform: rotate(360deg); transform: rotate(360deg); } } @keyframes spinning { from { -webkit-transform: rotate(0); transform: rotate(0); } to { -webkit-transform: rotate(360deg); transform: rotate(360deg); } } /*----------- Home JioAds Banner Section -----------*/ .home-main-banner { clear: both; width: 100%; max-height: 320px; margin: 0px auto 32px; overflow: hidden; position: relative; display: flex; justify-content: center; align-items: center; } .home-main-banner .banner_img { height: 320px; -o-object-fit: cover; object-fit: cover; min-width: 1030px; max-width: 100%; cursor: pointer; } .home-main-banner .jioads_top_banner { height: 320px; } .home-main-banner .jioads_top_banner .swiper-slide { width: 100% !important; } .home-main-banner .jioads_top_banner .banner_img { margin: 0 auto; display: list-item; min-width: 1030px; max-width: 100%; height: 320px; -o-object-fit: cover; object-fit: cover; cursor: pointer; } .home-main-banner .swiper-jioads-btn-next { background: url(/assets/gloryweb/images/icons/next.svg) center no-repeat !important; width: 26px; height: 26px; background-size: 26px !important; right: 10px !important; } .home-main-banner .swiper-jioads-btn-prev { background: url(/assets/gloryweb/images/icons/prev.svg) center no-repeat !important; width: 26px; height: 26px; background-size: 26px !important; left: 10px !important; } .home-main-banner .jioads-customise-pagination { position: absolute; bottom: 0px; } .home-main-banner .jioads-customise-pagination .swiper-pagination-bullet { width: 8px; height: 8px; display: inline-block; margin: 0px 3px; border-radius: 100%; background-color: #ffffff; opacity: 1; border: solid 1px rgb(171, 171, 171); } .home-main-banner .jioads-customise-pagination .swiper-pagination-bullet-active { background-color: #24aeb1; box-shadow: 0px 0px 1px #24aeb1; border: solid 1px #24aeb1; } </style> </head> <body class="nms-webstore "> <div class="loaderfix" id="first_loader"> <div class="outer-border"> </div> </div> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-56CPBN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <div class="page-wrapper"> <!-- Header Section --> <header class="page-header"> <div class="oHoldSec" style="display:none;"> <div class="oHold"> </div> </div> <div class="page-headerSec"> <div class="panel-wrapper"> <div class="panel-header"> <div class="logo"> <a href="https://www.netmeds.com/"> <!-- logoWeb start --> <img class="logoWeb" src="https://www.netmeds.com/images/cms/aw_rbslider/slides/1704908302_1704906198_1673595841_1663609483_netmeds-new-logo.svg" alt="Netmeds.com, India ki Online Pharmacy"> <!-- logoWeb end --> </a> </div> <div class="search-bar"> <div class="block-search"> <div class="pinCode" id="location_box"> <!-- <button type="button" class="get-location" id="location_btn">L</button> --> <span class="delivery_section"> Deliver to <span id="delivery_details" class="pinNum delivery_details"></span> <!-- <button type="button" id="delivery_details" class="pinNum delivery_details"></button> --> </span> <!-- <button type="button" class="editIcon" title="Delivery"></button> --> </div> <div class="delivery_popup" style="display:none;"> <div class="overlay_bg"></div> <div class="pinoce_content"> <div id="saved_location"> <div class="title">Where do you want the delivery?</div> <div class="clearfix"></div> <span id="delivery_txt">Get access to your Addresses, Orders, and Wishlist</span> <div class="clearfix"></div> <button type="button" class="signin_btn">Sign in to see your location</button> <div class="saved_location_swiper swiper-container" > <div class="swiper-wrapper" id="saved_addresses"> Loading.. </div> </div> </div> <div class="clearfix"></div> <div id="delivery_details"> <div class="enter_pin">Or Enter Pincode</div> <span>Select pincode to see product availability.</span> <div class="clearfix"></div> <div class="pCode_form"> <div id="rel_pincode_form"> <div class="pin_detail"> <input type="tel" class="inp_text" name="rel_pincode" id="rel_pincode" placeholder="Enter Pincode" autocomplete="off" maxlength="6" /> <div class="clearfix"></div> </div> <div class="clearfix"></div> <div id="rel_pin_msg"></div> <div class="clearfix"></div> </div> </div> <div class="clearfix"></div> <div class="detect_location">Detect my location <i class="fa fa-circle-o-notch fa-spin" style="font-size:12px ; display:none;"></i></div> <div class="clearfix"></div> </div> <div class="clearfix"></div> </div> </div> <div class="auto-search"> <form id="search_form" action="https://www.netmeds.com/catalogsearch/result" method="GET"> <div class="search-section"> <input tabindex="0" id="search" type="text" name="q" class="input-text algolia-search-input aa-input headerSearchBox" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="Search for medicine & wellness products…"> </div> <!-- <button class="iconSearch" type="submit"></button> --> </form> <div class="recent-searches" style="display:none;"></div> <div class="recent_search_box" style="display:none;"> <div class="recent_search"> <div class="recent_h5"><img src="https://www.netmeds.com/assets/gloryweb/images/icons/history.svg"> Recently Searched<span class="clear-btn" id="clear_recent_search">Clear All</span></div> <ul id="recent_search_list"></ul> </div> </div> </div> </div> </div> <div id="upload_prescription_button" class="uPres"> <a class="mini_banner_partercode" href="https://www.netmeds.com/upload_prescription">Upload</a> </div> <div class="new_offers"> <a class="new_offers_icon" href="https://www.netmeds.com/offers">Offers</a> </div> <div data-block="minicart" class="mini-cart" id="minicart_btn"> <a href="/checkout/cart"> <div class="text"> <span class="counter-number"></span> Cart </div> </a> <div class="minicart_container"> <div class="mc_triangle"></div> <div class="mc_content"></div> </div> </div> <div class="login"> <div class="logged" style="display: none;"> <a href="https://www.netmeds.com/customer/account/login"> Sign in / Sign up </a> <a id="logged_user" href="https://www.netmeds.com/customer/account/"></a> </div> </div> </div> </div> </div> </header> <!-- Header Explorer Menu Section --> <div class="main-navigation"> <div class="explorer-menu"> <ul> <li class="m-pro"><a href="/prescriptions" class="m-pro1"> Medicine</a> <ul> <li><a href="/prescriptions">All Medicines</a></li> <li><a href="/customer/buyagain">Buy Again</a></li> <li><a href="/order-medicine">Order Online</a></li> </ul> </li> <li class="mega-menu"><a href="/wellness" class="h-pro">Wellness</a> <div class="MegaMenu_mmSubMain false"> <div></div> <div class="MegaMenu_mmSubMenu"> <div class="MegaMenu_mmColumn"> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/ayush">Ayush</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/ayush/ayurvedic">Ayurvedic</a></li> <li><a href="/non-prescriptions/ayush/unani">Unani</a></li> <li><a href="/non-prescriptions/ayush/homeopathy">Homeopathy</a></li> <li><a href="/non-prescriptions/ayush/siddha">Siddha</a></li> </ul> </div> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/covid-essentials">Covid Essentials</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/covid-essentials/oxygen-can">Oxygen Can</a></li> <li><a href="/non-prescriptions/covid-essentials/personal-home-essentials">Personal &amp; Home Essentials</a></li> <li><a href="/non-prescriptions/covid-essentials/business-essentials">Business Essentials</a></li> <li><a href="/non-prescriptions/covid-essentials/mask-gloves-protective-equipment">Mask, Gloves &amp; Protective Equipment</a></li> <li><a href="/non-prescriptions/covid-essentials/travel-essentials">Travel Essentials</a></li> </ul> </div> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/devices">Devices</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/devices/breathe-easy">Breathe Easy</a></li> <li><a href="/non-prescriptions/devices/surgical-accessories">Surgical Accessories</a></li> <li><a href="/non-prescriptions/devices/measurements">Measurements</a></li> <li><a href="/non-prescriptions/devices/orthopaedics">Orthopaedics</a></li> </ul> </div> </div> <div class="MegaMenu_mmColumn"> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/diabetes-support">Diabetes Support</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/diabetes-support/glucometers">Glucometers</a></li> <li><a href="/non-prescriptions/diabetes-support/sugar-substitutes">Sugar Substitutes</a></li> <li><a href="/non-prescriptions/diabetes-support/diabetes-management-supplements">Diabetes Management Supplements</a></li> <li><a href="/non-prescriptions/diabetes-support/diabetes-care-ayurveda">Diabetes Care Ayurveda</a></li> <li><a href="/non-prescriptions/diabetes-support/lancets-test-strips">Lancets &amp; Test Strips</a></li> </ul> </div> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/eyewear">Eyewear</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/eyewear/eye-glasses">Eye Glasses</a></li> <li><a href="/non-prescriptions/eyewear/reading-glasses">Reading Glasses</a></li> <li><a href="/non-prescriptions/eyewear/contact-lenses-ew">Contact Lenses (EW)</a></li> </ul> </div> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/fitness">Fitness</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/fitness/weight-management">Weight Management</a></li> <li><a href="/non-prescriptions/fitness/sports-supplements">Sports Supplements</a></li> <li><a href="/non-prescriptions/fitness/smoking-cessation-support">Smoking Cessation Support</a></li> <li><a href="/non-prescriptions/fitness/vitamins-and-supplements">Vitamins And Supplements</a></li> <li><a href="/non-prescriptions/fitness/family-nutrition">Family Nutrition</a></li> <li><a href="/non-prescriptions/fitness/health-food-and-drinks">Health Food And Drinks</a></li> <li><a href="/non-prescriptions/fitness/ayurvedic-supplements">Ayurvedic Supplements</a></li> </ul> </div> </div> <div class="MegaMenu_mmColumn"> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/health-conditions">Health Conditions</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/health-conditions/women-s-care">Women's Care</a></li> <li><a href="/non-prescriptions/health-conditions/bone-and-joint-pain">Bone And Joint Pain</a></li> <li><a href="/non-prescriptions/health-conditions/liver-care">Liver Care</a></li> <li><a href="/non-prescriptions/health-conditions/piles-care">Piles Care</a></li> <li><a href="/non-prescriptions/health-conditions/weight-care">Weight Care (EW)</a></li> <li><a href="/non-prescriptions/health-conditions/stomach-care">Stomach Care</a></li> <li><a href="/non-prescriptions/health-conditions/mental-care">Mental Care</a></li> <li><a href="/non-prescriptions/health-conditions/de-addiction">De-Addiction</a></li> <li><a href="/non-prescriptions/health-conditions/diabetic-care">Diabetic Care</a></li> <li><a href="/non-prescriptions/health-conditions/cardiac-care">Cardiac Care</a></li> <li><a href="/non-prescriptions/health-conditions/cold-and-fever">Cold And Fever</a></li> <li><a href="/non-prescriptions/health-conditions/immunity-care">Immunity Care</a></li> <li><a href="/non-prescriptions/health-conditions/lung-care">Lung Care</a></li> </ul> </div> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/mom-baby">Mom &amp; Baby</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/mom-baby/baby-care">Baby Care</a></li> <li><a href="/non-prescriptions/mom-baby/feminine-hygiene">Feminine Hygiene</a></li> <li><a href="/non-prescriptions/mom-baby/maternity-care">Maternity Care</a></li> <li><a href="/non-prescriptions/mom-baby/baby-bath-time">Baby Bath Time</a></li> <li><a href="/non-prescriptions/mom-baby/maternity-accessories">Maternity Accessories</a></li> </ul> </div> </div> <div class="MegaMenu_mmColumn"> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/personal-care">Personal Care</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/personal-care/home-health">Home &amp; Health</a></li> <li><a href="/non-prescriptions/personal-care/senior-care">Senior Care</a></li> <li><a href="/non-prescriptions/personal-care/face-personal-care">Face Personal Care</a></li> <li><a href="/non-prescriptions/personal-care/hands-feet">Hands &amp; Feet</a></li> <li><a href="/non-prescriptions/personal-care/oral-care">Oral Care</a></li> <li><a href="/non-prescriptions/personal-care/bath-shower">Bath &amp; Shower</a></li> <li><a href="/non-prescriptions/personal-care/body-care">Body Care</a></li> <li><a href="/non-prescriptions/personal-care/personal-care-tools-accessories">Personal Care Tools &amp; Accessories</a></li> <li><a href="/non-prescriptions/personal-care/lip-care">Lip Care</a></li> <li><a href="/non-prescriptions/personal-care/bathing-accessories">Bathing Accessories</a></li> </ul> </div> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/sexual-wellness">Sexual Wellness</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/sexual-wellness/condoms">Condoms</a></li> <li><a href="/non-prescriptions/sexual-wellness/massagers-vibrators">Massagers/Vibrators</a></li> <li><a href="/non-prescriptions/sexual-wellness/sexual-health-supplements">Sexual Health Supplements</a></li> <li><a href="/non-prescriptions/sexual-wellness/lubricants">Lubricants</a></li> <li><a href="/non-prescriptions/sexual-wellness/sprays-gels">Sprays/Gels</a></li> </ul> </div> </div> <div class="MegaMenu_mmColumn"> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/surgical">Surgical</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/surgical/respiratory-supplies">Respiratory Supplies</a></li> <li><a href="/non-prescriptions/surgical/surgical-consumables">Surgical Consumables</a></li> <li><a href="/non-prescriptions/surgical/iv-infusion">Iv Infusion</a></li> <li><a href="/non-prescriptions/surgical/surgical-instrument">Surgical Instrument</a></li> <li><a href="/non-prescriptions/surgical/dressing">Dressing</a></li> <li><a href="/non-prescriptions/surgical/gi-care">Gi Care</a></li> <li><a href="/non-prescriptions/surgical/urinary-care">Urinary Care</a></li> <li><a href="/non-prescriptions/surgical/wound-treatment">Wound Treatment</a></li> </ul> </div> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/veterinary">Veterinary</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/veterinary/petcare">Petcare</a></li> <li><a href="/non-prescriptions/veterinary/farm-animals">Farm Animals</a></li> </ul> </div> <div> <p class="MegaMenu_subheading" style="color: #24aeb1; font-size: medium; font-family: latoBold;">Stores</p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/the-vitamin-store">Vitamin Store</a></li> <li><a href="/derma-cosmetics">Derma Cosmetics</a></li> <li><a href="/diabetes-center">Diabetes Center</a></li> </ul> </div> <div> <p class="MegaMenu_subheading" style="color: #24aeb1; font-size: medium; font-family: latoBold;">Trending</p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/brands/cerave">CeraVe</a></li> <li><a href="/non-prescriptions/brands/cetaphil">Cetaphill</a></li> </ul> </div> </div> </div> </div> </li> <li class="sbilabhide"><a href="/health-packages" class="b-check">Lab Tests</a></li> <li class="mega-menu"><a href="/beauty" class="h-pro">Beauty</a> <div class="MegaMenu_mmSubMain false"> <div></div> <div class="MegaMenu_mmSubMenu"> <div class="MegaMenu_mmColumn"> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/fragrances">Fragrances</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/fragrances/men">Men</a></li> <li><a href="/non-prescriptions/fragrances/unisex">Unisex</a></li> <li><a href="/non-prescriptions/fragrances/women">Women</a></li> </ul> </div> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/hair">Hair</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/hair/hair-care">Hair Care</a></li> <li><a href="/non-prescriptions/hair/hair-color">Hair Color</a></li> <li><a href="/non-prescriptions/hair/hair-styling">Hair Styling</a></li> <li><a href="/non-prescriptions/hair/hair-tools-accessories">Hair Tools &amp; Accessories</a></li> <li><a href="/non-prescriptions/hair/scalp-treatments">Scalp Treatments</a></li> <li><a href="/non-prescriptions/hair/shop-by-hair-type">Shop By Hair Type</a></li> </ul> </div> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/men-s-grooming">Men's Grooming</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/men-s-grooming/beard-care">Beard Care</a></li> <li><a href="/non-prescriptions/men-s-grooming/shaving">Shaving</a></li> </ul> </div> </div> <div class="MegaMenu_mmColumn"> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/make-up">Make-Up</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/make-up/eyes">Eyes</a></li> <li><a href="/non-prescriptions/make-up/face-makeup">Face Makeup</a></li> <li><a href="/non-prescriptions/make-up/lips">Lips</a></li> <li><a href="/non-prescriptions/make-up/make-up-tools-brushes">Make-Up Tools &amp; Brushes</a></li> <li><a href="/non-prescriptions/make-up/nails">Nails</a></li> </ul> </div> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/mom-baby">Mom &amp; Baby</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/mom-baby/baby-bath-time">Baby Bath Time</a></li> <li><a href="/non-prescriptions/mom-baby/baby-care">Baby Care</a></li> <li><a href="/non-prescriptions/mom-baby/feminine-hygiene">Feminine Hygiene</a></li> <li><a href="/non-prescriptions/mom-baby/maternity-accessories">Maternity Accessories</a></li> <li><a href="/non-prescriptions/mom-baby/maternity-care">Maternity Care</a></li> <li><a href="/non-prescriptions/mom-baby/toys-games">Toys &amp; Games</a></li> </ul> </div> </div> <div class="MegaMenu_mmColumn"> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/personal-care">Personal Care</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/personal-care/bath-shower">Bath &amp; Shower</a></li> <li><a href="/non-prescriptions/personal-care/bathing-accessories">Bathing Accessories</a></li> <li><a href="/non-prescriptions/personal-care/body-care">Body Care</a></li> <li><a href="/non-prescriptions/personal-care/face-personal-care">Face Personal Care</a></li> <li><a href="/non-prescriptions/personal-care/hands-feet">Hands &amp; Feet</a></li> <li><a href="/non-prescriptions/personal-care/home-health">Home &amp; Health</a></li> <li><a href="/non-prescriptions/personal-care/lip-care">Lip Care</a></li> <li><a href="/non-prescriptions/personal-care/oral-care">Oral Care</a></li> <li><a href="/non-prescriptions/personal-care/personal-care-tools-accessories">Personal Care Tools &amp; Accessories</a></li> <li><a href="/non-prescriptions/personal-care/senior-care">Senior Care</a></li> </ul> </div> </div> <div class="MegaMenu_mmColumn"> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/skin-care">Skin Care</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/skin-care/aromatherapy">Aromatherapy</a></li> <li><a href="/non-prescriptions/skin-care/cleansers">Cleansers</a></li> <li><a href="/non-prescriptions/skin-care/eye-care">Eye Care</a></li> <li><a href="/non-prescriptions/skin-care/face-skin-care">Face Skin Care</a></li> <li><a href="/non-prescriptions/skin-care/masks">Masks</a></li> <li><a href="/non-prescriptions/skin-care/moisturizers">Moisturizers</a></li> <li><a href="/non-prescriptions/skin-care/sunscreen">Sunscreen</a></li> <li><a href="/non-prescriptions/skin-care/toners-serums">Toners &amp; Serums</a></li> </ul> </div> <div> <p class="MegaMenu_subheading"><a href="/non-prescriptions/tools-appliances">Tools &amp; Appliances</a></p> <ul class="MegaMenu_mmCategoryList"> <li><a href="/non-prescriptions/tools-appliances/face-skin-tools">Face/Skin Tools</a></li> <li><a href="/non-prescriptions/tools-appliances/hair-styling-tools">Hair Styling Tools</a></li> <li><a href="/non-prescriptions/tools-appliances/massage-tools">Massage Tools</a></li> </ul> </div> </div> </div> </div> </li> <li class="b-app"><a href="/health-library" class="b-app1"> Health Corner</a> <ul> <li><a href="/health-library">Health Library</a></li> <li><a href="/cancer-awareness-is-power">All About Cancers</a></li> <li><a href="/corona-awareness">Corona Awareness</a></li> </ul> </li> </ul> </div> </div><!-- Navigation Section --> <div class="nav-sections"><nav class="navigation" style="max-width: 1200px;"> <ul class="ui-menu"> <li><a class="level-top" data-eventkey="non-prescriptions-diabetes" href="/non-prescriptions/covid-essentials">Covid Essentials</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-diabetes" href="/non-prescriptions/diabetes-support">Diabetes</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-diabetes" href="/non-prescriptions/health-conditions/cardiac-care">Cardiac Care</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-diabetes" href="/non-prescriptions/health-conditions/stomach-care">Stomach Care</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-ayush-ayurvedic" href="/non-prescriptions/ayush/ayurvedic">Ayurvedic</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-ayush-homeopathy" href="/non-prescriptions/ayush/homeopathy">Homeopathy</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-fitness" href="/explore-fitness">Fitness</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-mom-baby" href="/explore-mom-baby">Mom &amp; Baby</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-device" href="/explore-devices">Devices</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-surgicals" href="/non-prescriptions/surgical">Surgicals</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-sexual-wellness" href="/explore-sexual-wellness">Sexual Wellness</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-treatments" href="/explore-treatments">Treatments</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-skin-care" href="/non-prescriptions/skin-care">Skin Care</a></li> <li><a class="level-top" data-eventkey="non-prescriptions-personal-care" href="/explore-personal-care">Personal Care</a></li> </ul> </nav></div><input type="hidden" name="getpageUrl" id="getpageUrl" value="404" /> <input type="hidden" name="mstar_api_url_add_cart" id="mstar_api_url_add_cart" value="/mst/rest/v1/" /> <input type="hidden" name="nms_mgo_pincode" id="nms_mgo_pincode" value="110002" /> <input type="hidden" name="nms_mgo_city" id="nms_mgo_city" value="Central Delhi" /> <input type="hidden" name="nms_mgo_state_code" id="nms_mgo_state_code" value="DL" /> <input type="hidden" name="nms_mgo_state_name" id="nms_mgo_state_name" value="Delhi" /> <input type="hidden" id="base_url_api" value=""> <input type="hidden" name="general_pin_banner_url" id="general_pin_banner_url" value="/nmsd/rest/v2/" /> <input type="hidden" name="mstar_pin_banner_url" id="mstar_pin_banner_url" value="/mst/rest/v1/" /> <input type="hidden" name="minimum_qty_flag" id="minimum_qty_flag" value="1" /> <input type="hidden" name="gecode_Api_key" id="gecode_Api_key" value="AIzaSyD_xMhAkuPXbKXn_JkiCnrX6xxFsGGTRdY" /> <input type="hidden" name="wishlist_flag" id="wishlist_flag" value="1" /> <input type="hidden" name="dev_hyper_local_index" id="dev_hyper_local_index" value="prod_hyper_local_products" /> <input type="hidden" name="dev_hyper_local_key" id="dev_hyper_local_key" value="ce5f652e1091e7c64aced9a8d6238732" /> <input type="hidden" name="web_hyper_local_config_key" id="web_hyper_local_config_key" value="1" /> <input type="hidden" name="web_query_suggestions_index" id="web_query_suggestions_index" value="query_suggestions_new" /> <input type="hidden" name="web_rQuantity" id="web_rQuantity" value="/api/v1/webconfig/get" /> <input type="hidden" name="google_api_key" id="google_api_key" value="AIzaSyD_xMhAkuPXbKXn_JkiCnrX6xxFsGGTRdY" /> <input type="hidden" name="membership_api" id="membership_api" value="/api/v1/content/get?type=pdp" /> <input type="hidden" name="rQuantity_flag" id="rQuantity_flag" value="1" /> <main id="maincontent" class="main-section "> <table class="center_it"> <tbody> <tr> <td><img src="https://www.netmeds.com/assets/gloryweb/images/404.png" alt=""></td> <td style="text-align: center; color: #6f7284; font-size: 12px; font-family: Lato;"><span style="color: #151b39; font-family: Lato; font-size: 16px; padding-bottom: 4px; display: block;">It looks like you are lost</span>The page you are looking for no longer exist.<br>Don’t stress, we have a way out for you <a class="link-retry" href="/">GO TO HOME</a></td> </tr> </tbody> </table></main> <footer> <div class="footer-btm"> <div class="offline-stores"> <div class="stores-content"><img class="store-img" src="/assets/icons/store.png" alt="Offline Stores" /> <div class="offline-content"> <div class="ft-txt"> <div class="number">1000+</div> <div>Offline Stores</div> </div> </div> </div> </div> <div class="pincode"> <div class="stores-content"><img class="pin-img" src="/assets/icons/location.png" alt="PAN India delivery" /> <div class="offline-content"> <div class="ft-txt"> <div class="number">20000+</div> <div>Pincodes Served</div> </div> </div> </div> </div> <div class="hp-customer"> <div class="stores-content"><img class="user-img" src="/assets/icons/user.png" alt="Happy Customers" /> <div class="offline-content"> <div class="ft-txt"> <div class="number">9M+</div> <div>Happy Customers</div> </div> </div> </div> </div> </div> <div class="footer-top"> <div class="footer-logo"> <img src="https://www.netmeds.com/assets/gloryweb/images/netmeds-footer-logo.svg" alt="Netmeds.com, India ki Online Pharmacy"> </div> <div class="footer-txt"> Netmeds.com is one of India’s most trusted pharmacies, dispensing quality medicines at reasonable prices to over 9 million happy customers – PAN India. </div> </div> <div class="footer-container"> <ul> <li> <div class="footer_title">Company</div> </li> <li><a href="https://www.netmeds.com/about-us">About Netmeds</a></li> <li><a href="https://www.netmeds.com/testimonial">Customers Speak</a></li> <li><a href="https://www.netmeds.com/news">In the News</a></li> <li id="netmeds_career"><a href="https://rcareers.ril.com/sap%28bD1lbiZjPTQ0OQ==%29/bc/bsp/sap/zerec_home_page/home_page.do" target="_blank">Career</a></li> <li><a class="contact-link" href="https://www.netmeds.com/contact-us">Contact</a></li> </ul> <ul> <li> <div class="footer_title">Our policies</div> </li> <li><a href="https://www.netmeds.com/terms-and-conditions">Terms and Conditions</a></li> <li><a href="https://www.netmeds.com/privacy-policy">Privacy Policy</a></li> <li><a href="https://www.netmeds.com/fees-and-payments-policy">Fees and Payments Policy</a></li> <li><a href="https://www.netmeds.com/shipping-and-delivery-policy">Shipping and Delivery Policy</a></li> <li><a href="https://www.netmeds.com/return-refund-and-cancellation-policy">Return, Refund and Cancellation Policy</a> </li> <li><a href="https://www.netmeds.com/editorial-policy">Editorial Policy</a></li> </ul> <ul> <li> <div class="footer_title">Shopping</div> </li> <li><a href="https://www.netmeds.com/prescriptions">Browse by A-Z</a></li> <li><a href="https://www.netmeds.com/medicine/manufacturers">Browse by Manufacturers</a></li> <li><a href="https://www.netmeds.com/health-library">Health Articles</a></li> <li class="sbilabhide"><a href="https://www.netmeds.com/offers">Offers / Coupons</a></li> <li><a href="https://www.netmeds.com/faqs">FAQs</a></li> </ul> <ul> <li> <div class="footer_title">Popular Categories</div> </li> <li><a href="https://www.netmeds.com/explore-fitness">Fitness</a></li> <li><a href="https://www.netmeds.com/explore-devices">Devices</a></li> <li><a href="https://www.netmeds.com/explore-personal-care">Personal Care</a></li> <li class="sbilabhide"><a href="https://www.netmeds.com/non-prescriptions/ayush/ayurvedic">Ayurveda</a></li> <li><a href="https://www.netmeds.com/non-prescriptions/ayush/homeopathy">Homeopathy</a></li> <li><a href="https://www.netmeds.com/explore-treatments">Treatments</a></li> <li><a href="https://www.netmeds.com/explore-sexual-wellness">Sexual Wellness</a></li> <li><a href="https://www.netmeds.com/non-prescriptions/surgical">Surgicals</a></li> </ul> <ul> <li> <div class="footer_title">Social</div> </li> <li><a href="https://www.netmeds.com/patientsalike" target="_blank">Patients Alike</a></li> <li><a href="https://www.facebook.com/NetMeds/" target="_blank">Facebook</a></li> <li><a href="https://twitter.com/NetMeds" target="_blank">Twitter</a></li> <li><a href="https://in.linkedin.com/company/netmeds-marketplace-limited" target="_blank">LinkedIn</a></li> <li><a href="https://www.youtube.com/channel/UCNuPx810akEPrbwAUpdNPyw" target="_blank">Youtube</a></li> <li><a href="https://www.instagram.com/netmedsofficial" target="_blank">Instagram</a></li> <li><a href="https://www.netmeds.com/refer-earn">Refer &amp; Earn</a></li> </ul> <div class="subscribe"> <div class="footer_title">SUBSCRIBE TO OUR NEWSLETTER</div> Get a free subscription to our health and fitness tip and stay tuned to our latest offers <form id="newsletter-validate-detail" name="" method="post" novalidate="novalidate"> <div class="control"> <input name="newsletter_email" type="email" maxlength="50" class="Required-newsletter-email validate-newsletter-emailid" id="newsletter_email" placeholder="Enter your email address"> <button class="go-btn" title="Go" type="submit"><img src="/assets/icons/send.png"></button> </div> <div class="newsletter_error"></div> <div class="loaded"></div> <div class="load-out" style="display: none;"></div> </form> <div class="clearfix"></div> <div class="app-store"> <a class="store-icon" href="https://play.google.com/store/apps/details?id=com.NetmedsMarketplace.Netmeds&amp;hl=en" rel="noopener" title="Download Netmeds App for Android from Google Pay" target="_blank"> <img src="https://www.netmeds.com/assets/gloryweb/images/icons/play_store.png" alt="Google Pay" title="Download Netmeds App for Android from Google Pay"> </a> <a class="store-icon" href="https://itunes.apple.com/in/app/netmeds-india-ki-pharmacy/id1011070011?mt=8" title="Download Netmeds App for iOs from App Store" rel="noopener" target="_blank"> <img src="https://www.netmeds.com/assets/gloryweb/images/icons/app_store.png" alt="Download Netmeds App for iOs from App Store" title="Download Netmeds App for iOs from App Store"> </a> </div> <div class="clearfix"></div> <div class="app-div"> <a href="https://www.netmeds.com/mobile-apps"> Download App</a> </div> </div> </div> <div class="payment-partner1"> <div class="ft-head"> <h2>our payment partners</h2> </div> <div class="our-partners"><img class="g-img" src="/assets/global/images/footer-payment-icon/google-pay.svg" alt="Google Pay" /><img class="p-img" src="/assets/global/images/footer-payment-icon/phonepe.svg" alt="PhonePe" /><img class="pt-img" src="/assets/global/images/footer-payment-icon/paytm.svg" alt="Paytm" /><img class="s-img" src="/assets/global/images/footer-payment-icon/simpl.svg" alt="Simpl" /><img class="r-img" src="/assets/global/images/footer-payment-icon/rupay.svg" alt="Rupay" /><img class="v-img" src="/assets/global/images/footer-payment-icon/visa.svg" alt="Visa Card Network" /><img class="vs-img" src="/assets/global/images/footer-payment-icon/mastercard.svg" alt="MasterCard" /></div> </div> <!-- Copyright Section --> <div class="copyblock"> <div class="footer_link"><a href="/prescriptions">Medicine</a></div> <div class="footer_link"><a href="/wellness">Wellness</a></div> <div class="footer_link sbilabhide"><a href="/health-packages">Lab Tests</a></div> <div class="footer_link"><a href="/beauty">Beauty</a></div> <div class="copy-txt">Copyright&copy; 2023. All Rights Reserved.</div> </div></footer> </div> <input type="hidden" id="getNfmData" value="/api/v2/customer/getNfmData"> <input type="hidden" id="getNfmData_sectionid" value="111"> <script type="text/javascript" src="https://www.netmeds.com/assets/gloryweb/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script> <script type="text/javascript" src="https://www.netmeds.com/assets/version1718735327/gloryweb/js/jquery-ui.min.js" defer crossorigin="anonymous"></script> <script src="https://www.netmeds.com/assets/version1718735327/gloryweb/js/bootstrap.min.js" defer crossorigin="anonymous"></script> <script type="text/javascript" src="https://www.netmeds.com/assets/gloryweb/js/clipboard.min.js" defer crossorigin="anonymous"></script> <script type="text/javascript" src="https://www.netmeds.com/assets/gloryweb/js/swiper.min.js" defer crossorigin="anonymous"></script> <script type="text/javascript" src="https://www.netmeds.com/assets/gloryweb/js/slick-1.9.0.min.js" defer crossorigin="anonymous"></script> <script src="https://www.netmeds.com/assets/gloryweb/js/algolia-autocomplete.js" defer crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js" defer crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" defer crossorigin="anonymous"></script> <script type="text/javascript" src="https://www.netmeds.com/assets/gloryweb/js/bootstrap.notify.js" defer crossorigin="anonymous"></script> <script type="text/javascript" src="https://www.netmeds.com/assets/gloryweb/js/jquery.validate.min.js" defer crossorigin="anonymous"></script> <!-- <script src="../assets/global/js/lottie-player.js"></script> --> <script>spge = '404'; </script> <!-- Added By Nikunj Shah For Tracking --> <script type="text/javascript"> 
+(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+
+// Enabling the debug mode flag is useful during implementation,
+// but it's recommended you remove it for production
+mixpanel.init('f0dfac8639dac7edd6354e0519636476', {debug: true}); 
+mixpanel.track(spge, {
+  'source': "Direct",
+  'Opted out of email': true,
+});
+</script> <script type="text/javascript">
+    $(document).ready(function() {
+        $('#first_loader').hide();
+    });
+</script> <!-- Fash sales --> <script type="text/javascript">
+$(document).ready(function () {
+    localStorage.removeItem('loginpage');
+    //window.user_id     = ($.cookie('userid')!=undefined) ? $.cookie('userid'):"" ;
+    //window.auth_token  = ($.cookie('authtoken')!=undefined) ? $.cookie('authtoken'):"";
+    window.user_id     = localStorage.getItem("userid");
+    window.auth_token  = localStorage.getItem("authtoken");
+    window.cust_dname  = (localStorage.getItem('displayname')!=null) ? localStorage.getItem('displayname'):"";
+        window.login_session = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://www.netmeds.com/mst/rest/v1/entity/customer/get_details",
+      "method": "GET",
+      "headers": {
+        "userid": window.user_id,
+        "authtoken": window.auth_token
+      }
+    };
+    if((user_id!="") && (cust_dname!="")){
+        $('.login #logged_user').text("");
+        $('.login #logged_user').append(cust_dname);
+        $('.login a:first').hide();
+        $('.login #logged_user').show();
+    } else {
+        $('.login #logged_user').hide();
+        $('.login a:first').show();
+
+    }
+        $('.logged').show();
+});
+</script> <script id="_webengage_script_tag" type="text/javascript">
+		var webengage; !function(w,e,b,n,g){function o(e,t){e[t[t.length-1]]=function(){r.__queue.push([t.join("."),arguments])}}var i,s,r=w[b],z=" ",l="init options track screen onReady".split(z),a="feedback survey notification".split(z),c="options render clear abort".split(z),p="Open Close Submit Complete View Click".split(z),u="identify login logout setAttribute".split(z);if(!r||!r.__v){for(w[b]=r={__queue:[],__v:"6.0",user:{}},i=0;i<l.length;i++)o(r,[l[i]]);for(i=0;i<a.length;i++){for(r[a[i]]={},s=0;s<c.length;s++)o(r[a[i]],[a[i],c[s]]);for(s=0;s<p.length;s++)o(r[a[i]],[a[i],"on"+p[s]])}for(i=0;i<u.length;i++)o(r.user,["user",u[i]]);setTimeout(function(){var f=e.createElement("script"),d=e.getElementById("_webengage_script_tag");f.type="text/javascript",f.async=!0,f.src=("https:"==e.location.protocol?"https://ssl.widgets.webengage.com":"http://cdn.widgets.webengage.com")+"/js/webengage-min-v-6.0.js",d.parentNode.insertBefore(f,d)})}}(window,document,"webengage");
+		webengage.options('delay',2000);
+		webengage.options('webpush.registerServiceWorker', false);
+		webengage.options('webpush.disablePrompt', true);
+		webengage.init("~2024b299");		
+	</script> <input type="hidden" name="enable_webengage" id="enable_webengage" value="1" /> <input type="hidden" name="enable_fbpixel" id="enable_fbpixel" value="0" /> <script type="text/javascript" src="https://www.netmeds.com/assets/version1718735327/gloryweb/js/main.js" defer crossorigin="anonymous"></script> <script src="https://www.netmeds.com/assets/version1718735327/gloryweb/js/search_autocomplete.js" defer crossorigin="anonymous"></script> <script type="text/javascript" src="https://www.netmeds.com/assets/gloryweb/js/url.min.js" defer crossorigin="anonymous"></script> <script>
+$(document).ready(function($) {
+    $("#newsletter-validate-detail").validate({
+        ignoreTitle: true,
+        errorLabelContainer: '.newsletter_error'
+    });
+    $('.load-out').hide();
+    $("#newsletter-validate-detail").submit(function(e) {
+        $('.load-out').hide();
+        $('.load-out').text('');
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        if ($(this).valid()) {
+            $(".loaded").show();
+            $(".loaded").html("Submitting...");
+            var data = $('#newsletter-validate-detail').serialize();
+            jQuery.ajax({
+                url: "https://www.netmeds.com/newsletter/index/subscriber",
+                type: 'POST',
+                crossDomain: true,
+                data: data,
+                beforeSend: function() {
+                    $('.loader').show();
+                },
+                success: function(response) {
+                    if (response == 'Thank you for your subscription.') {
+                        $(".loaded").hide();
+                        $(".loaded").text('');
+                        $('.load-out').show('');
+                        $('.load-out').append("<span class='success-msg'>" + response + "</span>");
+
+                    } else {
+                        $(".loaded").hide();
+                        $(".loaded").text('');
+                        $('.load-out').show('');
+                        $('.load-out').append("<span class='error-msg'>" + response + "</span>");
+                    }
+                }
+            });
+        }
+        return false;
+    });
+    $.validator.addMethod(
+    'Required-newsletter-email', function (value) {
+        if(value) return true;
+        else return false;
+    }, 'Please enter your E-mail ID!');
+    $.validator.addMethod('validate-newsletter-emailid',function(value,elem){
+      return /^([a-z0-9,!\#\$%&'\*\+\/=\?\^_`\{\|\}~-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z0-9,!\#\$%&'\*\+\/=\?\^_`\{\|\}~-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*@([a-z0-9-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z0-9-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*\.(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]){2,})$/i.test(value);
+    }, 'Please enter a valid E-mail ID!');
+});
+</script> <script>
+function getPageType(){
+    var pageType = 'other pages';
+    if($("body").hasClass("cms-home")){
+        pageType = "Home Page";
+    }else if($("body").hasClass("catalog-category-view")){
+        pageType = "category page";
+    }else if($("body").hasClass("catalog-product-view")){
+        pageType = "Product Details Page";
+    }
+    else if($("body").hasClass("search-result-page")){
+        pageType = "Search Page";
+    }            
+    return pageType;
+}   
+
+function trackGoogleEvents(action,label){
+    if("ga"in window){
+        tracker=ga.getAll()[0];
+        if(tracker){
+            tracker.send("event","New Click actions",action,label);
+        }
+    }
+}
+$(document).ready(function(){  
+    $(".m-pro1").click(function(ev){
+        trackGoogleEvents("Medicine","");
+    });
+
+    $(".add_to_cart_fixed .cartbag").click(function(){
+        trackGoogleEvents("Add to cart button","Product Holder");
+    });
+
+    $(".main-navigation .m-pro ul li a").click(function(ev){
+        var label = $(this).text();
+        trackGoogleEvents(label,"");
+    });
+
+    $("#search").focus(function(){
+        trackGoogleEvents("Search","");
+    });
+    $("#upload_prescription_button").click(function(){
+        trackGoogleEvents("Upload Prescription","M2");
+    });
+    $(".mini-cart").click(function(){
+        var pageType = 'other pages';
+        if($("body").hasClass("cms-home")){
+            pageType = "home page";
+        }
+        else if($("body").hasClass("catalog-category-view")){
+            pageType = "category page";
+        }
+        else if($("body").hasClass("catalog-product-view")){
+            pageType = "product page";
+        }
+        trackGoogleEvents("Cart",pageType);
+    });  
+    $(".navigation ul li .level-top").click(function(event){
+        event.stopPropagation();
+        if($(this).attr("data-eventkey") == "health-library"){
+            trackGoogleEvents("Health library","");
+        }
+        else{
+            trackGoogleEvents("menu-category",$(this).text().trim());
+        }
+    });
+
+    /*$(".submenu a").click(function(event){
+        event.stopPropagation();
+        if($(this).hasClass("health_library")){
+            trackGoogleEvents("Health library","");
+        }
+        else{
+            trackGoogleEvents("menu-sub-category",$(this).text());
+        }
+    }); */
+});
+</script> <script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js', {
+          scope: '/'
+        });
+    });
+}
+ /*$.event.special.touchstart = {
+  setup: function( _, ns, handle ){
+    if ( ns.indexOf("noPreventDefault") !== -1 ) {
+      // this.addEventListener("touchstart", handle, { passive: false });
+      return ;
+    } else {
+      this.addEventListener("touchstart", handle, { passive: true });
+    }
+  }
+}; */
+</script> <script>
+    $(document).ready(function(){
+        $(".contact-link").click(function () {
+            var path =  $(this).attr('href');
+            if(path){
+                localStorage.setItem('redirectUrl', path.replace(window.location.origin,""));
+            }
+        });
+    });
+</script> <script>
+  var ALGOLIA_INSIGHTS_SRC = "//cdn.jsdelivr.net/npm/search-insights@1.3.1";
+
+  !function(e,a,t,n,s,i,c){e.AlgoliaAnalyticsObject=s,e[s]=e[s]||function(){
+  (e[s].queue=e[s].queue||[]).push(arguments)},i=a.createElement(t),c=a.getElementsByTagName(t)[0],
+  i.async=1,i.src=n,c.parentNode.insertBefore(i,c)
+  }(window,document,"script",ALGOLIA_INSIGHTS_SRC,"aa");
+
+
+  // Initialize library
+  aa('init', {
+    appId: window.algolia_app_id,
+    apiKey: window.algolia_api_key
+  });
+</script> <script>
+$(document).ready(function(){
+$(".m-pro ul").css("min-width","200px");
+
+$(".b-app ul").css("z-index","2");
+$("#recomm_quantity .form-group").children("#pincode_msg").remove();
+});
+
+$(document).ready(function(){  
+  $(".detect_location").click(function () { 
+     $(".detect_location").css({
+         "pointer-events": "none",
+         "opacity": "0.4"
+     })
+  });
+}); 
+
+
+</script> <script>
+    function dummyfunction(){
+        console.log("called");
+    }
+</script> <script type="text/javascript" src="https://www.netmeds.com/assets/version1718735327/gloryweb/js/pincode-banner.min.js" defer crossorigin="anonymous"></script> <script type="text/javascript">
+    $(document).ready(function() {
+        var referer = $.cookie("nms_refer_lite");
+        if (referer) {
+            $(".mini_banner_partercode").css('display','none');
+            $(".sbilabhide").css('display','none');
+        }
+    });
+</Script> <!-- For wishlist button --> <script type="text/javascript">
+    $(document).ready(function() {
+        localStorage.setItem('createcarttype','');
+    });
+    setInterval(function(){
+    var elem = document.activeElement;
+    if(elem && elem.tagName == 'IFRAME'){       
+            $(".needhelp").css({
+                'overflow': 'auto'
+            })		
+        }
+    }, 100); 
+</script> <script>
+     if(localStorage.getItem('nms_first_member')=='yes') {
+        $('#fMembersUser').css('display','block');
+        $('#fMembers').css('display','none');
+
+        var userid = localStorage.getItem('userid');
+        var authtoken = localStorage.getItem('authtoken');
+        var api_url = $("#getNfmData").val(); 
+        var getNfmData_sectionid = $("#getNfmData_sectionid").val();
+        var data = {'sectionId':getNfmData_sectionid};
+        $.ajax({
+        url:api_url,
+        data:data,
+        headers: {"userid": userid,"authtoken":authtoken,"identifier":"static_block","Cookie": "Path=/"},
+        async:false,
+        method:'POST',
+        dataType:'JSON',
+        start_time: new Date().getTime(),
+        success:function(resp){  
+                    
+            if(resp.result.nmsCashCallEnabled == true){ 
+                if(resp.result.activePlan.list){
+                    var imgerr = `onerror="this.src='/assets/icons/img_placeholder.svg'"`;
+                    var boxHtml = '';
+                    var width = false;
+                    for (let i = 0; i < resp.result.activePlan.list.length; i++) {
+                        if(resp.result.activePlan.list[i].title == "Active Plan"){
+                            if(resp.result.activePlan.list[i].description != "" || resp.result.activePlan.list[i].header != "" ){
+                                width = true;
+                                boxHtml += '<div class="nfmCard"><h1><img '+imgerr+' src="'+resp.result.activePlan.list[i].iconUrl+'" />'+resp.result.activePlan.list[i].title+'</h1><div class="nfmTxt"><span class="dTxt">'+resp.result.activePlan.list[i].header+'</span><span>'+resp.result.activePlan.list[i].description+'</span></div></div>';
+                            }
+                        }
+                        else{
+                            boxHtml += '<div class="nfmCard"><h1><img '+imgerr+' src="'+resp.result.activePlan.list[i].iconUrl+'" />'+resp.result.activePlan.list[i].title+'</h1><div class="nfmTxt"><span class="dTxt">'+resp.result.activePlan.list[i].header+'</span><span>'+resp.result.activePlan.list[i].description+'</span></div></div>';
+                        }
+                        // if(resp.result.activePlan.list[i].title == "Free Consultations"){ 
+                        //     var cLeft = resp.result.activePlan.list[i].header.match(/\d/g);
+                        //     $("#freeConsultLeft").css('display','block');;
+                        //     $('#freeConsultLeftCount').append(cLeft+" free consultations left");
+                        // }
+                    }
+                    $('.nfm-expirydate').css('display','none');
+					$('#NFM_d_box').append(boxHtml);
+                    if(width == true){
+                        $(".nfmCard").css( "width","24%" );
+                    }
+                } 
+            }else{
+                $('.nfm-expirydate').css('display','block');
+            }
+        }
+        });
+
+        if(localStorage.getItem('nms_first_member_expirydate')) {
+
+            var d1 = localStorage.getItem('nms_first_member_expirydate');
+            var d2 = new Date();
+
+            if (new Date(d1) > d2) {
+                
+                var date = localStorage.getItem('nms_first_member_expirydate').split(' ')[0];
+                var dateAr = date.split('-');
+                var newDate = dateAr[2] + '-' + dateAr[1] + '-' + dateAr[0];
+
+                $('.nfm-expirydate').html('Valid until <span>'+newDate+'</span>');
+            }else{
+                $('#fMembers').css('display','block');
+                $('#fMembersUser').css('display','none');
+            }
+        }
+        if(localStorage.getItem('nms_first_member_expirydate') === null || localStorage.getItem('nms_first_member_expirydate') == '') {
+                $('#fMembers').css('display','block');
+                $('#fMembersUser').css('display','none');
+        }
+     } 
+     if(localStorage.getItem('nms_first_member')=='no') {
+        $('#fMembers').css('display','block');
+        $('#fMembersUser').css('display','none');
+     }
+     if (localStorage.getItem("nms_first_member") === null || localStorage.getItem("nms_first_member") == '') {
+        $('#fMembers').css('display','block');
+        $('#fMembersUser').css('display','none');
+    }
+    
+    
+</script> <script type="text/javascript">
+$(document).ready(function() {
+    $('#search_form').on('submit', function(event){
+        event.preventDefault();
+        var str = $("#search").val().replace(/[^a-z0-9\s]/gi, ' ').replace(/[_\s]/g, ' ').toLowerCase().replace(/  +/g, ' ').trim();
+        if(str==0){
+            window.location.href = "https://www.netmeds.com/catalogsearch/result/url_0/all";
+        }else if(str!='') {
+            window.location.href = "https://www.netmeds.com/catalogsearch/result/"+str+'/all';
+        } else {
+            window.location.href = "https://www.netmeds.com/";
+        }
+    });
+});
+</script> <script>
+//add function for hit log api
+function genrate_log(api_url,start_time,complete_time,time_taken,modules,submodules,request_payload,xhr=''){
+
+    if(xhr != ''){ 
+        if(typeof xhr.responseJSON !== undefined){
+            var responseJSON = xhr.responseJSON;
+        }else{
+            var responseJSON = 'N/A';
+        }
+        var statusCode = xhr.status;
+    }else{
+        var statusCode = 'N/A';
+        var responseJSON = 'N/A';
+    }
+    var log_post = {
+        "processing_system": "moonracer",
+        "uuid": "",
+        "start_time": start_time,
+        "completed_time": complete_time,
+        "time_taken": time_taken,
+        "module_name": modules,
+        "sub_module_name": submodules,
+        "version": "v2.2",
+        "source_system": "Frontend",
+        "target_system": "Pharma Panel",
+        "environment": "SIT",
+        "unique_process_id": "MSKY_"+modules+"_"+submodules,
+        "uniq_ref": "",
+        "status": "fail",
+        "log_level": "debug",
+        "error_code": statusCode,//responseJSON.reason.reason_code,
+        "error_info": 'N/A',
+        "microservice_url": api_url,
+        "request_payload": request_payload,
+        "response_payload": responseJSON,
+        "instance_ip": "",
+        "host_ip": ""
+    }
+        console.log(log_post);
+
+        $.ajax({
+            url: "/log/ajax",
+            method: "POST",
+            dataType: "json",
+            data: log_post,
+        success: function(result,status,xhr ){
+            //Do something
+        },
+        error(xhr, Status, error){
+            //Do something
+        }
+        });
+}
+</script> <script type="text/javascript">
+    $(document).on('click','#search_request',function(event){
+        if($("#search_product_request").length == 0){
+            $.ajax({
+                type: 'GET',
+                url: "https://www.netmeds.com/catalogsearch/productrequest",
+                start_time: new Date().getTime(),
+                success:function(response){
+                    $("body").append(response);
+                    $("#search_product_request").modal("show");
+                },
+                error:function(xhr, status, error){
+                    var time_taken = new Date().getTime() - this.start_time;
+                    genrate_log(this.url,this.start_time,new Date().getTime(),time_taken,'footer scripts','productrequest',"get",xhr); 
+                }
+            });
+        }
+        $("#search_product_request").modal("show");
+    });
+    $(document).ready(function(){
+        $("#product_request_form").validate({
+            ignoreTitle: true,
+            errorElement: 'div',
+            errorClass: 'form_error'
+        });
+        window.response_mobi ="";
+        window.response_name = "";
+        if((user_id!="") && (auth_token!="")){
+            $.ajax(login_session).done(function (response, statusText, xhr) {
+            if((xhr.status == 200) && (response.status == "success")){
+                $("#product_request_form .ph_error #search_logger_name").val(response.result.your_details.display_name_full);
+                window.response_name = response.result.your_details.display_name_full;
+                $("#product_request_form .ph_error #search_mobile_no").val(response.result.your_details.mobile_no);
+                window.response_mobi = response.result.your_details.mobile_no;
+            }
+            });
+        }
+        $("#search").blur();
+        $('.gx_discount_success,.gx_discount_success .pin_error,.gx_discount_success  .pin_success').hide();
+        $('#product_request_form')[0].reset();
+        $("#product_request_form div.form_error").remove();
+        $("#product_request_form input").removeClass("valid form_error");
+        $('.request_success,.request_success .pin_error,.request_success  .pin_success').hide();
+        $("#search_form_cancel").click(function(){
+            $( "#searchprod_close" ).trigger( "click" );
+        });
+
+        $(document).on('click','#search_request',function(event){
+            $("#search").blur();
+            $('.gx_discount_success,.gx_discount_success .pin_error,.gx_discount_success  .pin_success').hide();
+            $('#product_request_form')[0].reset();
+            $("#product_request_form div.form_error").remove();
+            $("#product_request_form input").removeClass("valid form_error");
+            if((response_name!="") && (response_mobi!="") ){
+                $("#product_request_form .ph_error #search_logger_name").val(response_name);
+                $("#product_request_form .ph_error #search_mobile_no").val(response_mobi);
+            }
+        });
+        $("#ext_request").click(function(e){
+            $('#product_request_form').submit();
+        });  
+        $("#search_mobile_no").on("keypress keyup change",function(){
+            if($(this).val().indexOf("0") == 0){
+                $(this).val($(this).val().substring(1));
+            }
+        });
+        $("#product_request_form" ).submit(function(e) {
+            $('.gx_discount_success,.gx_discount_success .pin_error,.gx_discount_success .pin_success').hide();
+            e.preventDefault();
+            if ($(this).valid()) {
+                $('#ext_request').prop('disabled', true);
+                $(".loaded").show();
+                var data = $('#product_request_form').serialize();
+                $.ajax({
+                    url:"https://www.netmeds.com/catalog/request/searchproduct",
+                    type:'POST',
+                    crossDomain:true,
+                    data: data,
+                    start_time: new Date().getTime(),
+                    success: function(response)
+                    {
+                        if(response == "success"){
+                            $('.gx_discount_success .pin_success').text("");
+                            $('#product_request_form')[0].reset(); 
+                            $('#ext_request').prop('disabled', false);
+                            $( "#searchprod_close" ).trigger( "click" );
+                            $('.gx_discount_success .pin_success').append('Submitted successfully!');
+                            $('.gx_discount_success,.gx_discount_success .pin_success').show();
+                        } else {
+                            $('#product_request_form')[0].reset();
+                            $('#ext_request').prop('disabled', false);
+                            $( "#searchprod_close" ).trigger( "click" );
+                            $('.gx_discount_success,.gx_discount_success .pin_error').show();
+                        } 
+                    },
+                    error:function(xhr, status, error){
+                        var time_taken = new Date().getTime() - this.start_time;
+                        genrate_log(this.url,this.start_time,new Date().getTime(),time_taken,'request_form','searchproduct',data,xhr);           
+                    }
+                });
+            }
+        });
+        $("#search_mobile_no").keypress(function(event){
+            evt = (event) ? event : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        });
+        $.validator.addMethod(
+        'Required-search-mobile', function (value) {
+            if(value) return true;
+            else return false;
+        },'Please enter your mobile number!');
+        $.validator.addMethod(
+        'validate-search-mobileno',function(value) {
+            return value.length > 9 &&  value.length < 11 
+            && value.match(/^\d{10}$/);
+        },'Please enter a valid mobile number!');
+        $.validator.addMethod(
+        'Required-search-product', function (value) {
+            if(value) return true;
+            else return false;
+        },'Please enter product name!');
+        $.validator.addMethod(
+        'Required-search-name', function (value) {
+            if(value) return true;
+            else return false;
+        }, "Please enter your name!");
+        $.validator.addMethod("validate-search-alphaspace", function(value, element) {
+            return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        }, "Your Name must contain only alphabets!");     
+        /*function request_detail_ajax(){
+            if((user_id!="") && (auth_token!="")){
+                $.ajax(login_session).done(function (response, statusText, xhr) {
+                if((xhr.status == 200) && (response.status == "success")){
+                    $("#product_request_form .ph_error #search_logger_name").val(response.result.your_details.display_name_full);
+                    var response_name = response.result.your_details.display_name_full;
+                    $("#product_request_form .ph_error #search_mobile_no").val(response.result.your_details.mobile_no);
+                    var response_mobi = response.result.your_details.mobile_no;
+                }
+                });
+            }
+        }*/
+    });
+</script> <input type="hidden" id="logo_api_url" value="/api/v1/homesection/"> <script>
+    if(localStorage.getItem('logoconfigweb')){
+        var logoArray = JSON.parse(localStorage.getItem('logoconfigweb'));
+        if(localStorage.getItem('nms_first_member')=='yes' && logoArray.nfmLogoEnabled == true) {
+            var logoWeb = logoArray.logoWebNFM;
+        }else{
+            var logoWeb = logoArray.logoWeb;
+        }
+        $(".logoWeb").attr("src",logoWeb);
+    }else{    
+        var logo_api_url = $('#logo_api_url').val();
+        $.ajax({
+            type: 'GET',
+            url: logo_api_url,
+            start_time: new Date().getTime(),
+            success:function(response){
+                var logoArray = response.result;
+                if(localStorage.getItem('nms_first_member')=='yes' && logoArray.nfmLogoEnabled == true) {
+                    var logoWeb = logoArray.logoWebNFM;
+                }else{
+                    var logoWeb = logoArray.logoWeb;
+                }
+                $(".logoWeb").attr("src",logoWeb);
+
+                localStorage.setItem('logoconfigweb',JSON.stringify(response.result));
+            },
+            error:function(xhr, status, error){
+                var time_taken = new Date().getTime() - this.start_time;
+                genrate_log(this.url,this.start_time,new Date().getTime(),time_taken,'footer scripts','productrequest',"get",xhr); 
+            }
+        });
+        
+    }   
+
+</script> <script>
+    $(document).ready(function() {        
+        if(localStorage.getItem("userid") != 0 && localStorage.getItem("userid") != null) {
+            var authtoken = localStorage.getItem('authtoken');
+            var userid = localStorage.getItem('userid');
+            var d = new Date();
+            var n = d.getTime();
+            // Cancelation Api for shipping_choice== none
+            //let url ="mst/rest/v1/cart/set_shipping_choice";
+            let url ="https://www.netmeds.com/mst/rest/v1/cart/set_shipping_choice";
+            $.ajax({
+                url:url,
+                data:{'shipping_choice':'none','n':n},
+                headers: {"userid": userid,"authtoken":authtoken},
+                method:'GET',
+                dataType:'JSON',
+                start_time: new Date().getTime(),
+                success:function(data){ 
+                   console.log(data,"data")
+                },error: function(jqXHR, textStatus, errorThrown, xhr) { 
+                    var time_taken = new Date().getTime() - this.start_time;
+                    genrate_log(this.url,this.start_time,new Date().getTime(),time_taken,'footer scripts','cart/set_shipping_choice','get',xhr); 
+                   
+                }
+            })
+        }
+    })
+</script> <input type="hidden" name="webconfigurl" id="webconfigurl" value="/api/v1/webconfig/get" /> <script type="text/javascript">
+    var addItemAmount = "0";
+    var offerUnlockedText = "";
+    var offerUnlockedMsite = "";
+    var addItemText = "";
+    var webconfigurl = $("#webconfigurl").val();
+    $.ajax({
+        url:webconfigurl,
+        data:"",
+        headers: {},
+        async:false,
+        method:'GET',
+        dataType:'JSON',
+        start_time: new Date().getTime(),
+        success:function(resp){
+
+                addItemAmount = resp.result.configDetails.bestPriceDisplay.addItemAmount;
+                addItemText = resp.result.configDetails.bestPriceDisplay.addItemText;
+                offerUnlockedText = resp.result.configDetails.bestPriceDisplay.offerUnlockedText;
+                offerUnlockedMsite = resp.result.configDetails.bestPriceDisplay.offerUnlockedMsite;
+                var offerUnlockedWeb = resp.result.configDetails.bestPriceDisplay.offerUnlockedWeb;
+
+                
+                $("#addItemText").html(addItemText);
+                // $("#mTitle2").html(resp.result.configDetails.recommQtyPopupPDP.header);
+                // $("#mTitle3").html(ne2);
+                // $("#mButton1").html(resp.result.configDetails.recommQtyPopupPDP.ctaText1);
+                // if(qty > 1){
+                //     rQuantflag = true
+                // }                
+                      
+        },
+        error:function(xhr, status, error){     
+        }
+    });
+    
+    var totalCartBarpdp = $("#totalCartBarpdp").val();
+    if(totalCartBarpdp === 1 || totalCartBarpdp === '1'){
+        pdptotalCartBar();
+        function pdptotalCartBar(totalCartval=''){
+            var cart_info = localStorage.getItem('cart_info');
+            cart_info = JSON.parse(cart_info);
+            
+            totalCartval = parseFloat(cart_info.cart.sub_total - cart_info.cart.total_savings).toFixed(2);
+            
+            let circularProgress = document.querySelector(".circular-progress"),
+            progressValue = document.querySelector(".progress-value");
+
+            var totalCart = Math.round((totalCartval/addItemAmount)*100);
+            
+            $("#cartValueInBar").html('Cart Total<br/><span>₹'+totalCartval+'</span>');
+            
+            let progressStartValue = 0,    
+                progressEndValue = totalCart,    
+                speed = 1;
+
+            if(totalCartval >= Number(addItemAmount)){
+                progressValue.style.color = `#31af30`
+                $("#newBestPrice").addClass("offerUnlocked");
+                if(offerUnlockedMsite === true){
+                    $("#addItemText").html(offerUnlockedText);   
+                }
+            }else{
+                progressValue.style.color = `#a7a7a7`
+                $("#newBestPrice").removeClass("offerUnlocked");
+                $("#addItemText").html(addItemText);
+            }
+                
+            let progress = setInterval(() => {
+                    progressStartValue++;
+
+                    circularProgress.style.background = `conic-gradient(#31af30 ${progressStartValue * 3.6}deg, #ededed 0deg)`
+                    if(progressStartValue == progressEndValue){
+                        clearInterval(progress);
+                    }    
+            }, speed);
+        }
+    }
+    
+
+    function totalCartBar(totalCartval=''){
+        var cart_info = localStorage.getItem('cart_info');
+        cart_info = JSON.parse(cart_info);
+        
+        totalCartval = parseFloat(cart_info.cart.sub_total - cart_info.cart.total_savings).toFixed(2);
+        
+        let circularProgress = document.querySelector(".circular-progress"),
+        progressValue = document.querySelector(".progress-value"),
+        circularProgressPop = document.querySelector(".circular-progress-pop"),
+        progressValuePop = document.querySelector(".progress-value-pop");
+
+        var totalCart = Math.round((totalCartval/addItemAmount)*100);
+        
+        //$("#cartValueInBar").html('Cart Total<br/><span>₹'+totalCartval+'</span>');
+        $(".cartValueInBarpop").html('Cart Total<br/><span>₹'+totalCartval+'</span>');
+        //$(".circular-progress-pop").css({'background':'conic-gradient(rgb(49, 175, 48) 586.8deg, rgb(237, 237, 237) 0deg)'});
+        
+        let progressStartValue = 0,    
+            progressEndValue = totalCart,    
+            speed = 1;
+
+        if(totalCartval >= Number(addItemAmount)){
+            //progressValue.style.color = `#31af30`
+            progressValuePop.style.color = `#31af30`
+            //$("#newBestPrice").addClass("offerUnlocked");
+            $(".newBestPricepop").addClass("offerUnlocked");
+            $(".popuptext").addClass("offerUnlockedpopup");
+            
+            if(offerUnlockedMsite === true){
+                $(".addItemTextpop").html(offerUnlockedText);
+                //$("#addItemText").html(offerUnlockedText);   
+            }
+        }else{
+            //progressValue.style.color = `#a7a7a7`
+            progressValuePop.style.color = `#a7a7a7`
+            //$("#newBestPrice").removeClass("offerUnlocked");
+            $(".newBestPricepop").removeClass("offerUnlocked");
+            $(".popuptext").removeClass("offerUnlockedpopup");
+            //$("#addItemText").html(addItemText);
+            $(".addItemTextpop").html(addItemText);
+        }
+            
+        let progress = setInterval(() => {
+            progressStartValue++;
+            
+            var color = 'conic-gradient(#31af30 '+progressStartValue * 3.6+'deg, #ededed 0deg)';
+                $(".circular-progress-pop").css({'background':color});
+            //progressValue.textContent = `${progressStartValue}%`
+            //circularProgress.style.background = `conic-gradient(#31af30 ${progressStartValue * 3.6}deg, #ededed 0deg)`
+            //circularProgressPop.style.background = `conic-gradient(#31af30 ${progressStartValue * 3.6}deg, #ededed 0deg)`
+            if(progressStartValue == progressEndValue){
+                clearInterval(progress);
+            }    
+        }, speed);
+    }
+
+</script> <script>
+$(document).ready(function () {
+    $('html').click(function(e) {                    
+        if(!$(e.target).hasClass('popuptext') )
+        {
+            $('.popuptext').removeClass('show'); 
+            $(this).find('img').removeClass('ratateIcon');          
+        }
+    });
+
+    $(document).on('click','#bestPriceModelBtn', function () {
+        
+        $('.popuptext').removeClass('show');
+        $(this).find('#myPopup').addClass('show');
+        $(this).find('img').addClass('ratateIcon');
+        if(parseInt($('.counter-number').text()) == 0){
+            $(this).find("#addItemTextpop").html(addItemText);
+        }else{
+            totalCartBar(); 
+        }
+        // $("#bestPriceModel").modal('show');
+        // $('.BpProduct_mrp').html('MRP '+$(this).attr("data-mrp"));
+        // $('.BpProduct_name').html($(this).attr("data-name"));
+        // $('.BpImg').attr("src",$(this).attr("data-imgurl"));
+        // $('.barBestPrice').html($(this).attr("data-bestprice"));
+    }); 
+    
+});
+</script> <script type="text/javascript" id="www-widgetapi-script" src="https://s.ytimg.com/yts/jsbin/www-widgetapi-vflS50iB-/www-widgetapi.js" async=""></script> </body> </html> <script> 
+localStorage.setItem("HaptikEnableDisable",1);
+localStorage.setItem("minimum_qty_order_flag",1);
+</script> <script>
+    function showDrProfile(path,drTitle) {
+        var base_url = window.location.origin;
+        location.href = base_url+path;
+    }
+</script> <div class="modal" id="reco_quantity_php" tabindex="-1" role="dialog"> <div class="modal-dialog" role="document"> <div class="modal-content"> <div class="modal-header bbottom"> <span class="model-h5 modal-title"><span id="mTitle1"></span></h5> <button type="button" class="close modal-close bbottom" data-dismiss="modal" aria-label="Close" data-bs-dismiss="modal"> <span aria-hidden="true">&times;</span> </button> </div> <div class="modal-body"> <div class="form-group"> <label for="pincode"><span id="mTitle2"></span></label> <div class="clearfix"></div> <label for="pincode"><span id="mTitle3"></sapn></label> <input type="hidden" name="rquant" id="rquant_plp" > <input type="hidden" name="rquant_sku" id="rquant_sku" > </div> </div> <div class="modal-footer btop"> <button id="mBtn1" onclick="reccoqty('rejected')" data-bs-dismiss="modal" class="strip"><span id="mButton1plp"></span></button> <button id="mBtn2" onclick="reccoqty('accepted')" data-bs-dismiss="modal" class="yesStrip"><span id="mButton2plp"></span></button> </div> </div> </div> </div> 
