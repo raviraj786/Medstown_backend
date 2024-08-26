@@ -17,7 +17,7 @@ const medicineSchema = new mongoose.Schema({
     medicineImage: {type: Array, default: []},
     medicineLeaf: {type: String, default: null},
     medicineId: {type: String, default: null},
-    dateOfRegistration: {type: String, default: null},
+    dateOfRegistration: {type: String, default: null},      
     dateOfUpdate: {type: String, default: null},
     medicineDescription: {type: String, default: null},
     rxRequired: {type: Boolean, default: false},
