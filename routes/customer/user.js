@@ -58,6 +58,7 @@ router.post("/registeruser", async (req, res) => {
       specialChars: false,
       alphabets: false,
     }),
+    date : date,
   });
   let msg = {
     from: "keepmailingrishabh@gmail.com",
@@ -77,21 +78,32 @@ router.post("/registeruser", async (req, res) => {
     }
   });
 });
+
+
+
 router.post("/registermobileuser", async (req, res) => {
   const { fullName, phone, email } = req.body;
   const otp = Math.floor(1000 + Math.random() * 9000);
-  const user = new userdb({
-    fullName: fullName,
-    phone: phone,
-    email: email,
-    userId: "USER" + uuid.v4(),
-    otp: otp
-  });
-  let url = `http://37.59.76.46/api/mt/SendSMS?user=Wowerr-Technologies&password=q12345&senderid=MEDSTN&channel=Trans&DCS=0&flashsms=0&number=${phone}&text=Your%20login%20OTP%20for%20Medstown%20account%20is%20${otp}.%20OTP%20is%20valid%20for%2010mins.%20Do%20not%20share%20with%20anyone.%20If%20not%20requested%20by%20you,%20reach%20support@medstown.com%20-MEDSTOWN`;
-  axios
-    .get(url)
-    .then(async (response) => {
-      if (response) {
+
+  try {
+    const existingUser = await userdb.findOne({ phone: phone });
+
+    if (existingUser) {
+      return res.send("User already exists");
+    } else {
+      const user = new userdb({
+        fullName: fullName,
+        phone: phone,
+        email: email,
+        userId: "USER" + uuid.v4(),
+        otp: otp,
+      });
+
+      let url = `http://37.59.76.46/api/mt/SendSMS?user=Wowerr-Technologies&password=q12345&senderid=MEDSTN&channel=Trans&DCS=0&flashsms=0&number=${phone}&text=Your%20login%20OTP%20for%20Medstown%20account%20is%20${otp}.%20OTP%20is%20valid%20for%2010mins.%20Do%20not%20share%20with%20anyone.%20If%20not%20requested%20by%20you,%20reach%20support@medstown.com%20-MEDSTOWN`;
+
+      const smsResponse = await axios.get(url);
+
+      if (smsResponse.status === 200) {
         await user.save();
         res.send({
           status: "success",
@@ -104,9 +116,17 @@ router.post("/registermobileuser", async (req, res) => {
           message: "OTP not sent",
         });
       }
-    })
-
+    }
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: "An error occurred during registration",
+    });
+  }
 });
+
+
+
 
 router.post("/loginmobileuser", async (req, res) => {
   const { phone } = req.body;

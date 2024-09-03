@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   activationCode: { type: String, required: false },
   drivingLicense: { type: String, required: false },
   vehicleNumber: { type: String, required: false },
+  date: { type: Date, default: Date.now },
 
  documnetUploaded : [{
   userImage : {type : String , required : false },

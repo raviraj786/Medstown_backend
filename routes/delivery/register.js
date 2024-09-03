@@ -452,4 +452,74 @@ router.get("/getdoc/:partnerId", async (req, res) => {
   }
 });
 
+//delete delivary user api
+
+router.get("/deletedelvaryuser/:partnerId", async (req, res) => {
+  const { partnerId } = req.params;
+  try {
+    const result = await deliverydb.deleteOne({ partnerId: partnerId });
+    if (result.deletedCount > 0) {
+      res.send({ status: "success", message: "Delivery user deleted successfully" });
+    } else {
+      res.send({ status: "error", message: "Delivery user not found" });
+    }
+  } catch (error) {
+    res.status(500).send({ status: "error", message: "An error occurred while deleting the user" });
+  }
+});
+
+//update delivary user
+
+
+router.put("/updatedeliveryuser/:partnerId", async (req, res) => {
+  const { partnerId } = req.params;
+  const {
+    fullname,
+    phone,
+    otp,
+    drivingLicense,
+    vehicleNumber,
+  } = req.body;
+  // Create an empty object to store updates
+  let updateFields = {};
+
+  // Conditionally add fields to the update object
+  if (fullname) updateFields.fullname = fullname;
+  if (phone) updateFields.phone = phone;
+  if (otp) updateFields.otp = otp;
+  if (drivingLicense) updateFields.drivingLicense = drivingLicense;
+  if (vehicleNumber) updateFields.vehicleNumber = vehicleNumber;
+
+  // If you need to generate a new partnerId, you can add it like this:
+  // updateFields.partnerId = uuid.v4();
+
+  try {
+    const updatedUser = await deliverydb.findOneAndUpdate(
+      { partnerId: partnerId },
+      { $set: updateFields },
+      { new: true } // Return the updated document
+    );
+
+    if (updatedUser) {
+      res.send({
+        status: "success",
+        message: "Delivery user updated successfully",
+        data: updatedUser,
+      });
+    } else {
+      res.send({
+        status: "error",
+        message: "Delivery user not found",
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: "An error occurred while updating the user",
+    });
+  }
+});
+
+
+
 module.exports = router;

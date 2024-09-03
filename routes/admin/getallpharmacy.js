@@ -1,36 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const registerpharmacydb = require("../../models/pharmacydb/registerpharmacydb");
-// fullName: {type: String, default: null},
-//     bussinessName: {type: String, default: null},
-//     bussinessRegNo: {type: String, default: null},
-//     gstNo: {type: String, default: null},
-//     medicalLicenseNo: {type: String, default: null},
-//     address: {type: String, default: null},
-//     pincode: {type: String, default: null},
-//     businessDocumets: {type: Array, default: []},
-//     userDocumets: {type: Array, default: []},
-//     businessPhone: {type: String, default: null},
-//     ownerPhone: {type: String, default: null},
-//     email: {type: String, default: null},
-//     password: {type: String, default: null},
-//     otp: {type: String, default: null},
-//     dateOfRegistration: {type: String, default: null},
-//     dateOfMedicalLicense: {type: String, default: null},
-//     pharmacyId: {type: String, default: null},
-//     pharmacyUserId: {type: String, default: null},
-//     businessTiming: {type: Array, default: []},
-//     pharmacyImage: {type: Array, default: []},
-//     medicineLeaf: {type: String, default: null},
-//     medicineInventory: {type: Array, default: []},
-//     orders: {type: orders, default: orders},
-//     acceptedOrders: {type: acceptedOrders, default: acceptedOrders},
-//     rejectedOrders: {type: rejectedOrders, default: rejectedOrders},
-//     missedOrders: {type: missedOrders, default: missedOrders},
-//     location: {
-//         type: {type: String, enum: ["Point"], default: "Point", required: true},
-//         coordinates: {type: [Number], default: [0, 0], required: true},
-//     },
+const pharmacydb = require("../../models/pharmacydb/registerpharmacydb");
+  
+
+
 
 // get hundred medicines from database and then set 100 ofset and limit to 100
 
@@ -66,5 +40,9 @@ router.post("/deletepharmacy", async (req, res) => {
         }
     });
 });
+
+
+
+
 
 module.exports = router;

@@ -19,6 +19,7 @@ const Prescriptiondb = require("../../models/pharmacydb/prescriptiondb.js");
 router.post("/scrapdata", async (req, res) => {
   const { url, type } = req.body;
   let browser;
+  console.log(req.body)
   try {
     browser = await puppeteer.launch({
       ignoreDefaultArgs: ["--disable-extensions"],
@@ -35,6 +36,7 @@ router.post("/scrapdata", async (req, res) => {
         )
       );
       let totalCount = document.querySelector("#total_count")?.innerText;
+
       return {
         totalCount: totalCount,
         anchors: anchors
@@ -49,7 +51,8 @@ router.post("/scrapdata", async (req, res) => {
     });
 
     const totalPages = Math.ceil(parseFloat(data.totalCount / 20));
-    for (let i = 0; i <=totalPages; i++) {
+
+    for (let i =16; i <=  totalPages ; i++) {
       await page.goto(`${url}/page/${i}`);
       const data2 = await page.evaluate(() => {
         const anchors = Array.from(
@@ -69,6 +72,7 @@ router.post("/scrapdata", async (req, res) => {
         };
       });
       data.anchors = data.anchors.concat(data2.anchors);
+      console.log("Current Page: ", i);
     }
 
     const supportedFormats = [".jpeg", ".jpg", ".png"];
@@ -147,7 +151,6 @@ router.post("/scrapdata", async (req, res) => {
       // Check if the medicine already exists in the database
       const existingMedicine = await Nonprescriptiondb.findOne({
         medicineName: data3.medicineName,
-        medicineCompany: data3.medicineCompany,
       });
 
       if (existingMedicine) {
@@ -193,6 +196,13 @@ router.post("/scrapdata", async (req, res) => {
         console.log("Saved medicine", i, "/", data.anchors.length);
       } else {
         console.log("Encountered medicine with disease: null");
+        const medicine = new Nonprescriptiondb({
+          ...data3,
+          type: type,
+        });
+        await medicine.save();
+        console.log("Saved medicine", i, "/", data.anchors.length);
+
       }
     }
   } catch (error) {

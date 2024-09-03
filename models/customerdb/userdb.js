@@ -9,5 +9,6 @@ const userSchema = new mongoose.Schema({
     userType: {type: String, default: "customer"},
     profilePic: {type: String, default: null},
     prescription: {type: Array, default: []},
+    datetime: { type: Date, default: Date.now },
 });
 module.exports = mongoose.model("userdb", userSchema);
